@@ -9,6 +9,7 @@ namespace Battlefield.Projectile
         [Header("Movement")]
         [SerializeField] private float _speed = 300f;
         [SerializeField] private float _lifeTime = 5f;
+        [SerializeField] private float _gravityScale = 0f;
 
         [Header("Layer")]
         [SerializeField] private LayerMask _hitMask = ~0;
@@ -16,24 +17,30 @@ namespace Battlefield.Projectile
         protected Rigidbody Rigidbody { get; private set; }
         protected Transform Owner { get; private set; }
         protected TeamType OwnerTeam { get; private set; } = TeamType.Neutral;
-        protected float CurrentSpeed { get; private set; }
+        protected Vector3 Velocity { get; private set; }
 
 
         protected virtual void Awake()
         {
             Rigidbody = GetComponent<Rigidbody>();
             Rigidbody.isKinematic = true;
-            CurrentSpeed = _speed;
         }
 
         protected virtual void OnEnable()
         {
-            Destroy(gameObject, _lifeTime);
+            Invoke(nameof(LifeExpired), _lifeTime);
+        }
+
+        protected virtual void OnDisable()
+        {
+            CancelInvoke();
         }
 
         protected virtual void FixedUpdate()
         {
-            float moveDistance = CurrentSpeed * Time.fixedDeltaTime;
+            // 낙차
+            Velocity += Physics.gravity * _gravityScale * Time.fixedDeltaTime;
+            float moveDistance = Velocity.magnitude * Time.fixedDeltaTime;
             Vector3 previousPosition = transform.position;
             Vector3 direction = transform.forward;
 
@@ -46,34 +53,30 @@ namespace Battlefield.Projectile
             Rigidbody.MovePosition(previousPosition + direction * moveDistance);
         }
 
-        private void HandleHit(Collider other)
-        {
-            if (ShouldIgnore(other)) return;
-
-            if (IsAlly(other))
-            {
-                DestroyProjectile();
-                return;
-            }
-
-            OnHit(other);
-            DestroyProjectile();
-        }
-
         public virtual void Initialize(Transform owner)
         {
             Owner = owner;
 
-            if (Owner != null && Owner.TryGetComponent<Team>(out var team))
+            if (Owner != null && Owner.TryGetComponent<Team>(out Team team))
             {
                 OwnerTeam = team.CurrentTeam;
             }
 
-            if (Owner != null && Owner.TryGetComponent<Rigidbody>(out var ownerRigidbody))
+            Vector3 ownerVelocity = Vector3.zero;
+            if (Owner != null && Owner.TryGetComponent(out Rigidbody ownerRigidBody))
             {
-                float forwardVelocity = Vector3.Dot(ownerRigidbody.linearVelocity, transform.forward);
-                CurrentSpeed = _speed + Mathf.Max(forwardVelocity, 0f);
+                ownerVelocity = ownerRigidBody.linearVelocity;
             }
+            Velocity = transform.forward * _speed + ownerVelocity;
+        }
+
+        private void HandleHit(Collider other)
+        {
+            if (ShouldIgnore(other)) return;
+            if (IsAlly(other)) return;
+
+            OnHit(other);
+            DestroyProjectile();
         }
 
         protected virtual bool ShouldIgnore(Collider other)
@@ -84,13 +87,14 @@ namespace Battlefield.Projectile
         protected virtual bool IsAlly(Collider other)
         {
             return OwnerTeam != TeamType.Neutral &&
-                   other.TryGetComponent<Team>(out var team) &&
+                   other.TryGetComponent<Team>(out Team team) &&
                    team.CurrentTeam == OwnerTeam;
         }
 
-        protected virtual void OnHit(Collider other)
+        protected abstract void OnHit(Collider other);
+        private void LifeExpired()
         {
-
+            DestroyProjectile();
         }
 
         protected virtual void DestroyProjectile()

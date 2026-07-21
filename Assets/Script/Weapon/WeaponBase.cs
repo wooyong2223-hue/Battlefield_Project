@@ -10,6 +10,7 @@ namespace Battlefield.Weapon
 
         private float _nextFireTime;
         protected float Damage => _damage;
+        protected float FireRate => _fireRate;
 
         public void TryFire()
         {

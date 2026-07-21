@@ -7,7 +7,7 @@ namespace Battlefield.Projectile
     {
         private float _damage;
 
-        public virtual void Initialize(Transform owner, float damage)
+        public void Initialize(Transform owner, float damage)
         {
             base.Initialize(owner);
             _damage = damage;
@@ -15,7 +15,7 @@ namespace Battlefield.Projectile
 
         protected override void OnHit(Collider other)
         {
-            if (other.TryGetComponent<IDamageable>(out var damageable))
+            if (other.TryGetComponent<IDamageable>(out IDamageable damageable))
             {
                 damageable.TakeDamage(_damage);
             }

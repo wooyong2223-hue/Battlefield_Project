@@ -133,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Projectile.Bullet
   _speed: 500
   _lifeTime: 1
+  _gravityScale: 10000
   _hitMask:
     serializedVersion: 2
     m_Bits: 4294967295
