@@ -131,9 +131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77671a57c473c854094c17648dacee5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Projectile.Bullet
-  _speed: 500
+  _speed: 100
   _lifeTime: 1
-  _gravityScale: 10000
+  _gravityScale: 0
   _hitMask:
     serializedVersion: 2
     m_Bits: 4294967295

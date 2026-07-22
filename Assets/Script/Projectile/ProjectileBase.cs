@@ -41,13 +41,12 @@ namespace Battlefield.Projectile
             // 낙차
             Velocity += Physics.gravity * _gravityScale * Time.fixedDeltaTime;
             float moveDistance = Velocity.magnitude * Time.fixedDeltaTime;
-            Vector3 previousPosition = transform.position;
-            Vector3 direction = transform.forward;
+            Vector3 previousPosition = Rigidbody.position;
+            Vector3 direction = Velocity.normalized;
 
             if (Physics.Raycast(previousPosition, direction, out RaycastHit hit, moveDistance, _hitMask, QueryTriggerInteraction.Ignore))
             {
-                HandleHit(hit.collider);
-                return;
+                if(HandleHit(hit.collider)) return;
             }
 
             Rigidbody.MovePosition(previousPosition + direction * moveDistance);
@@ -70,13 +69,14 @@ namespace Battlefield.Projectile
             Velocity = transform.forward * _speed + ownerVelocity;
         }
 
-        private void HandleHit(Collider other)
+        private bool HandleHit(Collider other)
         {
-            if (ShouldIgnore(other)) return;
-            if (IsAlly(other)) return;
+            if (ShouldIgnore(other)) return false;
+            if (IsAlly(other)) return false;
 
             OnHit(other);
             DestroyProjectile();
+            return true;
         }
 
         protected virtual bool ShouldIgnore(Collider other)
@@ -92,7 +92,7 @@ namespace Battlefield.Projectile
         }
 
         protected abstract void OnHit(Collider other);
-        private void LifeExpired()
+        protected virtual void LifeExpired()
         {
             DestroyProjectile();
         }
