@@ -19,7 +19,7 @@ namespace Battlefield.Fighter.Movement
             if (_input == null) Debug.Log($"{nameof(IJetInput)} is missing", this);
         }
 
-        void Update()
+        private void Update()
         {
             if (_input == null) return;
 
