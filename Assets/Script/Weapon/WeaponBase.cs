@@ -12,11 +12,14 @@ namespace Battlefield.Weapon
         [Header("OverHeat")]
         [SerializeField] private Overheat _overheat;
 
+        [SerializeField]
+        private float _coolDownDelay = 0.15f;
+
         [Header("UI")]
         [SerializeField] private HeatDotsView _heatDotsView;
 
         private float _nextFireTime;
-        private bool _isFiring;
+        private float _lastFireTime;
         protected float Damage => _damage;
         protected Overheat Overheat => _overheat;
 
@@ -30,22 +33,19 @@ namespace Battlefield.Weapon
 
         private void Update()
         {
-            if(!_isFiring)
+            if (Time.time >= _lastFireTime + _coolDownDelay)
             {
                 _overheat.CoolDown(Time.deltaTime);
             }
-
-            _isFiring = false;
         }
 
         public void TryFire()
         {
-            _isFiring = true;
-
             if (!_overheat.CanFire()) return;
             if (Time.time < _nextFireTime) return;
 
             _nextFireTime = Time.time + 1f / _fireRate;
+            _lastFireTime = Time.time;
 
             Fire();
 

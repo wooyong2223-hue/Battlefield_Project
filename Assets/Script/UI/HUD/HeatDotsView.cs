@@ -57,9 +57,7 @@ namespace Battlefield.UI.HUD
         private void LateUpdate()
         {
             if (_overheat == null || _dots.Count == 0) return;
-
             float heatPercent = Mathf.Clamp01(_overheat.Heat / _maxHeat) * 100f;
-
             bool overheated = _overheat.IsOverheated;
 
             int litCount = Mathf.RoundToInt((heatPercent / 100f) * _dots.Count);
