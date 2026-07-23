@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Battlefield.Projectile;
+using Battlefield.VFX;
 
 namespace Battlefield.Weapon
 {
@@ -8,6 +9,9 @@ namespace Battlefield.Weapon
         [Header("Projectile")]
         [SerializeField] private Transform _firePoint;
         [SerializeField] private Bullet _bulletPrefab;
+
+        [Header("Effect")]
+        [SerializeField] private MuzzleFlash _muzzleFlash;
 
         protected override void Fire()
         {
@@ -21,6 +25,11 @@ namespace Battlefield.Weapon
             {
                 Debug.LogWarning("Bullet Prefab Missing.", this);
                 return;
+            }
+
+            if (_muzzleFlash != null)
+            {
+                _muzzleFlash.Play();
             }
 
             // Bullet 오브젝트 생성

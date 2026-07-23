@@ -7,7 +7,7 @@ namespace Battlefield.Weapon
     {
         [SerializeField] private float _maxHeat = 100f;
         [SerializeField] private float _heatPerShot = 5f;
-        [SerializeField] private float _coolDownPerSecond = 15f;
+        [SerializeField] private float _coolDownPerSecond = 25f;
         [SerializeField] private float _recoverHeat = 30f;
 
         private float _currentHeat;
