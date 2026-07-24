@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Battlefield.Projectile;
 using Battlefield.VFX;
+using Battlefield.Pool;
 
 namespace Battlefield.Weapon
 {
@@ -8,7 +9,6 @@ namespace Battlefield.Weapon
     {
         [Header("Projectile")]
         [SerializeField] private Transform _firePoint;
-        [SerializeField] private Bullet _bulletPrefab;
 
         [Header("Effect")]
         [SerializeField] private MuzzleFlash _muzzleFlash;
@@ -21,25 +21,16 @@ namespace Battlefield.Weapon
                 return;
             }
 
-            if (_bulletPrefab == null)
-            {
-                Debug.LogWarning("Bullet Prefab Missing.", this);
-                return;
-            }
-
             if (_muzzleFlash != null)
             {
                 _muzzleFlash.Play();
             }
 
-            // Bullet 오브젝트 생성
-            var bullet = Instantiate(
-                _bulletPrefab,
-                _firePoint.position,
-                _firePoint.rotation);
+            Bullet bullet = BulletPool.Instance.Get();
+            bullet.transform.SetPositionAndRotation(_firePoint.position, _firePoint.rotation);
 
-            // bullet.transform.SetParent(null, true);
-            bullet.Initialize(transform.root, Damage);
+            ProjectileData projectileData = new ProjectileData(transform.root, Damage);
+            bullet.Initialize(projectileData);
         }
     }
 }

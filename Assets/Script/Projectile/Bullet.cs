@@ -1,5 +1,5 @@
-﻿using Battlefield.Core;
-using UnityEngine;
+﻿using UnityEngine;
+using Battlefield.Core;
 
 namespace Battlefield.Projectile
 {
@@ -7,10 +7,10 @@ namespace Battlefield.Projectile
     {
         private float _damage;
 
-        public void Initialize(Transform owner, float damage)
+        public override void Initialize(ProjectileData data)
         {
-            base.Initialize(owner);
-            _damage = damage;
+            base.Initialize(data);
+            _damage = data.Damage;
         }
 
         protected override void OnHit(Collider other)

@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using Battlefield.Core;
+using Battlefield.Pool;
 
 namespace Battlefield.Projectile
 {
     [RequireComponent(typeof(Rigidbody))]
-    public abstract class ProjectileBase : MonoBehaviour
+    public abstract class ProjectileBase : PoolableBehaviour
     {
         [Header("Movement")]
         [SerializeField] private float _speed = 300f;
@@ -19,21 +20,10 @@ namespace Battlefield.Projectile
         protected TeamType OwnerTeam { get; private set; } = TeamType.Neutral;
         protected Vector3 Velocity { get; private set; }
 
-
         protected virtual void Awake()
         {
             Rigidbody = GetComponent<Rigidbody>();
             Rigidbody.isKinematic = true;
-        }
-
-        protected virtual void OnEnable()
-        {
-            Invoke(nameof(LifeExpired), _lifeTime);
-        }
-
-        protected virtual void OnDisable()
-        {
-            CancelInvoke();
         }
 
         protected virtual void FixedUpdate()
@@ -52,9 +42,9 @@ namespace Battlefield.Projectile
             Rigidbody.MovePosition(previousPosition + direction * moveDistance);
         }
 
-        public virtual void Initialize(Transform owner)
+        public virtual void Initialize(ProjectileData data)
         {
-            Owner = owner;
+            Owner = data.Owner;
 
             if (Owner != null && Owner.TryGetComponent<Team>(out Team team))
             {
@@ -67,6 +57,27 @@ namespace Battlefield.Projectile
                 ownerVelocity = ownerRigidBody.linearVelocity;
             }
             Velocity = transform.forward * _speed + ownerVelocity;
+
+            CancelInvoke();
+            Invoke(nameof(LifeExpired), _lifeTime);
+        }
+
+        public override void OnSpawn()
+        {
+            base.OnSpawn();
+            CancelInvoke();
+
+            Rigidbody.linearVelocity = Vector3.zero;
+            Rigidbody.angularVelocity = Vector3.zero;
+        }
+
+        public override void OnDespawn()
+        {
+            base.OnDespawn();
+            CancelInvoke();
+
+            Rigidbody.linearVelocity = Vector3.zero;
+            Rigidbody.angularVelocity = Vector3.zero;
         }
 
         private bool HandleHit(Collider other)
@@ -99,7 +110,7 @@ namespace Battlefield.Projectile
 
         protected virtual void DestroyProjectile()
         {
-            Destroy(gameObject);
+            ReturnToPool();
         }
     }
 }

@@ -1960,6 +1960,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424006434}
   m_CullTransparentMesh: 1
+--- !u!1 &1486456746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1486456748}
+  - component: {fileID: 1486456747}
+  m_Layer: 0
+  m_Name: BulletPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1486456747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486456746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ccfeb377c954be4f8521047f463678d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Pool.BulletPool
+  _prefab: {fileID: 2271321635249598331, guid: cf94234f083fb9644860b729645fc24b, type: 3}
+  _initialSize: 20
+--- !u!4 &1486456748
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486456746}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1574975638
 GameObject:
   m_ObjectHideFlags: 0
@@ -2257,11 +2303,11 @@ MonoBehaviour:
   _overheat:
     _maxHeat: 100
     _heatPerShot: 5
-    _coolDownPerSecond: 15
-    _recoverHeat: 30
+    _coolDownPerSecond: 25
+    _recoverHeat: 40
+  _coolDownDelay: 0.15
   _heatDotsView: {fileID: 548307667}
   _firePoint: {fileID: 2144639258}
-  _bulletPrefab: {fileID: 2271321635249598331, guid: cf94234f083fb9644860b729645fc24b, type: 3}
   _muzzleFlash: {fileID: 5434070182624302658}
 --- !u!114 &1843855355
 MonoBehaviour:
@@ -3006,3 +3052,4 @@ SceneRoots:
   - {fileID: 2114256057}
   - {fileID: 742947259}
   - {fileID: 1347612515}
+  - {fileID: 1486456748}
