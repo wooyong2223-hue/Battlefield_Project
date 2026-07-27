@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Battlefield.Core;
 using Battlefield.Pool;
+using Battlefield.VFX.Hit;
 
 namespace Battlefield.Projectile
 {
@@ -36,7 +37,7 @@ namespace Battlefield.Projectile
 
             if (Physics.Raycast(previousPosition, direction, out RaycastHit hit, moveDistance, _hitMask, QueryTriggerInteraction.Ignore))
             {
-                if(HandleHit(hit.collider)) return;
+                if (HandleHit(hit)) return;
             }
 
             Rigidbody.MovePosition(previousPosition + direction * moveDistance);
@@ -44,6 +45,9 @@ namespace Battlefield.Projectile
 
         public virtual void Initialize(ProjectileData data)
         {
+            Rigidbody.position = transform.position;
+            Rigidbody.rotation = transform.rotation;
+
             Owner = data.Owner;
 
             if (Owner != null && Owner.TryGetComponent<Team>(out Team team))
@@ -67,6 +71,9 @@ namespace Battlefield.Projectile
             base.OnSpawn();
             CancelInvoke();
 
+            Velocity = Vector3.zero;
+            Owner = null;
+            OwnerTeam = TeamType.Neutral;
             Rigidbody.linearVelocity = Vector3.zero;
             Rigidbody.angularVelocity = Vector3.zero;
         }
@@ -76,15 +83,25 @@ namespace Battlefield.Projectile
             base.OnDespawn();
             CancelInvoke();
 
+            Velocity = Vector3.zero;
+            Owner = null;
+            OwnerTeam = TeamType.Neutral;
             Rigidbody.linearVelocity = Vector3.zero;
             Rigidbody.angularVelocity = Vector3.zero;
         }
 
-        private bool HandleHit(Collider other)
+        private bool HandleHit(RaycastHit hit)
         {
+            Collider other = hit.collider;
+
             if (ShouldIgnore(other)) return false;
             if (IsAlly(other)) return false;
 
+            HitEffectManager.Instance?.Play(
+                other.sharedMaterial,
+                hit.point,
+                hit.normal,
+                Velocity.normalized);
             OnHit(other);
             DestroyProjectile();
             return true;

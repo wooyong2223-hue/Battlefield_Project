@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using Battlefield.Projectile;
+using Battlefield.Pool;
 
-namespace Battlefield.Pool
+namespace Battlefield.Projectile
 {
     public class BulletPool : ObjectPool<Bullet>
     {
