@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Battlefield.VFX.Hit
 {
@@ -9,6 +9,8 @@ namespace Battlefield.VFX.Hit
         [SerializeField] private HitEffectDatabase _database;
         [SerializeField] private float _destroyDelay = 10f;
         [SerializeField, Min(0.01f)] private float _effectScale = 10f;
+        [SerializeField] private float _bulletHoleDuration = 10f;
+        [SerializeField, Min(0.01f)] private float _bulletHoleScale = 10f;
 
         private void Awake()
         {
@@ -30,38 +32,35 @@ namespace Battlefield.VFX.Hit
         {
             if (_database == null || material == null) return;
 
-            ParticleSystem prefab = _database.GetEffect(material);
+            HitEffectDatabase.Entry entry = _database.GetEntry(material);
 
-            if (prefab == null) return;
+            if (entry == null) return;
 
             Vector3 effectDirection = incomingDirection.sqrMagnitude > 0f
                 ? -incomingDirection.normalized
                 : normal;
-            Quaternion rotation = Quaternion.LookRotation(effectDirection);
+            Quaternion effectRotation = Quaternion.LookRotation(effectDirection);
 
-            ParticleSystem effect =
-                Instantiate(prefab, position, rotation);
+            Vector3 surfaceDirection = normal.sqrMagnitude > 0f
+                ? normal.normalized
+                : effectDirection;
+            Quaternion bulletHoleRotation = Quaternion.LookRotation(surfaceDirection);
 
-            effect.transform.localScale = Vector3.one * _effectScale;
-
-            foreach (ParticleSystem particle in effect.GetComponentsInChildren<ParticleSystem>(true))
+            if (entry.EffectPool != null)
             {
-                particle.Clear();
-                particle.Play();
+                HitEffect effect = entry.EffectPool.Get();
+                effect.transform.SetPositionAndRotation(position, effectRotation);
+                effect.transform.localScale = Vector3.one * _effectScale;
+                effect.Play(_destroyDelay);
             }
 
-            float maxDuration = 0f;
-
-            foreach (ParticleSystem particle in effect.GetComponentsInChildren<ParticleSystem>(true))
+            if (entry.BulletHolePool != null)
             {
-                float duration =
-                    particle.main.duration +
-                    particle.main.startLifetime.constantMax;
-
-                maxDuration = Mathf.Max(maxDuration, duration);
+                BulletHole bulletHole = entry.BulletHolePool.Get();
+                bulletHole.transform.SetPositionAndRotation(position, bulletHoleRotation);
+                bulletHole.transform.localScale = Vector3.one * _bulletHoleScale;
+                bulletHole.Play(_bulletHoleDuration);
             }
-            Destroy(effect.gameObject, _destroyDelay);
         }
-
     }
 }

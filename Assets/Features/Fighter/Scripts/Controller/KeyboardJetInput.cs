@@ -20,7 +20,7 @@ namespace Battlefield.Fighter.Controller
 
         private void Update()
         {
-            Throttle = Input.GetAxis("Vertical");
+            Throttle = Input.GetAxisRaw("Vertical");
             Pitch = -Input.GetAxis("Mouse Y");
             Roll = -Input.GetAxis("Mouse X");
 

@@ -7,6 +7,8 @@ namespace Battlefield.Projectile
     {
         public static BulletPool Instance { get; private set; }
 
+        [SerializeField] private Bullet _prefab;
+
         protected override void Awake()
         {
             if (Instance == null)
@@ -20,6 +22,12 @@ namespace Battlefield.Projectile
             }
 
             base.Awake();
+        }
+
+        protected override Bullet Create()
+        {
+            Bullet bullet = Instantiate(_prefab, transform);
+            return Register(bullet);
         }
     }
 }

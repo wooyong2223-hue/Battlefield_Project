@@ -1,8 +1,9 @@
 using UnityEngine;
+using Battlefield.Pool;
 
 namespace Battlefield.Particle
 {
-    public class ParticlePlayer : MonoBehaviour
+    public class ParticlePlayer : PoolableBehaviour
     {
         protected ParticleSystem[] _particles;
 

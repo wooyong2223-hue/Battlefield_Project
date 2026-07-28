@@ -243,6 +243,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 359485738817279527, guid: a5bba4471f2b885428541314bad7877b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 585146956536691028}
+    - targetCorrespondingSourceObject: {fileID: 359485738817279527, guid: a5bba4471f2b885428541314bad7877b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7461283591045839217}
+    - targetCorrespondingSourceObject: {fileID: 359485738817279527, guid: a5bba4471f2b885428541314bad7877b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7461283591045839218}
+    - targetCorrespondingSourceObject: {fileID: 359485738817279527, guid: a5bba4471f2b885428541314bad7877b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7461283591045839219}
   m_SourcePrefab: {fileID: 100100000, guid: a5bba4471f2b885428541314bad7877b, type: 3}
 --- !u!4 &2872367962350400426 stripped
 Transform:
@@ -340,9 +349,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f27d962199c620469a3eec35dd9aef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Fighter.Movement.JetMovement
-  _acceleration: 100
+  _acceleration: 30
+  _deceleration: 40
   _maxSpeed: 300
   _minSpeed: 0
+  _minimumFallingForwardSpeed: 30
+  _fallRecoveryAcceleration: 20
 --- !u!114 &5465069268099954159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,11 +383,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f91836b3dbc7e4cafd2245e08b1068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Fighter.Movement.JetPhysics
-  _gravityThresholdSpeed: 20
+  _gravityThresholdSpeed: 30
   _flightDrag: 0
   _flightMass: 1000
   _fallingMass: 3000
   _fallingDrag: 0
+  _fallingGravityMultiplier: 0.75
 --- !u!114 &6321714927658173998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,3 +421,44 @@ MonoBehaviour:
   _damage: 10
   _firePoint: {fileID: 3439592890172946217}
   _bulletPrefab: {fileID: 2271321635249598331, guid: cf94234f083fb9644860b729645fc24b, type: 3}
+--- !u!114 &7461283591045839217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213146663861086480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a3921c84e74209af3f39ecae13768d, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Fighter.FighterDestruction
+  _explosionPrefab: {fileID: 19800004, guid: b46890100828db6429ff69c322b45893, type: 3}
+  _explosionScale: 3
+  _damagedColor: {r: 0.15, g: 0.15, b: 0.15, a: 1}
+--- !u!114 &7461283591045839218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213146663861086480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a676ed38c545fbbf1aa58757a262c9, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Fighter.FighterMeshCollider
+  _collisionMeshName: Main_LOD0_00_low.004
+--- !u!114 &7461283591045839219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213146663861086480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a40da3128a54ec79c1217df3c5755db, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Fighter.FighterCollisionResponse
+  _maxAngularSpeed: 0

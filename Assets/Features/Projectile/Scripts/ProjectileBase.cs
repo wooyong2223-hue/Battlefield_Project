@@ -114,8 +114,10 @@ namespace Battlefield.Projectile
 
         protected virtual bool IsAlly(Collider other)
         {
+            Team team = other.GetComponentInParent<Team>();
+
             return OwnerTeam != TeamType.Neutral &&
-                   other.TryGetComponent<Team>(out Team team) &&
+                   team != null &&
                    team.CurrentTeam == OwnerTeam;
         }
 

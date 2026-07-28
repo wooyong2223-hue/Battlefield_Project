@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 129682434}
   - component: {fileID: 129682433}
   - component: {fileID: 129682432}
+  - component: {fileID: 900000035}
   m_Layer: 0
   m_Name: Dummy_Enemy
   m_TagString: Untagged
@@ -1163,6 +1164,7 @@ MonoBehaviour:
   _firstPersonCameraPoint: {fileID: 311484650}
   _thirdPersonCameraPoint: {fileID: 2066222288}
   _rearViewCameraPoint: {fileID: 651359105}
+  _destructionTrackingSpeed: 3
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,6 +1744,42 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3213146663861086480, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
   m_PrefabInstance: {fileID: 1866848542226446226}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &644327049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 644327050}
+  m_Layer: 0
+  m_Name: HitEffectPools
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &644327050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644327049}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 900000004}
+  - {fileID: 900000007}
+  - {fileID: 900000010}
+  - {fileID: 900000013}
+  - {fileID: 900000016}
+  m_Father: {fileID: 900000002}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &651359105 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2318818376621422303, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
@@ -1865,6 +1903,7 @@ GameObject:
   - component: {fileID: 757094938}
   - component: {fileID: 757094937}
   - component: {fileID: 757094936}
+  - component: {fileID: 900000036}
   m_Layer: 0
   m_Name: Dummy_Team
   m_TagString: Untagged
@@ -2298,6 +2337,580 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843806025}
   m_CullTransparentMesh: 1
+--- !u!1 &900000001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900000002}
+  m_Layer: 0
+  m_Name: ObjectPools
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &900000002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000001}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1486456748}
+  - {fileID: 644327050}
+  - {fileID: 900000034}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &900000003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900000004}
+  - component: {fileID: 900000005}
+  m_Layer: 0
+  m_Name: Concrete HitEffectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &900000004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000003}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 644327050}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &900000005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5620515e972194d83357ce8ce1b042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.VFX.Hit.HitEffectPool
+  _initialSize: 10
+  _effectPrefab: {fileID: 19800002, guid: 99c73c92ac40473459640b165473206f, type: 3}
+--- !u!1 &900000006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900000007}
+  - component: {fileID: 900000008}
+  m_Layer: 0
+  m_Name: Dirt HitEffectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &900000007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000006}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 644327050}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &900000008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5620515e972194d83357ce8ce1b042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.VFX.Hit.HitEffectPool
+  _initialSize: 10
+  _effectPrefab: {fileID: 19800002, guid: 56bfc2f4b4a0c534c8ef3d0fd1124c44, type: 3}
+--- !u!1 &900000009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900000010}
+  - component: {fileID: 900000011}
+  m_Layer: 0
+  m_Name: Metal HitEffectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &900000010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000009}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 644327050}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &900000011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5620515e972194d83357ce8ce1b042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.VFX.Hit.HitEffectPool
+  _initialSize: 10
+  _effectPrefab: {fileID: 19800002, guid: 00fedc70b62a31e448e8ccc298257b56, type: 3}
+--- !u!1 &900000012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900000013}
+  - component: {fileID: 900000014}
+  m_Layer: 0
+  m_Name: Sand HitEffectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &900000013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000012}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 644327050}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &900000014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5620515e972194d83357ce8ce1b042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.VFX.Hit.HitEffectPool
+  _initialSize: 10
+  _effectPrefab: {fileID: 19800002, guid: fc7f8379080d0a844ad699b91bfd56f0, type: 3}
+--- !u!1 &900000015
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900000016}
+  - component: {fileID: 900000017}
+  m_Layer: 0
+  m_Name: Wood HitEffectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &900000016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000015}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 644327050}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &900000017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5620515e972194d83357ce8ce1b042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.VFX.Hit.HitEffectPool
+  _initialSize: 10
+  _effectPrefab: {fileID: 19800002, guid: ac1aa04288fad804ba1cd769f4377aaf, type: 3}
+--- !u!1 &900000018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900000019}
+  - component: {fileID: 900000020}
+  m_Layer: 0
+  m_Name: Concrete BulletHolePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &900000019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000018}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 900000034}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &900000020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dd3d60ef0a240f88abd4b5cfbb6fbba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.VFX.Hit.BulletHolePool
+  _initialSize: 3
+  _prefab: {fileID: 11400000, guid: a14e782b3fca4b82972d51b1c1e48201, type: 3}
+  _maxSize: 20
+--- !u!1 &900000021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900000022}
+  - component: {fileID: 900000023}
+  m_Layer: 0
+  m_Name: Dirt BulletHolePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &900000022
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000021}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 900000034}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &900000023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dd3d60ef0a240f88abd4b5cfbb6fbba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.VFX.Hit.BulletHolePool
+  _initialSize: 3
+  _prefab: {fileID: 11400000, guid: b25f893c40db4c93883e62c2d2f59312, type: 3}
+  _maxSize: 20
+--- !u!1 &900000024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900000025}
+  - component: {fileID: 900000026}
+  m_Layer: 0
+  m_Name: Metal BulletHolePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &900000025
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000024}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 900000034}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &900000026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dd3d60ef0a240f88abd4b5cfbb6fbba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.VFX.Hit.BulletHolePool
+  _initialSize: 3
+  _prefab: {fileID: 11400000, guid: c3609a4d51ec4da4994f73d3e306a423, type: 3}
+  _maxSize: 20
+--- !u!1 &900000027
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900000028}
+  - component: {fileID: 900000029}
+  m_Layer: 0
+  m_Name: Sand BulletHolePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &900000028
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000027}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 900000034}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &900000029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dd3d60ef0a240f88abd4b5cfbb6fbba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.VFX.Hit.BulletHolePool
+  _initialSize: 3
+  _prefab: {fileID: 11400000, guid: d471ab5e62fd4eb5aa5084e4f417b534, type: 3}
+  _maxSize: 20
+--- !u!1 &900000030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900000031}
+  - component: {fileID: 900000032}
+  m_Layer: 0
+  m_Name: Wood BulletHolePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &900000031
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000030}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 900000034}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &900000032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dd3d60ef0a240f88abd4b5cfbb6fbba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.VFX.Hit.BulletHolePool
+  _initialSize: 3
+  _prefab: {fileID: 11400000, guid: e582bc6f730e4fc6bb6195f50428c645, type: 3}
+  _maxSize: 20
+--- !u!1 &900000033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900000034}
+  m_Layer: 0
+  m_Name: BulletHolePools
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &900000034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000033}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 900000019}
+  - {fileID: 900000022}
+  - {fileID: 900000025}
+  - {fileID: 900000028}
+  - {fileID: 900000031}
+  m_Father: {fileID: 900000002}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &900000035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129682431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e252956b5d4daab40401ee52bb0af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Dummy.DummyShooter
+  _target: {fileID: 900000037}
+  _fireInterval: 0.5
+  _damage: 10
+  _startDelay: 0.5
+  _muzzleOffset: 0.1
+--- !u!114 &900000036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757094935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e252956b5d4daab40401ee52bb0af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Dummy.DummyShooter
+  _target: {fileID: 900000037}
+  _fireInterval: 0.5
+  _damage: 10
+  _startDelay: 0.75
+  _muzzleOffset: 0.1
+--- !u!4 &900000037 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2872367962350400426, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
+  m_PrefabInstance: {fileID: 1866848542226446226}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &904764136
 GameObject:
   m_ObjectHideFlags: 0
@@ -2574,6 +3187,8 @@ MonoBehaviour:
   _database: {fileID: 2139187253}
   _destroyDelay: 1
   _effectScale: 3
+  _bulletHoleDuration: 10
+  _bulletHoleScale: 3
 --- !u!1 &1424006434
 GameObject:
   m_ObjectHideFlags: 0
@@ -2678,8 +3293,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ccfeb377c954be4f8521047f463678d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Pool.BulletPool
-  _prefab: {fileID: 2271321635249598331, guid: cf94234f083fb9644860b729645fc24b, type: 3}
   _initialSize: 20
+  _prefab: {fileID: 2271321635249598331, guid: cf94234f083fb9644860b729645fc24b, type: 3}
 --- !u!4 &1486456748
 Transform:
   m_ObjectHideFlags: 0
@@ -2693,7 +3308,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 900000002}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1541068626
 GameObject:
@@ -3683,15 +4298,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.VFX.Hit.HitEffectDatabase
   _entries:
   - PhysicsMaterial: {fileID: 13400000, guid: 280ca3e4fd04fff47a795307b4e2c1e6, type: 2}
-    EffectPrefab: {fileID: 19800006, guid: 94a130fb17f1cae4388a8fe1d8bd3055, type: 3}
+    EffectPool: {fileID: 900000005}
+    BulletHolePool: {fileID: 900000020}
   - PhysicsMaterial: {fileID: 13400000, guid: a35dc9707b667cb449691b8d37a78c88, type: 2}
-    EffectPrefab: {fileID: 19800002, guid: 2f9348d6583cde14eb0d82bb9732647e, type: 3}
+    EffectPool: {fileID: 900000008}
+    BulletHolePool: {fileID: 900000023}
   - PhysicsMaterial: {fileID: 13400000, guid: 026d7da450a1a2744b1bb60b2156cfe2, type: 2}
-    EffectPrefab: {fileID: 19800002, guid: 627bfa08ce624ab40ab2fea71785b5f0, type: 3}
+    EffectPool: {fileID: 900000011}
+    BulletHolePool: {fileID: 900000026}
   - PhysicsMaterial: {fileID: 13400000, guid: c04eceef277e27747851bd5d32bd5f41, type: 2}
-    EffectPrefab: {fileID: 19800002, guid: 0b24f31f464fa614a84acdeac974ed6b, type: 3}
+    EffectPool: {fileID: 900000014}
+    BulletHolePool: {fileID: 900000029}
   - PhysicsMaterial: {fileID: 13400000, guid: 0df262d1fff1cc34498976c3107bdf46, type: 2}
-    EffectPrefab: {fileID: 19800000, guid: 053ffbc5e89111349bb060a39ffa0f37, type: 3}
+    EffectPool: {fileID: 900000017}
+    BulletHolePool: {fileID: 900000032}
 --- !u!4 &2144639258 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3439592890172946217, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
@@ -3715,7 +4335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2843641046309927547, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
       propertyPath: _gravityThresholdSpeed
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2872367962350400426, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3768,6 +4388,10 @@ PrefabInstance:
     - target: {fileID: 3550371686333755214, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082039962316065886, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
+      propertyPath: _fallRecoveryAcceleration
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 585146956536691028, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
@@ -4027,6 +4651,6 @@ SceneRoots:
   - {fileID: 1714186587}
   - {fileID: 742947259}
   - {fileID: 1347612515}
-  - {fileID: 1486456748}
+  - {fileID: 900000002}
   - {fileID: 1674321979}
   - {fileID: 1881343030}

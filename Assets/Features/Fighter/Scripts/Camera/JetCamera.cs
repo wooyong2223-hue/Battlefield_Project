@@ -13,7 +13,13 @@ namespace Battlefield.Fighter.Camera
         [SerializeField] private Transform _thirdPersonCameraPoint;
         [SerializeField] private Transform _rearViewCameraPoint;
 
+        [Header("Destruction View")]
+        [SerializeField, Min(0.01f)]
+        private float _destructionTrackingSpeed = 3f;
+
         private bool _isFirstPerson;
+        private Transform _destructionTarget;
+        private bool _isDestructionView;
 
         private void Awake()
         {
@@ -31,11 +37,42 @@ namespace Battlefield.Fighter.Camera
 
         private void LateUpdate()
         {
+            if (_isDestructionView)
+            {
+                TrackDestructionTarget();
+                return;
+            }
+
             if (_input == null) return;
 
             Transform viewPoint = GetCurrentViewPoint();
             transform.position = viewPoint.position;
             transform.rotation = viewPoint.rotation;
+        }
+
+        public void BeginDestructionView(Transform target)
+        {
+            if (target == null) return;
+
+            _destructionTarget = target;
+            _isDestructionView = true;
+        }
+
+        private void TrackDestructionTarget()
+        {
+            if (_destructionTarget == null) return;
+
+            Vector3 direction = _destructionTarget.position - transform.position;
+            if (direction.sqrMagnitude <= Mathf.Epsilon) return;
+
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            float trackingRatio = 1f - Mathf.Exp(
+                -_destructionTrackingSpeed * Time.deltaTime);
+
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRotation,
+                trackingRatio);
         }
 
         private Transform GetCurrentViewPoint()

@@ -3,10 +3,9 @@ using UnityEngine;
 
 namespace Battlefield.Pool
 {
-    public class ObjectPool<T> : MonoBehaviour, IPool where T : PoolableBehaviour
+    public abstract class ObjectPool<T> : MonoBehaviour, IPool where T : PoolableBehaviour
     {
         [Header("Pool")]
-        [SerializeField] protected T _prefab;
         [SerializeField] protected int _initialSize = 20;
 
         protected readonly Queue<T> _pool = new();
@@ -20,9 +19,10 @@ namespace Battlefield.Pool
             }
         }
 
-        protected virtual T Create()
+        protected abstract T Create();
+
+        protected T Register(T obj)
         {
-            T obj = Instantiate(_prefab, transform);
             obj.SetPool(this);
             obj.gameObject.SetActive(false);
 

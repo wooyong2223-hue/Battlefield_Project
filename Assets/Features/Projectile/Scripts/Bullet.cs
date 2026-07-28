@@ -15,7 +15,9 @@ namespace Battlefield.Projectile
 
         protected override void OnHit(Collider other)
         {
-            if (other.TryGetComponent<IDamageable>(out IDamageable damageable))
+            IDamageable damageable = other.GetComponentInParent<IDamageable>();
+
+            if (damageable != null)
             {
                 damageable.TakeDamage(_damage);
             }

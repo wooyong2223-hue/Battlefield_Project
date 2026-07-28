@@ -9,18 +9,19 @@ namespace Battlefield.VFX.Hit
         public class Entry
         {
             public PhysicsMaterial PhysicsMaterial;
-            public ParticleSystem EffectPrefab;
+            public HitEffectPool EffectPool;
+            public BulletHolePool BulletHolePool;
         }
 
         [SerializeField] private Entry[] _entries;
 
-        public ParticleSystem GetEffect(PhysicsMaterial material)
+        public Entry GetEntry(PhysicsMaterial material)
         {
             foreach (Entry entry in _entries)
             {
                 if (entry.PhysicsMaterial == material)
                 {
-                    return entry.EffectPrefab;
+                    return entry;
                 }
             }
 
