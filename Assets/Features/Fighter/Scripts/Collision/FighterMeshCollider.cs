@@ -4,48 +4,30 @@ namespace Battlefield.Fighter
 {
     public class FighterMeshCollider : MonoBehaviour
     {
-        [SerializeField] private string _collisionMeshName =
-            "Main_LOD0_00_low.004";
+        [SerializeField] private MeshFilter _collisionMesh;
 
         private void Awake()
         {
-            MeshFilter targetMeshFilter = FindCollisionMesh();
-
-            if (targetMeshFilter == null)
+            if (_collisionMesh == null || _collisionMesh.sharedMesh == null)
             {
                 Debug.LogError(
-                    $"Fighter collision mesh '{_collisionMeshName}' was not found.",
+                    "Fighter collision mesh is not assigned.",
                     this);
                 return;
             }
 
             MeshCollider meshCollider =
-                targetMeshFilter.GetComponent<MeshCollider>();
+                _collisionMesh.GetComponent<MeshCollider>();
 
             if (meshCollider == null)
             {
-                meshCollider = targetMeshFilter.gameObject
+                meshCollider = _collisionMesh.gameObject
                     .AddComponent<MeshCollider>();
             }
 
             meshCollider.convex = true;
-            meshCollider.sharedMesh = targetMeshFilter.sharedMesh;
+            meshCollider.sharedMesh = _collisionMesh.sharedMesh;
             meshCollider.isTrigger = false;
-        }
-
-        private MeshFilter FindCollisionMesh()
-        {
-            foreach (MeshFilter meshFilter in
-                     GetComponentsInChildren<MeshFilter>(true))
-            {
-                if (meshFilter.sharedMesh != null &&
-                    meshFilter.sharedMesh.name == _collisionMeshName)
-                {
-                    return meshFilter;
-                }
-            }
-
-            return null;
         }
     }
 }

@@ -75,7 +75,7 @@ namespace Battlefield.Fighter
 
         private void BeginDestructionCamera()
         {
-            JetCamera jetCamera = FindFirstObjectByType<JetCamera>();
+            JetCamera jetCamera = FindAnyObjectByType<JetCamera>();
             jetCamera?.BeginDestructionView(transform);
         }
 
@@ -89,6 +89,27 @@ namespace Battlefield.Fighter
                 Quaternion.identity);
             explosion.transform.localScale = Vector3.one * _explosionScale;
             explosion.Play();
+
+            Destroy(explosion.gameObject, GetEffectLifetime(explosion));
+        }
+
+        private static float GetEffectLifetime(ParticleSystem root)
+        {
+            float lifetime = 0f;
+
+            foreach (ParticleSystem particle in
+                     root.GetComponentsInChildren<ParticleSystem>(true))
+            {
+                ParticleSystem.MainModule main = particle.main;
+                float particleLifetime =
+                    main.startDelay.constantMax +
+                    main.duration +
+                    main.startLifetime.constantMax;
+
+                lifetime = Mathf.Max(lifetime, particleLifetime);
+            }
+
+            return Mathf.Max(lifetime, 0.01f);
         }
 
         private void ApplyDamagedAppearance()

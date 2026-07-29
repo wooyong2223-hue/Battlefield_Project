@@ -74,8 +74,6 @@ namespace Battlefield.Projectile
             Velocity = Vector3.zero;
             Owner = null;
             OwnerTeam = TeamType.Neutral;
-            Rigidbody.linearVelocity = Vector3.zero;
-            Rigidbody.angularVelocity = Vector3.zero;
         }
 
         public override void OnDespawn()
@@ -86,8 +84,6 @@ namespace Battlefield.Projectile
             Velocity = Vector3.zero;
             Owner = null;
             OwnerTeam = TeamType.Neutral;
-            Rigidbody.linearVelocity = Vector3.zero;
-            Rigidbody.angularVelocity = Vector3.zero;
         }
 
         private bool HandleHit(RaycastHit hit)
@@ -95,7 +91,11 @@ namespace Battlefield.Projectile
             Collider other = hit.collider;
 
             if (ShouldIgnore(other)) return false;
-            if (IsAlly(other)) return false;
+            if (IsAlly(other))
+            {
+                DestroyProjectile();
+                return true;
+            }
 
             HitEffectManager.Instance?.Play(
                 other.sharedMaterial,
@@ -109,7 +109,8 @@ namespace Battlefield.Projectile
 
         protected virtual bool ShouldIgnore(Collider other)
         {
-            return Owner != null && other.transform.root == Owner.root;
+            return Owner != null &&
+                   (other.transform == Owner || other.transform.IsChildOf(Owner));
         }
 
         protected virtual bool IsAlly(Collider other)

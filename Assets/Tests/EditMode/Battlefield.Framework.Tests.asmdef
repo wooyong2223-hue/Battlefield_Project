@@ -1,0 +1,21 @@
+{
+    "name": "Battlefield.Framework.Tests",
+    "rootNamespace": "Battlefield.Tests",
+    "references": [
+        "GUID:73ca27ef913f45e29e79dc0876080f7a"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false,
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ]
+}

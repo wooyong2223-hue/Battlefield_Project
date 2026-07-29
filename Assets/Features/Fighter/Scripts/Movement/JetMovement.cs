@@ -6,6 +6,8 @@ namespace Battlefield.Fighter.Movement
     [RequireComponent(typeof(Rigidbody))]
     public class JetMovement : MonoBehaviour
     {
+        private const float FallingVelocityThreshold = -0.5f;
+
         [Header("Movement")]
         [SerializeField] private float _acceleration = 30f;
         [SerializeField] private float _deceleration = 40f;
@@ -20,6 +22,15 @@ namespace Battlefield.Fighter.Movement
         private bool _isRecoveringFromFall;
 
         public float CurrentSpeed { get; private set; }
+        public float EffectiveForwardSpeed { get; private set; }
+        public float MaxSpeed => _maxSpeed;
+
+        public void StopImmediately()
+        {
+            CurrentSpeed = 0f;
+            EffectiveForwardSpeed = 0f;
+            _rigidbody.linearVelocity = Vector3.zero;
+        }
 
         private void Awake()
         {
@@ -52,12 +63,18 @@ namespace Battlefield.Fighter.Movement
         {
             float forwardSpeed = CurrentSpeed;
 
-            if (_rigidbody.useGravity)
+            bool isAirborneFalling =
+                _rigidbody.useGravity &&
+                _rigidbody.linearVelocity.y < FallingVelocityThreshold;
+
+            if (isAirborneFalling)
             {
                 forwardSpeed = Mathf.Max(
                     forwardSpeed,
                     _minimumFallingForwardSpeed);
             }
+
+            EffectiveForwardSpeed = forwardSpeed;
 
             Vector3 velocity = transform.forward * forwardSpeed;
 
