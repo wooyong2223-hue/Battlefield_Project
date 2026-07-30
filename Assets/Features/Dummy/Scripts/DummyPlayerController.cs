@@ -1,4 +1,5 @@
 using Battlefield.Projectile;
+using Battlefield.Input;
 using UnityEngine;
 
 namespace Battlefield.Dummy
@@ -6,6 +7,8 @@ namespace Battlefield.Dummy
     [RequireComponent(typeof(Collider))]
     public class DummyPlayerController : MonoBehaviour
     {
+        private const float MouseDeltaScale = 0.1f;
+
         [Header("Movement")]
         [SerializeField, Min(0f)] private float _moveSpeed = 8f;
         [SerializeField, Min(0.01f)] private float _rotationSensitivity = 3f;
@@ -17,17 +20,31 @@ namespace Battlefield.Dummy
 
         private Collider _collider;
         private float _nextFireTime;
+        private InputSystem_Actions _inputActions;
 
         private void Awake()
         {
             _collider = GetComponent<Collider>();
+
+            _inputActions = new InputSystem_Actions();
         }
 
         private void OnEnable()
         {
             _nextFireTime = 0f;
+            _inputActions.Player.Enable();
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+        }
+
+        private void OnDisable()
+        {
+            _inputActions.Player.Disable();
+        }
+
+        private void OnDestroy()
+        {
+            _inputActions.Dispose();
         }
 
         private void Update()
@@ -35,7 +52,7 @@ namespace Battlefield.Dummy
             Rotate();
             Move();
 
-            if (Input.GetMouseButton(0))
+            if (_inputActions.Player.Attack.IsPressed())
             {
                 TryFire();
             }
@@ -43,10 +60,9 @@ namespace Battlefield.Dummy
 
         private void Move()
         {
-            float horizontal = Input.GetAxisRaw("Horizontal");
-            float vertical = Input.GetAxisRaw("Vertical");
-            Vector3 input = transform.right * horizontal +
-                            transform.forward * vertical;
+            Vector2 move = _inputActions.Player.Move.ReadValue<Vector2>();
+            Vector3 input = transform.right * move.x +
+                            transform.forward * move.y;
 
             if (input.sqrMagnitude > 1f) input.Normalize();
 
@@ -55,9 +71,10 @@ namespace Battlefield.Dummy
 
         private void Rotate()
         {
-            if (!Input.GetMouseButton(1)) return;
+            if (!_inputActions.Player.Rotate.IsPressed()) return;
 
-            float yaw = Input.GetAxis("Mouse X") * _rotationSensitivity;
+            float yaw = _inputActions.Player.Look.ReadValue<Vector2>().x *
+                        MouseDeltaScale * _rotationSensitivity;
             transform.Rotate(0f, yaw, 0f, Space.World);
         }
 
