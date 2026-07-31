@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Battlefield.Dummy
+namespace Battlefield.PlayerCharacter
 {
-    public class DummyFollowCamera : MonoBehaviour
+    public class PlayerCharacterCamera : MonoBehaviour
     {
         [SerializeField] private Transform _target;
         [SerializeField] private Vector3 _offset = new Vector3(0f, 18f, -14f);

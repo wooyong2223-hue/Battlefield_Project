@@ -41,3 +41,7 @@ Implement and verify new hit, damage, projectile, and firing behavior with the d
 1. Use the allied dummy shooter as the projectile owner.
 2. Verify enemy, neutral, and allied collision behavior with the test dummies.
 3. Integrate the verified behavior into equipment only after the dummy test passes.
+
+## Serialized field attributes
+
+Do not use `[SerializeField, Range(...)]`. Use `[SerializeField]` without the `Range` attribute.

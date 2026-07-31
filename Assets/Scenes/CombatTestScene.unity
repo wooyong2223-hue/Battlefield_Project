@@ -1902,7 +1902,7 @@ GameObject:
   - component: {fileID: 900000035}
   - component: {fileID: 920000001}
   m_Layer: 0
-  m_Name: Dummy_Team_Player
+  m_Name: PlayerCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5349,12 +5349,13 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 732ccb67674944af81ca44f78b3e3153, type: 3}
   m_Name:
-  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Dummy.DummyPlayerController
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.PlayerCharacter.PlayerCharacterController
   _moveSpeed: 8
   _rotationSensitivity: 3
   _fireRate: 10
   _damage: 10
   _muzzleOffset: 0.6
+  _inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!114 &920000002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5366,7 +5367,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae782403aa7c471a9803e310f988f751, type: 3}
   m_Name:
-  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Dummy.DummyFollowCamera
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.PlayerCharacter.PlayerCharacterCamera
   _target: {fileID: 757094942}
   _offset: {x: 0, y: 18, z: -14}
   _lookOffset: {x: 0, y: 0, z: 5}

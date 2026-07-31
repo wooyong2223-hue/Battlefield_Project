@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Battlefield.Core;
 using Battlefield.Fighter.Movement;
 
@@ -10,23 +11,57 @@ namespace Battlefield.Fighter
     [RequireComponent(typeof(JetMovement))]
     public class FighterCollisionResponse : MonoBehaviour
     {
+        private enum CollisionSurfaceType
+        {
+            Ground,
+            Obstacle
+        }
+
+        private readonly struct CollisionImpact
+        {
+            public CollisionImpact(
+                float relativeSpeed,
+                float normalSpeed,
+                float tangentialSpeed,
+                float impactSpeed,
+                Vector3 contactNormal)
+            {
+                RelativeSpeed = relativeSpeed;
+                NormalSpeed = normalSpeed;
+                TangentialSpeed = tangentialSpeed;
+                ImpactSpeed = impactSpeed;
+                ContactNormal = contactNormal;
+            }
+
+            public float RelativeSpeed { get; }
+            public float NormalSpeed { get; }
+            public float TangentialSpeed { get; }
+            public float ImpactSpeed { get; }
+            public Vector3 ContactNormal { get; }
+        }
+
         [Header("Rotation")]
         [SerializeField, Min(0f)] private float _maxAngularSpeed = 0f;
 
         [Header("Impact")]
         [SerializeField] private float _minimumDamageSpeedRatio = 0.3f;
-        [SerializeField] private float _fullDamageSpeedRatio = 0.8f;
-        [SerializeField] private float _wallTangentialDamageMultiplier = 0.7f;
+        [SerializeField] private float _instantDestructionSpeedRatio = 0.7f;
+        [SerializeField]
+        private float _maximumNonLethalDamageRatio = 0.9f;
+        [SerializeField] private float _wallTangentialDamageMultiplier = 0.8f;
+        [SerializeField] private float _minimumLandingUpDot = 0.7f;
 
         [Header("Debug")]
         [SerializeField] private bool _logCollisionDebug = true;
         [SerializeField, Min(0.1f)] private float _collisionLogInterval = 0.5f;
-        [SerializeField] private float _wallNormalUpDot = 0.5f;
+        [FormerlySerializedAs("_wallNormalUpDot")]
+        [SerializeField] private float _groundNormalUpDot = 0.5f;
 
         private Rigidbody _rigidbody;
         private Health _health;
         private JetMovement _movement;
-        private readonly HashSet<Collider> _wallColliders = new();
+        private readonly HashSet<Collider> _obstacleColliders = new();
+        private int _groundLayer;
         private float _nextCollisionLogTime;
 
         private void Awake()
@@ -34,36 +69,47 @@ namespace Battlefield.Fighter
             _rigidbody = GetComponent<Rigidbody>();
             _health = GetComponent<Health>();
             _movement = GetComponent<JetMovement>();
+            _groundLayer = LayerMask.NameToLayer("Ground");
         }
 
         private void OnCollisionEnter(Collision collision)
         {
             float currentSpeedBefore = _movement.CurrentSpeed;
-            float impactSpeed = GetImpactSpeed(collision);
-            bool isWall = UpdateWallContact(collision);
+            CollisionSurfaceType surfaceType =
+                UpdateCollisionSurface(collision);
+            CollisionImpact impact =
+                CalculateImpact(collision, surfaceType);
 
-            ApplyImpact(impactSpeed);
+            float damageImpactSpeed = CalculateDamageImpactSpeed(
+                surfaceType,
+                impact);
+            ApplyImpact(damageImpactSpeed);
+
             LimitAngularVelocity();
             LogCollision(
                 "Enter",
                 collision,
-                isWall,
-                impactSpeed,
+                surfaceType,
+                impact,
                 currentSpeedBefore);
         }
 
         private void OnCollisionStay(Collision collision)
         {
-            bool isWall = UpdateWallContact(collision);
+            CollisionSurfaceType surfaceType =
+                UpdateCollisionSurface(collision);
             LimitAngularVelocity();
 
             if (Time.time >= _nextCollisionLogTime)
             {
+                CollisionImpact impact =
+                    CalculateImpact(collision, surfaceType);
+
                 LogCollision(
                     "Stay",
                     collision,
-                    isWall,
-                    GetImpactSpeed(collision),
+                    surfaceType,
+                    impact,
                     _movement.CurrentSpeed);
                 _nextCollisionLogTime = Time.time + _collisionLogInterval;
             }
@@ -71,19 +117,22 @@ namespace Battlefield.Fighter
 
         private void OnCollisionExit(Collision collision)
         {
-            bool wasWall = _wallColliders.Remove(collision.collider);
+            bool wasObstacle =
+                _obstacleColliders.Remove(collision.collider);
 
             LogCollision(
                 "Exit",
                 collision,
-                wasWall,
-                0f,
+                wasObstacle
+                    ? CollisionSurfaceType.Obstacle
+                    : CollisionSurfaceType.Ground,
+                default,
                 _movement.CurrentSpeed);
         }
 
         private void OnDisable()
         {
-            _wallColliders.Clear();
+            _obstacleColliders.Clear();
             _nextCollisionLogTime = 0f;
         }
 
@@ -92,74 +141,115 @@ namespace Battlefield.Fighter
             float speedRatio = impactSpeed / Mathf.Max(
                 _movement.MaxSpeed,
                 Mathf.Epsilon);
-            float fullDamageSpeed = Mathf.Max(
-                _movement.MaxSpeed * _fullDamageSpeedRatio,
-                Mathf.Epsilon);
-            float damageRatio = Mathf.Clamp01(
-                impactSpeed / fullDamageSpeed);
 
-            if (speedRatio < _minimumDamageSpeedRatio) return;
+            if (speedRatio <= _minimumDamageSpeedRatio) return;
+
+            if (speedRatio >= _instantDestructionSpeedRatio)
+            {
+                _movement.StopImmediately();
+                _health.TakeDamage(_health.CurrentHealth);
+                return;
+            }
+
+            float damageRatio = CalculateDamageRatio(speedRatio);
             if (damageRatio <= 0f) return;
 
             _movement.StopImmediately();
             _health.TakeDamage(_health.MaxHealth * damageRatio);
         }
 
-        private bool UpdateWallContact(Collision collision)
+        private float CalculateDamageRatio(float speedRatio)
         {
-            bool isWall = false;
+            float damageProgress = Mathf.InverseLerp(
+                _minimumDamageSpeedRatio,
+                _instantDestructionSpeedRatio,
+                speedRatio);
+
+            return damageProgress * _maximumNonLethalDamageRatio;
+        }
+
+        private float CalculateDamageImpactSpeed(
+            CollisionSurfaceType surfaceType,
+            CollisionImpact impact)
+        {
+            if (surfaceType != CollisionSurfaceType.Ground)
+            {
+                return impact.ImpactSpeed;
+            }
+
+            float landingUpDot = Vector3.Dot(
+                transform.up,
+                impact.ContactNormal);
+            bool hasLandingAttitude =
+                landingUpDot >= _minimumLandingUpDot;
+
+            return hasLandingAttitude
+                ? impact.NormalSpeed
+                : impact.RelativeSpeed;
+        }
+
+        private CollisionSurfaceType UpdateCollisionSurface(
+            Collision collision)
+        {
+            CollisionSurfaceType surfaceType =
+                ClassifyCollisionSurface(collision);
+
+            if (surfaceType == CollisionSurfaceType.Obstacle)
+            {
+                _obstacleColliders.Add(collision.collider);
+            }
+            else
+            {
+                _obstacleColliders.Remove(collision.collider);
+            }
+
+            return surfaceType;
+        }
+
+        private CollisionSurfaceType ClassifyCollisionSurface(
+            Collision collision)
+        {
+            if (_groundLayer < 0 ||
+                collision.gameObject.layer != _groundLayer)
+            {
+                return CollisionSurfaceType.Obstacle;
+            }
 
             for (int i = 0; i < collision.contactCount; i++)
             {
                 ContactPoint contact = collision.GetContact(i);
-                float normalUpDot = Mathf.Abs(Vector3.Dot(
+                float normalUpDot = Vector3.Dot(
                     contact.normal,
-                    Vector3.up));
+                    Vector3.up);
 
-                if (normalUpDot <= _wallNormalUpDot)
+                if (normalUpDot >= _groundNormalUpDot)
                 {
-                    isWall = true;
-                    break;
+                    return CollisionSurfaceType.Ground;
                 }
             }
 
-            if (isWall)
-            {
-                _wallColliders.Add(collision.collider);
-            }
-            else
-            {
-                _wallColliders.Remove(collision.collider);
-            }
-
-            return isWall;
+            return CollisionSurfaceType.Obstacle;
         }
 
         private void LogCollision(
             string state,
             Collision collision,
-            bool isWall,
-            float impactSpeed,
+            CollisionSurfaceType surfaceType,
+            CollisionImpact impact,
             float currentSpeedBefore)
         {
             if (!_logCollisionDebug) return;
-
-            Debug.Log(
-                $"[Fighter Collision] state={state}, " +
-                $"target={collision.collider.name}, " +
-                $"wall={isWall}, " +
-                $"wallContact={_wallColliders.Count > 0}, " +
-                $"speedBefore={currentSpeedBefore:0.##}, " +
-                $"currentSpeed={_movement.CurrentSpeed:0.##}, " +
-                $"rigidbodySpeed={_rigidbody.linearVelocity.magnitude:0.##}, " +
-                $"impactSpeed={impactSpeed:0.##}",
-                this);
         }
 
-        private float GetImpactSpeed(Collision collision)
+        private CollisionImpact CalculateImpact(
+            Collision collision,
+            CollisionSurfaceType surfaceType)
         {
             float impactSpeed = 0f;
             float relativeSpeed = collision.relativeVelocity.magnitude;
+            float strongestNormalSpeed = 0f;
+            float strongestTangentialSpeed = 0f;
+            Vector3 strongestContactNormal = Vector3.zero;
 
             for (int i = 0; i < collision.contactCount; i++)
             {
@@ -168,11 +258,7 @@ namespace Battlefield.Fighter
                     collision.relativeVelocity,
                     contact.normal));
                 float contactImpactSpeed = normalSpeed;
-                float normalUpDot = Mathf.Abs(Vector3.Dot(
-                    contact.normal,
-                    Vector3.up));
-
-                if (normalUpDot <= _wallNormalUpDot)
+                if (surfaceType == CollisionSurfaceType.Obstacle)
                 {
                     float tangentialSpeed = Mathf.Sqrt(Mathf.Max(
                         relativeSpeed * relativeSpeed -
@@ -186,10 +272,23 @@ namespace Battlefield.Fighter
                         weightedTangentialSpeed * weightedTangentialSpeed);
                 }
 
-                impactSpeed = Mathf.Max(impactSpeed, contactImpactSpeed);
+                if (contactImpactSpeed <= impactSpeed) continue;
+
+                impactSpeed = contactImpactSpeed;
+                strongestNormalSpeed = normalSpeed;
+                strongestTangentialSpeed = Mathf.Sqrt(Mathf.Max(
+                    relativeSpeed * relativeSpeed -
+                    normalSpeed * normalSpeed,
+                    0f));
+                strongestContactNormal = contact.normal;
             }
 
-            return impactSpeed;
+            return new CollisionImpact(
+                relativeSpeed,
+                strongestNormalSpeed,
+                strongestTangentialSpeed,
+                impactSpeed,
+                strongestContactNormal);
         }
 
         private void LimitAngularVelocity()

@@ -5331,7 +5331,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &4812457280362249823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5379,6 +5379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efc95a976eb1db48ac9396d01f18dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Fighter.Controller.KeyboardJetInput
+  _inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!114 &6082039962316065886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5475,11 +5476,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Fighter.FighterCollisionResponse
   _maxAngularSpeed: 0
   _minimumDamageSpeedRatio: 0.3
-  _fullDamageSpeedRatio: 0.8
-  _wallTangentialDamageMultiplier: 0.5
+  _instantDestructionSpeedRatio: 0.7
+  _maximumNonLethalDamageRatio: 0.9
+  _wallTangentialDamageMultiplier: 0.8
+  _minimumLandingUpDot: 0.7
   _logCollisionDebug: 1
   _collisionLogInterval: 0.5
-  _wallNormalUpDot: 0.5
+  _groundNormalUpDot: 0.5
 --- !u!114 &5182794513695263487
 MonoBehaviour:
   m_ObjectHideFlags: 0

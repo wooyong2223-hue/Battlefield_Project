@@ -1,11 +1,11 @@
 using Battlefield.Projectile;
-using Battlefield.Input;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-namespace Battlefield.Dummy
+namespace Battlefield.PlayerCharacter
 {
     [RequireComponent(typeof(Collider))]
-    public class DummyPlayerController : MonoBehaviour
+    public class PlayerCharacterController : MonoBehaviour
     {
         private const float MouseDeltaScale = 0.1f;
 
@@ -18,33 +18,47 @@ namespace Battlefield.Dummy
         [SerializeField, Min(0f)] private float _damage = 10f;
         [SerializeField, Min(0f)] private float _muzzleOffset = 0.6f;
 
+        [Header("Input")]
+        [SerializeField] private InputActionAsset _inputActions;
+
         private Collider _collider;
         private float _nextFireTime;
-        private InputSystem_Actions _inputActions;
+        private InputActionAsset _runtimeInputActions;
+        private InputActionMap _playerActions;
+        private InputAction _moveAction;
+        private InputAction _lookAction;
+        private InputAction _attackAction;
+        private InputAction _rotateAction;
 
         private void Awake()
         {
             _collider = GetComponent<Collider>();
+            _runtimeInputActions = Instantiate(_inputActions);
+            _playerActions =
+                _runtimeInputActions.FindActionMap("PlayerCharacter", true);
 
-            _inputActions = new InputSystem_Actions();
+            _moveAction = _playerActions.FindAction("Move", true);
+            _lookAction = _playerActions.FindAction("Look", true);
+            _attackAction = _playerActions.FindAction("Attack", true);
+            _rotateAction = _playerActions.FindAction("Rotate", true);
         }
 
         private void OnEnable()
         {
             _nextFireTime = 0f;
-            _inputActions.Player.Enable();
+            _playerActions.Enable();
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
 
         private void OnDisable()
         {
-            _inputActions.Player.Disable();
+            _playerActions.Disable();
         }
 
         private void OnDestroy()
         {
-            _inputActions.Dispose();
+            Destroy(_runtimeInputActions);
         }
 
         private void Update()
@@ -52,7 +66,7 @@ namespace Battlefield.Dummy
             Rotate();
             Move();
 
-            if (_inputActions.Player.Attack.IsPressed())
+            if (_attackAction.IsPressed())
             {
                 TryFire();
             }
@@ -60,7 +74,7 @@ namespace Battlefield.Dummy
 
         private void Move()
         {
-            Vector2 move = _inputActions.Player.Move.ReadValue<Vector2>();
+            Vector2 move = _moveAction.ReadValue<Vector2>();
             Vector3 input = transform.right * move.x +
                             transform.forward * move.y;
 
@@ -71,9 +85,9 @@ namespace Battlefield.Dummy
 
         private void Rotate()
         {
-            if (!_inputActions.Player.Rotate.IsPressed()) return;
+            if (!_rotateAction.IsPressed()) return;
 
-            float yaw = _inputActions.Player.Look.ReadValue<Vector2>().x *
+            float yaw = _lookAction.ReadValue<Vector2>().x *
                         MouseDeltaScale * _rotationSensitivity;
             transform.Rotate(0f, yaw, 0f, Space.World);
         }

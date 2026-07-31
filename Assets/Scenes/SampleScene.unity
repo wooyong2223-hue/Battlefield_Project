@@ -793,7 +793,7 @@ GameObject:
   - component: {fileID: 502527470}
   - component: {fileID: 502527469}
   - component: {fileID: 502527468}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -887,8 +887,8 @@ Transform:
   m_GameObject: {fileID: 502527467}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -100, z: 0}
-  m_LocalScale: {x: 5000, y: 1, z: 5000}
+  m_LocalPosition: {x: 0, y: -102.5, z: 0}
+  m_LocalScale: {x: 5000, y: 5, z: 5000}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2104,7 +2104,7 @@ GameObject:
   - component: {fileID: 910000009}
   - component: {fileID: 910000010}
   - component: {fileID: 910000126}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Runway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4054,7 +4054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7461283591045839219, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
       propertyPath: _wallTangentialDamageMultiplier
-      value: 0.7
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
