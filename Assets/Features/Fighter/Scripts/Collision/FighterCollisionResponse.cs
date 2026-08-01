@@ -83,7 +83,14 @@ namespace Battlefield.Fighter
             float damageImpactSpeed = CalculateDamageImpactSpeed(
                 surfaceType,
                 impact);
-            ApplyImpact(damageImpactSpeed);
+            // ApplyImpact(surfaceType, damageImpactSpeed);
+
+            if (_health.CurrentHealth > 0f)
+            {
+                _movement.ApplyCollisionImpact(
+                    collision.collider,
+                    CalculateContactNormal(collision));
+            }
 
             LimitAngularVelocity();
             LogCollision(
@@ -98,6 +105,9 @@ namespace Battlefield.Fighter
         {
             CollisionSurfaceType surfaceType =
                 UpdateCollisionSurface(collision);
+            _movement.MaintainCollisionContact(
+                collision.collider,
+                CalculateContactNormal(collision));
             LimitAngularVelocity();
 
             if (Time.time >= _nextCollisionLogTime)
@@ -120,6 +130,8 @@ namespace Battlefield.Fighter
             bool wasObstacle =
                 _obstacleColliders.Remove(collision.collider);
 
+            _movement.EndCollisionContact(collision.collider);
+
             LogCollision(
                 "Exit",
                 collision,
@@ -133,10 +145,13 @@ namespace Battlefield.Fighter
         private void OnDisable()
         {
             _obstacleColliders.Clear();
+            _movement.ClearCollisionContacts();
             _nextCollisionLogTime = 0f;
         }
 
-        private void ApplyImpact(float impactSpeed)
+        private void ApplyImpact(
+            CollisionSurfaceType surfaceType,
+            float impactSpeed)
         {
             float speedRatio = impactSpeed / Mathf.Max(
                 _movement.MaxSpeed,
@@ -154,8 +169,26 @@ namespace Battlefield.Fighter
             float damageRatio = CalculateDamageRatio(speedRatio);
             if (damageRatio <= 0f) return;
 
-            _movement.StopImmediately();
+            if (surfaceType == CollisionSurfaceType.Ground)
+            {
+                _movement.StopImmediately();
+            }
+
             _health.TakeDamage(_health.MaxHealth * damageRatio);
+        }
+
+        private static Vector3 CalculateContactNormal(Collision collision)
+        {
+            Vector3 contactNormal = Vector3.zero;
+
+            for (int i = 0; i < collision.contactCount; i++)
+            {
+                contactNormal += collision.GetContact(i).normal;
+            }
+
+            return contactNormal.sqrMagnitude > Mathf.Epsilon
+                ? contactNormal.normalized
+                : Vector3.zero;
         }
 
         private float CalculateDamageRatio(float speedRatio)
