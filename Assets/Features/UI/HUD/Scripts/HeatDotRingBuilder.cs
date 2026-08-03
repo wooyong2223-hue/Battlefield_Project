@@ -9,7 +9,7 @@ namespace Battlefield.Editor
         [SerializeField] private Sprite _dotSprite;
 
         [Header("Dot Layout")]
-        [SerializeField, Range(4, 64)] private int _dotCount = 16;
+        [SerializeField, Min(4f)] private int _dotCount = 16;
         [SerializeField, Min(1f)] private float _dotSize = 20f;
         [SerializeField, Min(1f)] private float _radius = 50f;
         [SerializeField] private bool _startFromTop = true;

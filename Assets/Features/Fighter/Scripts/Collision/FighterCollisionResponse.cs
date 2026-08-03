@@ -83,7 +83,7 @@ namespace Battlefield.Fighter
             float damageImpactSpeed = CalculateDamageImpactSpeed(
                 surfaceType,
                 impact);
-            // ApplyImpact(surfaceType, damageImpactSpeed);
+            ApplyImpact(surfaceType, damageImpactSpeed);
 
             if (_health.CurrentHealth > 0f)
             {

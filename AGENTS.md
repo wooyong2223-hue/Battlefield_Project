@@ -34,6 +34,15 @@ Before modifying project files, compare the current file and asset state with th
 
 Do not begin modifying overlapping files until the relevant differences have been reported to the user.
 
+## User-defined values and structure
+
+Treat every value, count, name, hierarchy structure, and setting explicitly provided or changed by the user as the current source of truth.
+
+1. Do not change, extend, reduce, rename, or reinterpret user-defined values or structures based on assumptions about future work.
+2. Do not replace the user's current choice with a previously discussed value or an inferred recommendation.
+3. If a different value or structure appears necessary, explain the exact proposed difference and reason before making any change, then wait for the user's approval.
+4. Base all follow-up instructions and implementations on the user's latest visible state.
+
 ## Combat feature testing
 
 Implement and verify new hit, damage, projectile, and firing behavior with the dummy test range before integrating it into vehicles or other equipment.
