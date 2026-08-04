@@ -1,9 +1,8 @@
-﻿using UnityEngine;
-using Battlefield.Projectile;
-using Battlefield.VFX;
-using Battlefield.Pool;
+using UnityEngine;
+using Battlefield.Features.Projectile;
+using Battlefield.Features.VFX;
 
-namespace Battlefield.Weapon
+namespace Battlefield.Features.Weapon
 {
     public class MachineGun : WeaponBase
     {

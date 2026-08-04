@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Events;
 
-namespace Battlefield.Core
+namespace Battlefield.Framework.Core
 {
     public class Health : MonoBehaviour, IDamageable, IHealable
     {

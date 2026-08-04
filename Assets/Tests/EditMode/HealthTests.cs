@@ -1,10 +1,10 @@
 using System.Reflection;
-using Battlefield.Core;
+using Battlefield.Framework.Core;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Battlefield.Tests
+namespace Battlefield.Tests.EditMode
 {
     public class HealthTests
     {

@@ -1,22 +1,26 @@
-using Battlefield.Core;
+using Battlefield.Framework.Core;
 using UnityEngine;
 
-public class DummyDebug : MonoBehaviour
+namespace Battlefield.Features.Dummy
 {
-    private Health _health;
-
-    private void Awake()
+    public class DummyDebug : MonoBehaviour
     {
-        _health = GetComponent<Health>();
-    }
+        private Health _health;
 
-    public void LogDamaged()
-    {
-        Debug.Log($"{name} ««∞› ≥≤¿∫ √º∑¬: {_health.CurrentHealth}/{_health.MaxHealth}");
-    }
+        private void Awake()
+        {
+            _health = GetComponent<Health>();
+        }
 
-    public void LogDeath()
-    {
-        Debug.Log($"{name} ªÁ∏¡");
+        public void LogDamaged()
+        {
+            Debug.Log(
+                $"{name} ÌîºÍ≤© ÎÇ®ÏùÄ Ï≤¥Î†•: {_health.CurrentHealth}/{_health.MaxHealth}");
+        }
+
+        public void LogDeath()
+        {
+            Debug.Log($"{name} ÏÇ¨Îßù");
+        }
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
-using Battlefield.Pool;
+using Battlefield.Framework.Pool;
 
-namespace Battlefield.VFX.Hit
+namespace Battlefield.Features.VFX
 {
     public class BulletHole : PoolableBehaviour
     {

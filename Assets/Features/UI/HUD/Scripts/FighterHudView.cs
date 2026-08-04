@@ -1,10 +1,10 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Battlefield.Core;
-using Battlefield.Fighter.Movement;
+using Battlefield.Framework.Core;
+using Battlefield.Features.Fighter;
 
-namespace Battlefield.UI.HUD
+namespace Battlefield.Features.UI
 {
     public class FighterHudView : MonoBehaviour
     {
@@ -36,7 +36,7 @@ namespace Battlefield.UI.HUD
             if (speed == _displayedSpeed) return;
 
             _displayedSpeed = speed;
-            _speedText.SetText("SPD {0}", speed);
+            _speedText.SetText($"SPD {speed:000}");
         }
 
         private void UpdateHealth()

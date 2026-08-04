@@ -1,7 +1,13 @@
 {
-    "name": "Battlefield.Framework",
-    "rootNamespace": "Battlefield.Framework",
-    "references": [],
+    "name": "Battlefield.Features",
+    "rootNamespace": "Battlefield.Features",
+    "references": [
+        "Battlefield.Framework",
+        "WarFX.Runtime",
+        "Unity.InputSystem",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

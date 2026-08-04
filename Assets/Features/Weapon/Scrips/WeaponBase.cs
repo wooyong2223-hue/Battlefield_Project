@@ -1,7 +1,7 @@
-using Battlefield.UI.HUD;
+using Battlefield.Features.UI;
 using UnityEngine;
 
-namespace Battlefield.Weapon
+namespace Battlefield.Features.Weapon
 {
     public abstract class WeaponBase : MonoBehaviour
     {

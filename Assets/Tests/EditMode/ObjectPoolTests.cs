@@ -1,9 +1,9 @@
 using System.Reflection;
-using Battlefield.Pool;
+using Battlefield.Framework.Pool;
 using NUnit.Framework;
 using UnityEngine;
 
-namespace Battlefield.Tests
+namespace Battlefield.Tests.EditMode
 {
     public sealed class TestPoolable : PoolableBehaviour
     {

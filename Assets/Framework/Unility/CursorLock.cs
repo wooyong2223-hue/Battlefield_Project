@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Battlefield.Unility
+namespace Battlefield.Framework.Unility
 {
     public class CursorLock : MonoBehaviour
     {

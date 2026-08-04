@@ -1,4 +1,4 @@
-﻿namespace Battlefield.Core
+namespace Battlefield.Framework.Core
 {
     public interface IDamageable
     {

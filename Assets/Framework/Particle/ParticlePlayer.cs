@@ -1,7 +1,7 @@
 using UnityEngine;
-using Battlefield.Pool;
+using Battlefield.Framework.Pool;
 
-namespace Battlefield.Particle
+namespace Battlefield.Framework.Particle
 {
     public class ParticlePlayer : PoolableBehaviour
     {

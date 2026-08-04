@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace Battlefield.Pool
+namespace Battlefield.Framework.Pool
 {
     public abstract class ObjectPool<T> : MonoBehaviour, IPool where T : PoolableBehaviour
     {

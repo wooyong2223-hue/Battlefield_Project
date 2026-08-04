@@ -1,8 +1,8 @@
-using Battlefield.Projectile;
+using Battlefield.Features.Projectile;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Battlefield.PlayerCharacter
+namespace Battlefield.Features.PlayerCharacter
 {
     [RequireComponent(typeof(Collider))]
     public class PlayerCharacterController : MonoBehaviour

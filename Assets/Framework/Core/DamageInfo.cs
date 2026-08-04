@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-namespace Battlefield.Core
+namespace Battlefield.Framework.Core
 {
     public struct DamageInfo
     {

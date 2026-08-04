@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Battlefield.Weapon;
+using Battlefield.Features.Weapon;
 
-namespace Battlefield.UI.HUD
+namespace Battlefield.Features.UI
 {
     public class HeatDotsView : MonoBehaviour
     {

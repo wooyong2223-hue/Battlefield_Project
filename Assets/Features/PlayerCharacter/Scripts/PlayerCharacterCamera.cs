@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Battlefield.PlayerCharacter
+namespace Battlefield.Features.PlayerCharacter
 {
     public class PlayerCharacterCamera : MonoBehaviour
     {

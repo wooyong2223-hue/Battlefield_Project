@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using Battlefield.Core;
+using UnityEngine;
+using Battlefield.Framework.Core;
 
-namespace Battlefield.Projectile
+namespace Battlefield.Features.Projectile
 {
     public class Bullet : ProjectileBase
     {

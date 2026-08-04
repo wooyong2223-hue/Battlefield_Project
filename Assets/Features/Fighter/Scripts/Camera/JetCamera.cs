@@ -1,7 +1,6 @@
-using Battlefield.Fighter.Controller;
 using UnityEngine;
 
-namespace Battlefield.Fighter.Camera
+namespace Battlefield.Features.Fighter
 {
     public class JetCamera : MonoBehaviour
     {

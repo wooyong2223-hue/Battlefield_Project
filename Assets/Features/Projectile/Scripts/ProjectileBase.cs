@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using Battlefield.Core;
-using Battlefield.Pool;
-using Battlefield.VFX.Hit;
+using UnityEngine;
+using Battlefield.Framework.Core;
+using Battlefield.Framework.Pool;
+using Battlefield.Features.VFX;
 
-namespace Battlefield.Projectile
+namespace Battlefield.Features.Projectile
 {
     [RequireComponent(typeof(Rigidbody))]
     public abstract class ProjectileBase : PoolableBehaviour
@@ -30,12 +30,12 @@ namespace Battlefield.Projectile
         protected virtual void FixedUpdate()
         {
             // 낙차
-            Velocity += Physics.gravity * _gravityScale * Time.fixedDeltaTime;
+            Velocity += UnityEngine.Physics.gravity * _gravityScale * Time.fixedDeltaTime;
             float moveDistance = Velocity.magnitude * Time.fixedDeltaTime;
             Vector3 previousPosition = Rigidbody.position;
             Vector3 direction = Velocity.normalized;
 
-            if (Physics.Raycast(previousPosition, direction, out RaycastHit hit, moveDistance, _hitMask, QueryTriggerInteraction.Ignore))
+            if (UnityEngine.Physics.Raycast(previousPosition, direction, out RaycastHit hit, moveDistance, _hitMask, QueryTriggerInteraction.Ignore))
             {
                 if (HandleHit(hit)) return;
             }

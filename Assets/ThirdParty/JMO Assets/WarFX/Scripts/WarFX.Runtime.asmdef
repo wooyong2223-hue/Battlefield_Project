@@ -1,6 +1,6 @@
 {
-    "name": "Battlefield.Framework",
-    "rootNamespace": "Battlefield.Framework",
+    "name": "WarFX.Runtime",
+    "rootNamespace": "",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

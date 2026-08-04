@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Battlefield.Fighter.Controller
+namespace Battlefield.Features.Fighter
 {
     public class KeyboardJetInput : MonoBehaviour, IJetInput
     {

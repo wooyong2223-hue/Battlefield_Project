@@ -1,7 +1,7 @@
 using UnityEngine;
-using Battlefield.Particle;
+using Battlefield.Framework.Particle;
 
-namespace Battlefield.VFX.Hit
+namespace Battlefield.Features.VFX
 {
     public class HitEffect : ParticlePlayer
     {

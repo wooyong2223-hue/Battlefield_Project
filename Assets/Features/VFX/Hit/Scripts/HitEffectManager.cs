@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Battlefield.VFX.Hit
+namespace Battlefield.Features.VFX
 {
     public class HitEffectManager : MonoBehaviour
     {

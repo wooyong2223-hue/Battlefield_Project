@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Battlefield.Fighter
+namespace Battlefield.Features.Fighter
 {
     public class FighterMeshCollider : MonoBehaviour
     {

@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace Battlefield.Fighter.Controller
+namespace Battlefield.Features.Fighter
 {
     public interface IJetInput
     {

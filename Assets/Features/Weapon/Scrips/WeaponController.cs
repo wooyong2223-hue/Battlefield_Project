@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using Battlefield.Fighter.Controller;
+using UnityEngine;
+using Battlefield.Features.Fighter;
 
-namespace Battlefield.Weapon
+namespace Battlefield.Features.Weapon
 {
     public class WeaponController : MonoBehaviour
     {

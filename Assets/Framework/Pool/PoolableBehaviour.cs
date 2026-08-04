@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-namespace Battlefield.Pool
+namespace Battlefield.Framework.Pool
 {
     public abstract class PoolableBehaviour : MonoBehaviour, IPoolable
     {

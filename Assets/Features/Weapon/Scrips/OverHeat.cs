@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-namespace Battlefield.Weapon
+namespace Battlefield.Features.Weapon
 {
     [System.Serializable]
     public class Overheat

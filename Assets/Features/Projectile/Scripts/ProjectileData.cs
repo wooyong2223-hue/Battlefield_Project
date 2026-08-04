@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-namespace Battlefield.Projectile
+namespace Battlefield.Features.Projectile
 {
     public struct ProjectileData
     {

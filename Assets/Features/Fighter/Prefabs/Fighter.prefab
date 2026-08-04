@@ -5251,6 +5251,8 @@ GameObject:
   - component: {fileID: 7461283591045839217}
   - component: {fileID: 7461283591045839218}
   - component: {fileID: 7461283591045839219}
+  - component: {fileID: 7461283591045839220}
+  - component: {fileID: 7461283591045839221}
   - component: {fileID: 5182794513695263487}
   - component: {fileID: 1620024984628651431}
   m_Layer: 0
@@ -5475,14 +5477,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Fighter.FighterCollisionResponse
   _maxAngularSpeed: 0
+  _groundNormalUpDot: 0.5
+--- !u!114 &7461283591045839220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213146663861086480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0a1073505fb44cd80a33ba35dddbe92, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Fighter.FighterCollisionConstraint
+--- !u!114 &7461283591045839221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213146663861086480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb741ba8135402492c455c27b10fc5a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Fighter.FighterCollisionDamage
   _minimumDamageSpeedRatio: 0.3
   _instantDestructionSpeedRatio: 0.7
   _maximumNonLethalDamageRatio: 0.9
   _wallTangentialDamageMultiplier: 0.8
   _minimumLandingUpDot: 0.7
-  _logCollisionDebug: 1
-  _collisionLogInterval: 0.5
-  _groundNormalUpDot: 0.5
 --- !u!114 &5182794513695263487
 MonoBehaviour:
   m_ObjectHideFlags: 0

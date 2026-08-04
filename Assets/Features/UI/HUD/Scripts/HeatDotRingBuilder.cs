@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Battlefield.Editor
+namespace Battlefield.Features.UI
 {
     public class HeatDotRingBuilder : MonoBehaviour
     {

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Battlefield.Core
+namespace Battlefield.Framework.Core
 {
     public enum TeamType
     {

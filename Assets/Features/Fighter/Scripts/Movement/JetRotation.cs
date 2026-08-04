@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using Battlefield.Fighter.Controller;
+using UnityEngine;
 
-namespace Battlefield.Fighter.Movement
+namespace Battlefield.Features.Fighter
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(JetMovement))]

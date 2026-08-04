@@ -1,4 +1,4 @@
-﻿namespace Battlefield.Pool
+namespace Battlefield.Framework.Pool
 {
     public interface IPoolable
     {

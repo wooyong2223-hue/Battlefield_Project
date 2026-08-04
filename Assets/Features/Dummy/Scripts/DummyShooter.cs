@@ -1,8 +1,8 @@
 using UnityEngine;
-using Battlefield.Core;
-using Battlefield.Projectile;
+using Battlefield.Framework.Core;
+using Battlefield.Features.Projectile;
 
-namespace Battlefield.Dummy
+namespace Battlefield.Features.Dummy
 {
     [RequireComponent(typeof(Team))]
     public class DummyShooter : MonoBehaviour

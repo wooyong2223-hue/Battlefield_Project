@@ -1,10 +1,9 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using Battlefield.Fighter.Controller;
+using UnityEngine;
 
-namespace Battlefield.Fighter.Movement
+namespace Battlefield.Features.Fighter
 {
     [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(FighterCollisionConstraint))]
     public class JetMovement : MonoBehaviour
     {
         private const float FallingVelocityThreshold = -0.5f;
@@ -18,8 +17,8 @@ namespace Battlefield.Fighter.Movement
         [SerializeField] private float _fallRecoveryAcceleration = 20f;
 
         private Rigidbody _rigidbody;
-        private KeyboardJetInput _input;
-        private readonly Dictionary<Collider, Vector3> _contactNormals = new();
+        private IJetInput _input;
+        private FighterCollisionConstraint _collisionConstraint;
         private bool _wasUsingGravity;
         private bool _isRecoveringFromFall;
 
@@ -34,43 +33,12 @@ namespace Battlefield.Fighter.Movement
             _rigidbody.linearVelocity = Vector3.zero;
         }
 
-        public void ApplyCollisionImpact(
-            Collider target,
-            Vector3 contactNormal)
-        {
-            TrySetContactNormal(target, contactNormal);
-        }
-
-        public void MaintainCollisionContact(
-            Collider target,
-            Vector3 contactNormal)
-        {
-            TrySetContactNormal(target, contactNormal);
-        }
-
-        public void EndCollisionContact(Collider target)
-        {
-            if (target != null)
-            {
-                _contactNormals.Remove(target);
-            }
-        }
-
-        public void ClearCollisionContacts()
-        {
-            _contactNormals.Clear();
-        }
-
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            _input = GetComponent<KeyboardJetInput>();
+            _input = GetComponent<IJetInput>();
+            _collisionConstraint = GetComponent<FighterCollisionConstraint>();
             if (_input == null) Debug.Log($"{nameof(IJetInput)} is missing", this);
-        }
-
-        private void OnDisable()
-        {
-            ClearCollisionContacts();
         }
 
         private void Update()
@@ -135,31 +103,8 @@ namespace Battlefield.Fighter.Movement
                 }
             }
 
-            foreach (Vector3 contactNormal in _contactNormals.Values)
-            {
-                float inwardSpeed = Vector3.Dot(
-                    velocity,
-                    contactNormal);
-                if (inwardSpeed < 0f)
-                {
-                    velocity -= contactNormal * inwardSpeed;
-                }
-            }
-
-            _rigidbody.linearVelocity = velocity;
-        }
-
-        private bool TrySetContactNormal(
-            Collider target,
-            Vector3 contactNormal)
-        {
-            if (target == null || contactNormal.sqrMagnitude <= Mathf.Epsilon)
-            {
-                return false;
-            }
-
-            _contactNormals[target] = contactNormal.normalized;
-            return true;
+            _rigidbody.linearVelocity =
+                _collisionConstraint.ConstrainVelocity(velocity);
         }
     }
 }

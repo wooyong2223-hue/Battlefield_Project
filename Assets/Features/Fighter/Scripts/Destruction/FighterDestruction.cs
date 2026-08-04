@@ -1,11 +1,8 @@
 using UnityEngine;
-using Battlefield.Core;
-using Battlefield.Fighter.Camera;
-using Battlefield.Fighter.Controller;
-using Battlefield.Fighter.Movement;
-using Battlefield.Weapon;
+using Battlefield.Framework.Core;
+using Battlefield.Features.Weapon;
 
-namespace Battlefield.Fighter
+namespace Battlefield.Features.Fighter
 {
     [RequireComponent(typeof(Health))]
     [RequireComponent(typeof(Rigidbody))]

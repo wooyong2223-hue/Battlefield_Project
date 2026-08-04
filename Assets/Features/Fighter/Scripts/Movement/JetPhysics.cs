@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-namespace Battlefield.Fighter.Movement
+namespace Battlefield.Features.Fighter
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(JetMovement))]
@@ -77,7 +77,7 @@ namespace Battlefield.Fighter.Movement
                 fallRatio * _fallingGravityMultiplier;
 
             Vector3 gravityCompensation =
-                Physics.gravity * (gravityScale - 1f);
+                UnityEngine.Physics.gravity * (gravityScale - 1f);
 
             _rigidbody.AddForce(
                 gravityCompensation,
