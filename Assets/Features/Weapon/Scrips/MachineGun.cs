@@ -12,6 +12,8 @@ namespace Battlefield.Features.Weapon
         [Header("Effect")]
         [SerializeField] private MuzzleFlash _muzzleFlash;
 
+        public Transform FirePoint => _firePoint;
+
         protected override void Fire()
         {
             if (_firePoint == null)

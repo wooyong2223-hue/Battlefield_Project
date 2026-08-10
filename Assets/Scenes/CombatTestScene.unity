@@ -1627,6 +1627,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d078084954f3b1842b40a3f58e28542c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Weapon.CircularDotLayout
+  _dotSprite: {fileID: 0}
+  _dotCount: 16
+  _dotSize: 20
+  _radius: 50
+  _startFromTop: 1
+  _defaultDotColor: {r: 1, g: 1, b: 1, a: 0.15}
 --- !u!114 &548307667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1657,13 +1663,10 @@ MonoBehaviour:
   - {fileID: 1822092163}
   - {fileID: 321871563}
   _offColor: {r: 1, g: 1, b: 1, a: 0.15}
-  _coolColor: {r: 0.25, g: 0.85, b: 0.25, a: 1}
   _warnColor: {r: 1, g: 0.65, b: 0, a: 1}
   _hotColor: {r: 0.9, g: 0.2, b: 0.2, a: 1}
   _activeAlpha: 1
   _inactiveAlpha: 0.15
-  _warnStartPercent: -1
-  _hotStartPercent: 70
 --- !u!1 &571618694
 GameObject:
   m_ObjectHideFlags: 0
@@ -2903,11 +2906,6 @@ MonoBehaviour:
   _damage: 10
   _startDelay: 1
   _muzzleOffset: 0.1
---- !u!4 &900000037 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2872367962350400426, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
-  m_PrefabInstance: {fileID: 1866848542226446226}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &904764136
 GameObject:
   m_ObjectHideFlags: 0
@@ -3280,7 +3278,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3370,7 +3368,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3460,7 +3458,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3550,7 +3548,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3640,7 +3638,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3730,7 +3728,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3820,7 +3818,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3910,7 +3908,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4000,7 +3998,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4024,6 +4022,40 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &920000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757094935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 732ccb67674944af81ca44f78b3e3153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.PlayerCharacter.PlayerCharacterController
+  _moveSpeed: 8
+  _rotationSensitivity: 3
+  _fireRate: 10
+  _damage: 10
+  _muzzleOffset: 0.6
+  _inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+--- !u!114 &920000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae782403aa7c471a9803e310f988f751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.PlayerCharacter.PlayerCharacterCamera
+  _target: {fileID: 757094942}
+  _offset: {x: 0, y: 18, z: -14}
+  _lookOffset: {x: 0, y: 0, z: 5}
+  _followSpeed: 12
 --- !u!1 &1101142258
 GameObject:
   m_ObjectHideFlags: 0
@@ -5151,7 +5183,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   OnHealed:
@@ -5169,7 +5201,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2114256053
@@ -5338,40 +5370,6 @@ MonoBehaviour:
   - PhysicsMaterial: {fileID: 13400000, guid: 0df262d1fff1cc34498976c3107bdf46, type: 2}
     EffectPool: {fileID: 900000017}
     BulletHolePool: {fileID: 900000032}
---- !u!114 &920000001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 757094935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 732ccb67674944af81ca44f78b3e3153, type: 3}
-  m_Name:
-  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.PlayerCharacter.PlayerCharacterController
-  _moveSpeed: 8
-  _rotationSensitivity: 3
-  _fireRate: 10
-  _damage: 10
-  _muzzleOffset: 0.6
-  _inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
---- !u!114 &920000002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae782403aa7c471a9803e310f988f751, type: 3}
-  m_Name:
-  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.PlayerCharacter.PlayerCharacterCamera
-  _target: {fileID: 757094942}
-  _offset: {x: 0, y: 18, z: -14}
-  _lookOffset: {x: 0, y: 0, z: 5}
-  _followSpeed: 12
 --- !u!1001 &1866848542226446226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5425,12 +5423,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3213146663861086480, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3213146663861086480, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
       propertyPath: m_Name
       value: Fighter
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213146663861086480, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6568456437881127119, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
       propertyPath: m_Interpolate

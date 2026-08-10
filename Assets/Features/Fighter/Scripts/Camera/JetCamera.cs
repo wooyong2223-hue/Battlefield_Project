@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Battlefield.Features.Fighter
 {
+    [RequireComponent(typeof(Camera))]
     public class JetCamera : MonoBehaviour
     {
         [Header("Input")]
@@ -12,13 +13,12 @@ namespace Battlefield.Features.Fighter
         [SerializeField] private Transform _thirdPersonCameraPoint;
         [SerializeField] private Transform _rearViewCameraPoint;
 
-        [Header("Destruction View")]
-        [SerializeField, Min(0.01f)]
-        private float _destructionTrackingSpeed = 3f;
+        [Header("Camera Features")]
+        [SerializeField] private JetCameraOrbit _orbit = new();
+        [SerializeField] private JetCameraLens _lens = new();
+        [SerializeField] private JetDestructionView _destructionView = new();
 
         private bool _isFirstPerson;
-        private Transform _destructionTarget;
-        private bool _isDestructionView;
 
         private void Awake()
         {
@@ -26,6 +26,11 @@ namespace Battlefield.Features.Fighter
             if (_firstPersonCameraPoint == null) Debug.Log("_firstPersonCameraPoint is missing", this);
             if (_thirdPersonCameraPoint == null) Debug.Log("_thirdPersonCameraPoint is missing", this);
             if (_rearViewCameraPoint == null) Debug.Log("_rearViewCameraPoint is missing", this);
+
+            if (_input == null || _thirdPersonCameraPoint == null) return;
+
+            _orbit.Initialize(_input.transform, _thirdPersonCameraPoint);
+            _lens.Initialize(GetComponent<Camera>(), _isFirstPerson);
         }
 
         private void Update()
@@ -36,49 +41,42 @@ namespace Battlefield.Features.Fighter
 
         private void LateUpdate()
         {
-            if (_isDestructionView)
+            if (_destructionView.IsActive)
             {
-                TrackDestructionTarget();
+                _destructionView.Track(transform, Time.deltaTime);
                 return;
             }
 
             if (_input == null) return;
 
             Transform viewPoint = GetCurrentViewPoint();
-            transform.position = viewPoint.position;
-            transform.rotation = viewPoint.rotation;
+            bool isRearView = viewPoint == _rearViewCameraPoint;
+
+            _orbit.UpdatePose(
+                transform,
+                viewPoint,
+                _input.transform,
+                _input,
+                _isFirstPerson,
+                isRearView);
+            _lens.UpdateFieldOfView(
+                _input.Zoom,
+                _isFirstPerson,
+                Time.deltaTime);
         }
 
         public void BeginDestructionView(Transform target)
         {
-            if (target == null) return;
-
-            _destructionTarget = target;
-            _isDestructionView = true;
-        }
-
-        private void TrackDestructionTarget()
-        {
-            if (_destructionTarget == null) return;
-
-            Vector3 direction = _destructionTarget.position - transform.position;
-            if (direction.sqrMagnitude <= Mathf.Epsilon) return;
-
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            float trackingRatio = 1f - Mathf.Exp(
-                -_destructionTrackingSpeed * Time.deltaTime);
-
-            transform.rotation = Quaternion.Slerp(
-                transform.rotation,
-                targetRotation,
-                trackingRatio);
+            _destructionView.Begin(target);
         }
 
         private Transform GetCurrentViewPoint()
         {
             if (_input.RearView) return _rearViewCameraPoint;
 
-            return _isFirstPerson ? _firstPersonCameraPoint : _thirdPersonCameraPoint;
+            return _isFirstPerson
+                ? _firstPersonCameraPoint
+                : _thirdPersonCameraPoint;
         }
     }
 }

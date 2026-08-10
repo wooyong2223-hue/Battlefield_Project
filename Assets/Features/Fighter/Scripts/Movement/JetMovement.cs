@@ -4,6 +4,7 @@ namespace Battlefield.Features.Fighter
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(FighterCollisionConstraint))]
+    [RequireComponent(typeof(Afterburner))]
     public class JetMovement : MonoBehaviour
     {
         private const float FallingVelocityThreshold = -0.5f;
@@ -15,10 +16,13 @@ namespace Battlefield.Features.Fighter
         [SerializeField] private float _minSpeed = 0f;
         [SerializeField] private float _minimumFallingForwardSpeed = 30f;
         [SerializeField] private float _fallRecoveryAcceleration = 20f;
+        [SerializeField, Min(0f)] private float _velocityAlignmentSpeed = 90f;
 
         private Rigidbody _rigidbody;
         private IJetInput _input;
         private FighterCollisionConstraint _collisionConstraint;
+        private Afterburner _afterburner;
+        private float _targetSpeed;
         private bool _wasUsingGravity;
         private bool _isRecoveringFromFall;
 
@@ -26,8 +30,17 @@ namespace Battlefield.Features.Fighter
         public float EffectiveForwardSpeed { get; private set; }
         public float MaxSpeed => _maxSpeed;
 
+        public void ApplyTurnEnergyLoss(float speedLoss)
+        {
+            if (speedLoss <= 0f) return;
+
+            _targetSpeed = Mathf.Max(_minSpeed, _targetSpeed - speedLoss);
+        }
+
         public void StopImmediately()
         {
+            _targetSpeed = 0f;
+            _afterburner.Stop();
             CurrentSpeed = 0f;
             EffectiveForwardSpeed = 0f;
             _rigidbody.linearVelocity = Vector3.zero;
@@ -38,6 +51,12 @@ namespace Battlefield.Features.Fighter
             _rigidbody = GetComponent<Rigidbody>();
             _input = GetComponent<IJetInput>();
             _collisionConstraint = GetComponent<FighterCollisionConstraint>();
+            _afterburner = GetComponent<Afterburner>();
+            _targetSpeed = Mathf.Clamp(
+                Vector3.Dot(_rigidbody.linearVelocity, transform.forward),
+                _minSpeed,
+                _maxSpeed);
+            CurrentSpeed = _targetSpeed;
             if (_input == null) Debug.Log($"{nameof(IJetInput)} is missing", this);
         }
 
@@ -45,25 +64,31 @@ namespace Battlefield.Features.Fighter
         {
             if (_input == null) return;
 
-            if (Mathf.Approximately(_input.Throttle, 0f))
+            _afterburner.Tick(_input.Afterburner, Time.deltaTime);
+
+            float acceleration =
+                _acceleration * _afterburner.AccelerationMultiplier;
+
+            if (_input.Throttle > 0f)
             {
-                CurrentSpeed = Mathf.MoveTowards(
-                    CurrentSpeed,
-                    0f,
-                    _deceleration * Time.deltaTime);
+                _targetSpeed +=
+                    _input.Throttle * acceleration * Time.deltaTime;
             }
-            else
+            else if (_input.Throttle < 0f)
             {
-                CurrentSpeed +=
-                    _input.Throttle * _acceleration * Time.deltaTime;
+                _targetSpeed +=
+                    _input.Throttle * _deceleration * Time.deltaTime;
             }
 
-            CurrentSpeed = Mathf.Clamp(CurrentSpeed, _minSpeed, _maxSpeed);
+            float maximumSpeed =
+                _maxSpeed * _afterburner.MaxSpeedMultiplier;
+            _targetSpeed = Mathf.Clamp(_targetSpeed, _minSpeed, maximumSpeed);
         }
 
         private void FixedUpdate()
         {
-            float forwardSpeed = CurrentSpeed;
+            Vector3 currentVelocity = _rigidbody.linearVelocity;
+            float forwardSpeed = _targetSpeed;
 
             bool isAirborneFalling =
                 _rigidbody.useGravity &&
@@ -76,9 +101,28 @@ namespace Battlefield.Features.Fighter
                     _minimumFallingForwardSpeed);
             }
 
-            EffectiveForwardSpeed = forwardSpeed;
+            Vector3 currentDirection = currentVelocity.sqrMagnitude > Mathf.Epsilon
+                ? currentVelocity.normalized
+                : transform.forward;
+            float maximumDirectionChange =
+                _velocityAlignmentSpeed * Mathf.Deg2Rad * Time.fixedDeltaTime;
+            Vector3 velocityDirection = Vector3.RotateTowards(
+                currentDirection,
+                transform.forward,
+                maximumDirectionChange,
+                0f).normalized;
 
-            Vector3 velocity = transform.forward * forwardSpeed;
+            float currentMagnitude = currentVelocity.magnitude;
+            float forwardAcceleration =
+                _acceleration * _afterburner.AccelerationMultiplier;
+            float speedChangeRate = forwardSpeed >= currentMagnitude
+                ? forwardAcceleration
+                : _deceleration;
+            float velocityMagnitude = Mathf.MoveTowards(
+                currentMagnitude,
+                forwardSpeed,
+                speedChangeRate * Time.fixedDeltaTime);
+            Vector3 velocity = velocityDirection * velocityMagnitude;
 
             if (_rigidbody.useGravity)
             {
@@ -103,8 +147,13 @@ namespace Battlefield.Features.Fighter
                 }
             }
 
-            _rigidbody.linearVelocity =
+            Vector3 constrainedVelocity =
                 _collisionConstraint.ConstrainVelocity(velocity);
+            _rigidbody.linearVelocity = constrainedVelocity;
+            CurrentSpeed = Mathf.Max(
+                0f,
+                Vector3.Dot(constrainedVelocity, transform.forward));
+            EffectiveForwardSpeed = CurrentSpeed;
         }
     }
 }

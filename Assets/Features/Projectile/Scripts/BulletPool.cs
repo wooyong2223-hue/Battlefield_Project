@@ -9,6 +9,8 @@ namespace Battlefield.Features.Projectile
 
         [SerializeField] private Bullet _prefab;
 
+        public Bullet ProjectilePrefab => _prefab;
+
         protected override void Awake()
         {
             if (Instance == null)

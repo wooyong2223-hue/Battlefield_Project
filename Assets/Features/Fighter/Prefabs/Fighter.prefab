@@ -5247,6 +5247,8 @@ GameObject:
   - component: {fileID: 3840212120607745379}
   - component: {fileID: 6082039962316065886}
   - component: {fileID: 5465069268099954159}
+  - component: {fileID: 7461283591045839222}
+  - component: {fileID: 7461283591045839223}
   - component: {fileID: 2843641046309927547}
   - component: {fileID: 7461283591045839217}
   - component: {fileID: 7461283591045839218}
@@ -5255,6 +5257,7 @@ GameObject:
   - component: {fileID: 7461283591045839221}
   - component: {fileID: 5182794513695263487}
   - component: {fileID: 1620024984628651431}
+  - component: {fileID: 7461283591045839224}
   m_Layer: 0
   m_Name: Fighter
   m_TagString: Untagged
@@ -5270,8 +5273,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3213146663861086480}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1, y: -99.01, z: -565.56}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5331,7 +5334,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!114 &4812457280362249823
@@ -5400,6 +5403,7 @@ MonoBehaviour:
   _minSpeed: 0
   _minimumFallingForwardSpeed: 30
   _fallRecoveryAcceleration: 20
+  _velocityAlignmentSpeed: 90
 --- !u!114 &5465069268099954159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5418,6 +5422,48 @@ MonoBehaviour:
   _yawSpeed: 2
   _minimumControlSpeed: 20
   _fullControlSpeed: 60
+  _maximumSpeedControlMultiplier: 0.65
+  _turnEnergyLossPerSecond: 45
+  _pitchEnergyLossMultiplier: 1
+  _rollEnergyLossMultiplier: 0.15
+  _yawEnergyLossMultiplier: 0.35
+--- !u!114 &7461283591045839222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213146663861086480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a09bc817c94e84b7c7cf69d02a1138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _accelerationMultiplier: 1.3
+  _maxSpeedMultiplier: 1.15
+  _duration: 1.5
+  _recoveryPerSecond: 0.25
+  _recoveryDelay: 1
+--- !u!114 &7461283591045839223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213146663861086480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10731dfa84a647bca7b6decba39dcfbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectPrefab: {fileID: 159196, guid: 272e09b47ec7ed041aab73c48d530262, type: 3}
+  _engineAnchors:
+  - {fileID: 3269972359862077425}
+  - {fileID: 6442227854860325467}
+  _normalSizeMultiplier: 0.6
+  _afterburnerSizeMultiplier: 1.35
+  _afterburnerEmissionMultiplier: 1.75
+  _afterburnerLifetimeMultiplier: 1.2
 --- !u!114 &2843641046309927547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5488,7 +5534,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0a1073505fb44cd80a33ba35dddbe92, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Fighter.FighterCollisionConstraint
 --- !u!114 &7461283591045839221
 MonoBehaviour:
@@ -5500,7 +5546,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdb741ba8135402492c455c27b10fc5a, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Fighter.FighterCollisionDamage
   _minimumDamageSpeedRatio: 0.3
   _instantDestructionSpeedRatio: 0.7
@@ -5536,13 +5582,26 @@ MonoBehaviour:
   _damage: 10
   _overheat:
     _maxHeat: 100
-    _heatPerShot: 1
+    _heatPerShot: 2.5
     _coolDownPerSecond: 25
     _recoverHeat: 40
   _coolDownDelay: 0.15
   _heatDotsView: {fileID: 0}
   _firePoint: {fileID: 3439592890172946217}
   _muzzleFlash: {fileID: 5197639183017894661}
+--- !u!114 &7461283591045839224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213146663861086480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4a524a259c436a84ee39e7c85d2a6b, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  _predictionDistance: 300
 --- !u!1 &3316952291242247643
 GameObject:
   m_ObjectHideFlags: 0
@@ -15640,8 +15699,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7471745897792953655}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.49, y: 2.95, z: 7.28}
+  m_LocalRotation: {x: -0.01753417, y: 0.99289507, z: -0.11769129, w: 0.0008593752}
+  m_LocalPosition: {x: -0.9490799, y: 4.464218, z: 17.571838}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

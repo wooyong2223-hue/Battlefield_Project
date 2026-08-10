@@ -71,5 +71,6 @@ namespace Battlefield.Features.UI
                     healthRatio * _healthSegments.Length - i);
             }
         }
+
     }
 }

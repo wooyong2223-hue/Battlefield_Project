@@ -21,6 +21,11 @@ namespace Battlefield.Features.Projectile
         protected TeamType OwnerTeam { get; private set; } = TeamType.Neutral;
         protected Vector3 Velocity { get; private set; }
 
+        public float Speed => _speed;
+        public float LifeTime => _lifeTime;
+        public float GravityScale => _gravityScale;
+        public LayerMask HitMask => _hitMask;
+
         protected virtual void Awake()
         {
             Rigidbody = GetComponent<Rigidbody>();
