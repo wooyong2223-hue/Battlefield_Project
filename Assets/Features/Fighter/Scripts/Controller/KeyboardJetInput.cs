@@ -22,6 +22,7 @@ namespace Battlefield.Features.Fighter
         private InputAction _freeLookAction;
         private InputAction _zoomAction;
         private InputAction _cameraDistanceAction;
+        private bool _isFreeLookAllowed = true;
 
         // Controller
         public float Throttle { get; private set; }
@@ -86,7 +87,8 @@ namespace Battlefield.Features.Fighter
             Vector2 move = _moveAction.ReadValue<Vector2>();
             Vector2 look = _lookAction.ReadValue<Vector2>();
             Vector2 scaledLook = look * MouseDeltaScale;
-            FreeLook = _freeLookAction.IsPressed();
+            FreeLook = _isFreeLookAllowed &&
+                       _freeLookAction.IsPressed();
 
             Throttle = move.y;
             Yaw = move.x;
@@ -111,6 +113,18 @@ namespace Battlefield.Features.Fighter
                 _cameraDistanceAction.ReadValue<float>();
             Zoom = _zoomAction.IsPressed();
             FireWeapon = _attackAction.IsPressed();
+        }
+
+        public void SetFreeLookAllowed(bool isAllowed)
+        {
+            _isFreeLookAllowed = isAllowed;
+            if (isAllowed)
+            {
+                return;
+            }
+
+            FreeLook = false;
+            CameraLook = Vector2.zero;
         }
 
         private void ResetInput()

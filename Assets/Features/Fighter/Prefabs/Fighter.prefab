@@ -5248,6 +5248,7 @@ GameObject:
   - component: {fileID: 6082039962316065886}
   - component: {fileID: 5465069268099954159}
   - component: {fileID: 7461283591045839222}
+  - component: {fileID: 7461283591045839225}
   - component: {fileID: 7461283591045839223}
   - component: {fileID: 2843641046309927547}
   - component: {fileID: 7461283591045839217}
@@ -5257,7 +5258,6 @@ GameObject:
   - component: {fileID: 7461283591045839221}
   - component: {fileID: 5182794513695263487}
   - component: {fileID: 1620024984628651431}
-  - component: {fileID: 7461283591045839224}
   m_Layer: 0
   m_Name: Fighter
   m_TagString: Untagged
@@ -5399,9 +5399,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Fighter.Movement.JetMovement
   _acceleration: 30
   _deceleration: 40
-  _maxSpeed: 300
+  _maxSpeed: 500
   _minSpeed: 0
-  _minimumFallingForwardSpeed: 30
+  _stopSpeedThreshold: 50
   _fallRecoveryAcceleration: 20
   _velocityAlignmentSpeed: 90
 --- !u!114 &5465069268099954159
@@ -5417,13 +5417,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Fighter.Movement.JetRotation
   _rotationSpeed: 15
-  _pitchSpeed: 2
-  _rollSpeed: 2
-  _yawSpeed: 2
+  _pitchSpeed: 4
+  _rollSpeed: 4
+  _yawSpeed: 4
   _minimumControlSpeed: 20
   _fullControlSpeed: 60
   _maximumSpeedControlMultiplier: 0.65
-  _turnEnergyLossPerSecond: 45
+  _turnEnergyLossPerSecond: 25
   _pitchEnergyLossMultiplier: 1
   _rollEnergyLossMultiplier: 0.15
   _yawEnergyLossMultiplier: 0.35
@@ -5444,6 +5444,26 @@ MonoBehaviour:
   _duration: 1.5
   _recoveryPerSecond: 0.25
   _recoveryDelay: 1
+--- !u!114 &7461283591045839225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213146663861086480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b12d46a6dbad4caba1ef67b76b6846a3, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  _maximumActivationSpeed: 180
+  _brakeInputThreshold: 0.5
+  _minimumControlAuthority: 0.65
+  _pitchControlMultiplier: 2.5
+  _yawControlMultiplier: 1.75
+  _velocityAlignmentMultiplier: 0.1
+  _baseEnergyLossPerSecond: 60
+  _inputEnergyLossPerSecond: 80
 --- !u!114 &7461283591045839223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5476,12 +5496,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f91836b3dbc7e4cafd2245e08b1068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Fighter.Movement.JetPhysics
-  _gravityThresholdSpeed: 30
-  _flightDrag: 0
-  _flightMass: 1000
-  _fallingMass: 3000
-  _fallingDrag: 0
-  _fallingGravityMultiplier: 0.75
+  _mass: 1000
+  _linearDamping: 0
 --- !u!114 &7461283591045839217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5589,19 +5605,6 @@ MonoBehaviour:
   _heatDotsView: {fileID: 0}
   _firePoint: {fileID: 3439592890172946217}
   _muzzleFlash: {fileID: 5197639183017894661}
---- !u!114 &7461283591045839224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3213146663861086480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f4a524a259c436a84ee39e7c85d2a6b, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  _predictionDistance: 300
 --- !u!1 &3316952291242247643
 GameObject:
   m_ObjectHideFlags: 0
@@ -10705,7 +10708,7 @@ Transform:
   m_GameObject: {fileID: 5331402056973895993}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.64, z: 11.93}
+  m_LocalPosition: {x: 0, y: 0.65, z: 11.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

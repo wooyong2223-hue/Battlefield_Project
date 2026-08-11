@@ -103,9 +103,11 @@ namespace Battlefield.Features.Fighter
 
         private void LimitAngularVelocity()
         {
+            float maximumAngularSpeed = Mathf.Max(0f, _maxAngularSpeed);
             _rigidbody.angularVelocity = Vector3.ClampMagnitude(
                 _rigidbody.angularVelocity,
-                _maxAngularSpeed);
+                maximumAngularSpeed);
         }
+
     }
 }

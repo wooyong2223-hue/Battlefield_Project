@@ -20,6 +20,12 @@ namespace Battlefield.Features.Fighter
 
         private bool _isFirstPerson;
 
+        public bool IsFirstPersonView =>
+            _input != null &&
+            _isFirstPerson &&
+            !_input.RearView &&
+            !_destructionView.IsActive;
+
         private void Awake()
         {
             if (_input == null) Debug.Log("KeyboardJetInput is missing", this);
@@ -29,6 +35,7 @@ namespace Battlefield.Features.Fighter
 
             if (_input == null || _thirdPersonCameraPoint == null) return;
 
+            _input.SetFreeLookAllowed(!_isFirstPerson);
             _orbit.Initialize(_input.transform, _thirdPersonCameraPoint);
             _lens.Initialize(GetComponent<Camera>(), _isFirstPerson);
         }
@@ -36,7 +43,11 @@ namespace Battlefield.Features.Fighter
         private void Update()
         {
             if (_input == null) return;
-            if (_input.ChangeCamera) _isFirstPerson = !_isFirstPerson;
+            if (_input.ChangeCamera)
+            {
+                _isFirstPerson = !_isFirstPerson;
+                _input.SetFreeLookAllowed(!_isFirstPerson);
+            }
         }
 
         private void LateUpdate()

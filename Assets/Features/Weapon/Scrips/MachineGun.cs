@@ -13,6 +13,9 @@ namespace Battlefield.Features.Weapon
         [SerializeField] private MuzzleFlash _muzzleFlash;
 
         public Transform FirePoint => _firePoint;
+        public Bullet ProjectilePrefab => BulletPool.Instance != null
+            ? BulletPool.Instance.ProjectilePrefab
+            : null;
 
         protected override void Fire()
         {

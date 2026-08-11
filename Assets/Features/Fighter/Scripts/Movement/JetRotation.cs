@@ -27,12 +27,14 @@ namespace Battlefield.Features.Fighter
         private IJetInput _input;
         private JetMovement _movement;
         private Rigidbody _rigidbody;
+        private ThrustVectoring _thrustVectoring;
 
         private void Awake()
         {
             _input = GetComponent<IJetInput>();
             _movement = GetComponent<JetMovement>();
             _rigidbody = GetComponent<Rigidbody>();
+            _thrustVectoring = GetComponent<ThrustVectoring>();
             if (_input == null) Debug.Log($"{nameof(IJetInput)} is missing", this);
         }
 
@@ -41,18 +43,25 @@ namespace Battlefield.Features.Fighter
             if (_input == null || _movement == null || _rigidbody == null) return;
 
             float controlMultiplier = CalculateControlMultiplier();
+            float pitchControlMultiplier = _thrustVectoring != null
+                ? _thrustVectoring.GetPitchControlMultiplier(controlMultiplier)
+                : controlMultiplier;
+            float yawControlMultiplier = _thrustVectoring != null
+                ? _thrustVectoring.GetYawControlMultiplier(controlMultiplier)
+                : controlMultiplier;
 
             Vector3 rotation = new Vector3(
-                _input.Pitch * _pitchSpeed,
-                _input.Yaw * _yawSpeed,
-                _input.Roll * _rollSpeed
-            ) * _rotationSpeed * controlMultiplier * Time.fixedDeltaTime;
+                _input.Pitch * _pitchSpeed * pitchControlMultiplier,
+                _input.Yaw * _yawSpeed * yawControlMultiplier,
+                _input.Roll * _rollSpeed * controlMultiplier
+            ) * _rotationSpeed * Time.fixedDeltaTime;
 
             Quaternion targetRotation =
                 _rigidbody.rotation * Quaternion.Euler(rotation);
 
             _rigidbody.MoveRotation(targetRotation);
             ApplyTurnEnergyLoss(controlMultiplier);
+            ApplyThrustVectoringEnergyLoss();
         }
 
         private float CalculateControlMultiplier()
@@ -96,6 +105,20 @@ namespace Battlefield.Features.Fighter
                 Time.fixedDeltaTime;
 
             _movement.ApplyTurnEnergyLoss(speedLoss);
+        }
+
+        private void ApplyThrustVectoringEnergyLoss()
+        {
+            if (_thrustVectoring == null)
+            {
+                return;
+            }
+
+            float speedLoss = _thrustVectoring.CalculateEnergyLoss(
+                _input.Pitch,
+                _input.Yaw,
+                Time.fixedDeltaTime);
+            _movement.QueueEnergyLoss(speedLoss);
         }
     }
 }

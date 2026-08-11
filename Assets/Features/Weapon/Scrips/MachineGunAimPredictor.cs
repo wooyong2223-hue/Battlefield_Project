@@ -3,9 +3,7 @@ using UnityEngine;
 
 namespace Battlefield.Features.Weapon
 {
-    [RequireComponent(typeof(MachineGun))]
-    [RequireComponent(typeof(Rigidbody))]
-    public sealed class MachineGunAimPredictor : MonoBehaviour
+    public sealed class MachineGunAimPredictor
     {
         private struct TrajectorySample
         {
@@ -21,98 +19,35 @@ namespace Battlefield.Features.Weapon
             }
         }
 
-        [SerializeField] private float _predictionDistance = 1000f;
-
-        private MachineGun _machineGun;
-        private Rigidbody _ownerRigidbody;
-        private Transform _firePoint;
-        private Bullet _projectilePrefab;
+        private readonly Rigidbody _ownerRigidbody;
+        private readonly Transform _firePoint;
+        private readonly Bullet _projectilePrefab;
+        private readonly float _predictionDistance;
         private TrajectorySample[] _trajectoryHistory;
         private int _nextSampleIndex;
         private int _sampleCount;
 
-        private void Awake()
+        public MachineGunAimPredictor(
+            Transform firePoint,
+            Rigidbody ownerRigidbody,
+            Bullet projectilePrefab,
+            float predictionDistance,
+            float fixedDeltaTime)
         {
-            _machineGun = GetComponent<MachineGun>();
-            _ownerRigidbody = GetComponent<Rigidbody>();
+            _firePoint = firePoint;
+            _ownerRigidbody = ownerRigidbody;
+            _projectilePrefab = projectilePrefab;
+            _predictionDistance = Mathf.Max(
+                0f,
+                predictionDistance);
+
+            InitializeTrajectoryHistory(fixedDeltaTime);
         }
 
-        private void Start()
-        {
-            _firePoint = _machineGun.FirePoint;
-            _projectilePrefab = BulletPool.Instance != null
-                ? BulletPool.Instance.ProjectilePrefab
-                : null;
-
-            InitializeTrajectoryHistory();
-            RecordTrajectorySample();
-        }
-
-        private void FixedUpdate()
-        {
-            RecordTrajectorySample();
-        }
-
-        public bool TryGetPredictedPoint(out Vector3 predictedPoint)
+        public void RecordTrajectorySample(float sampleTime)
         {
             if (_firePoint == null ||
-                _projectilePrefab == null ||
-                _trajectoryHistory == null ||
-                _sampleCount == 0)
-            {
-                predictedPoint = _firePoint != null
-                    ? _firePoint.position
-                    : transform.position;
-                return false;
-            }
-
-            float projectileSpeed = Mathf.Abs(_projectilePrefab.Speed);
-            if (projectileSpeed <= Mathf.Epsilon)
-            {
-                predictedPoint = _firePoint.position;
-                return false;
-            }
-
-            float travelTime = Mathf.Max(0f, _predictionDistance)
-                / projectileSpeed;
-            float targetFireTime = Time.time - travelTime;
-            TrajectorySample sample = GetSampleAt(targetFireTime);
-            if (sample.Velocity.sqrMagnitude <= Mathf.Epsilon)
-            {
-                predictedPoint = _firePoint.position;
-                return false;
-            }
-
-            predictedPoint = _firePoint.position
-                + sample.Velocity.normalized
-                * Mathf.Max(0f, _predictionDistance);
-            return true;
-        }
-
-        private void InitializeTrajectoryHistory()
-        {
-            if (_projectilePrefab == null)
-            {
-                _trajectoryHistory = null;
-                return;
-            }
-
-            float projectileSpeed = Mathf.Abs(_projectilePrefab.Speed);
-            float travelTime = projectileSpeed > Mathf.Epsilon
-                ? Mathf.Max(0f, _predictionDistance) / projectileSpeed
-                : 0f;
-            int capacity = Mathf.Max(
-                2,
-                Mathf.CeilToInt(travelTime / Time.fixedDeltaTime) + 2);
-
-            _trajectoryHistory = new TrajectorySample[capacity];
-            _nextSampleIndex = 0;
-            _sampleCount = 0;
-        }
-
-        private void RecordTrajectorySample()
-        {
-            if (_firePoint == null ||
+                _ownerRigidbody == null ||
                 _projectilePrefab == null ||
                 _trajectoryHistory == null ||
                 _trajectoryHistory.Length == 0)
@@ -125,7 +60,7 @@ namespace Battlefield.Features.Weapon
                 + _ownerRigidbody.linearVelocity;
             _trajectoryHistory[_nextSampleIndex] =
                 new TrajectorySample(
-                    Time.fixedTime,
+                    sampleTime,
                     projectileVelocity);
 
             _nextSampleIndex =
@@ -133,6 +68,74 @@ namespace Battlefield.Features.Weapon
             _sampleCount = Mathf.Min(
                 _sampleCount + 1,
                 _trajectoryHistory.Length);
+        }
+
+        public void ResetTrajectoryHistory(float sampleTime)
+        {
+            _nextSampleIndex = 0;
+            _sampleCount = 0;
+            RecordTrajectorySample(sampleTime);
+        }
+
+        public bool TryGetPredictedPoint(
+            float currentTime,
+            out Vector3 predictedPoint)
+        {
+            if (_firePoint == null ||
+                _projectilePrefab == null ||
+                _trajectoryHistory == null ||
+                _sampleCount == 0)
+            {
+                predictedPoint = _firePoint != null
+                    ? _firePoint.position
+                    : Vector3.zero;
+                return false;
+            }
+
+            float projectileSpeed = Mathf.Abs(_projectilePrefab.Speed);
+            if (projectileSpeed <= Mathf.Epsilon)
+            {
+                predictedPoint = _firePoint.position;
+                return false;
+            }
+
+            float travelTime = _predictionDistance / projectileSpeed;
+            float targetFireTime = currentTime - travelTime;
+            TrajectorySample sample = GetSampleAt(targetFireTime);
+            if (sample.Velocity.sqrMagnitude <= Mathf.Epsilon)
+            {
+                predictedPoint = _firePoint.position;
+                return false;
+            }
+
+            predictedPoint = _firePoint.position
+                + sample.Velocity.normalized
+                * _predictionDistance;
+            return true;
+        }
+
+        private void InitializeTrajectoryHistory(float fixedDeltaTime)
+        {
+            if (_projectilePrefab == null)
+            {
+                _trajectoryHistory = null;
+                return;
+            }
+
+            float projectileSpeed = Mathf.Abs(_projectilePrefab.Speed);
+            float travelTime = projectileSpeed > Mathf.Epsilon
+                ? _predictionDistance / projectileSpeed
+                : 0f;
+            float sampleInterval = Mathf.Max(
+                Mathf.Epsilon,
+                fixedDeltaTime);
+            int capacity = Mathf.Max(
+                2,
+                Mathf.CeilToInt(travelTime / sampleInterval) + 2);
+
+            _trajectoryHistory = new TrajectorySample[capacity];
+            _nextSampleIndex = 0;
+            _sampleCount = 0;
         }
 
         private TrajectorySample GetSampleAt(float targetTime)

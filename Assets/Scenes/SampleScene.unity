@@ -619,11 +619,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3b66f467874d81b6eaf51e9fcf0072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Features.UI.FighterGunAimView
-  _aimPredictor: {fileID: 900000103}
+  _machineGun: {fileID: 900000103}
+  _ownerRigidbody: {fileID: 900000104}
   _worldCamera: {fileID: 330585545}
+  _jetCamera: {fileID: 330585548}
   _boresightImage: {fileID: 930000003}
   _gunAimReticleImage: {fileID: 930000013}
   _reticleColor: {r: 0, g: 1, b: 0, a: 1}
+  _predictionDistance: 300
+  _reticleMoveSpeed: 10
 --- !u!1 &465540283
 GameObject:
   m_ObjectHideFlags: 0
@@ -2226,15 +2230,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Fighter.Movement.JetMovement
 --- !u!114 &900000103 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7461283591045839224, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1620024984628651431, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
   m_PrefabInstance: {fileID: 1866848542226446226}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f4a524a259c436a84ee39e7c85d2a6b, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a94f1434e5399a42a87e363e6687924, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Weapon.MachineGun
+--- !u!54 &900000104 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 6568456437881127119, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
+  m_PrefabInstance: {fileID: 1866848542226446226}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &910000001
 GameObject:
   m_ObjectHideFlags: 0
@@ -5514,13 +5523,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fighter
       objectReference: {fileID: 0}
-    - target: {fileID: 3439592890172946217, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 7461283591045839224, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
-      propertyPath: _predictionDistance
-      value: 500
+    - target: {fileID: 6082039962316065886, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
+      propertyPath: _stopSpeedThreshold
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
