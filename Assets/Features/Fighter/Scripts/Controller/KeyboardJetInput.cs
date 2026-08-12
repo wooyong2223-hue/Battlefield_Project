@@ -41,6 +41,7 @@ namespace Battlefield.Features.Fighter
 
         // Weapon
         public bool FireWeapon { get; private set; }
+        public int WeaponSlotSelection { get; private set; }
 
         private void Awake()
         {
@@ -113,6 +114,10 @@ namespace Battlefield.Features.Fighter
                 _cameraDistanceAction.ReadValue<float>();
             Zoom = _zoomAction.IsPressed();
             FireWeapon = _attackAction.IsPressed();
+            Keyboard keyboard = Keyboard.current;
+            WeaponSlotSelection = keyboard != null && keyboard.digit1Key.wasPressedThisFrame
+                ? 1
+                : keyboard != null && keyboard.digit2Key.wasPressedThisFrame ? 2 : 0;
         }
 
         public void SetFreeLookAllowed(bool isAllowed)
@@ -141,6 +146,7 @@ namespace Battlefield.Features.Fighter
             FreeLook = false;
             Zoom = false;
             FireWeapon = false;
+            WeaponSlotSelection = 0;
         }
     }
 }

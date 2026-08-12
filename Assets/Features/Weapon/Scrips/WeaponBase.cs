@@ -5,6 +5,7 @@ namespace Battlefield.Features.Weapon
 {
     public abstract class WeaponBase : MonoBehaviour
     {
+        [SerializeField] private string _displayName;
         [Header("Fire")]
         [SerializeField] private float _fireRate = 10f;
         [SerializeField] private float _damage = 10f;
@@ -22,6 +23,10 @@ namespace Battlefield.Features.Weapon
         private float _lastFireTime;
         protected float Damage => _damage;
         protected Overheat Overheat => _overheat;
+        public string DisplayName => string.IsNullOrWhiteSpace(_displayName)
+            ? GetType().Name
+            : _displayName;
+        public virtual string AmmoText => "∞";
 
         private void Start()
         {
@@ -47,11 +52,11 @@ namespace Battlefield.Features.Weapon
             _nextFireTime = Time.time + 1f / _fireRate;
             _lastFireTime = Time.time;
 
-            Fire();
+            if (!Fire()) return;
 
             _overheat.AddHeat();
         }
 
-        protected abstract void Fire();
+        protected abstract bool Fire();
     }
 }

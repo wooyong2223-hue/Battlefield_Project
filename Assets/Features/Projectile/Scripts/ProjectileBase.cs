@@ -36,16 +36,27 @@ namespace Battlefield.Features.Projectile
         {
             // 낙차
             Velocity += UnityEngine.Physics.gravity * _gravityScale * Time.fixedDeltaTime;
-            float moveDistance = Velocity.magnitude * Time.fixedDeltaTime;
-            Vector3 previousPosition = Rigidbody.position;
-            Vector3 direction = Velocity.normalized;
+            MoveProjectile(Velocity * Time.fixedDeltaTime);
+        }
 
-            if (UnityEngine.Physics.Raycast(previousPosition, direction, out RaycastHit hit, moveDistance, _hitMask, QueryTriggerInteraction.Ignore))
+        protected void SetVelocity(Vector3 velocity)
+        {
+            Velocity = velocity;
+        }
+
+        private void MoveProjectile(Vector3 displacement)
+        {
+            float moveDistance = displacement.magnitude;
+            Vector3 previousPosition = Rigidbody.position;
+            Vector3 direction = displacement.normalized;
+
+            if (moveDistance > Mathf.Epsilon &&
+                UnityEngine.Physics.Raycast(previousPosition, direction, out RaycastHit hit, moveDistance, _hitMask, QueryTriggerInteraction.Ignore))
             {
                 if (HandleHit(hit)) return;
             }
 
-            Rigidbody.MovePosition(previousPosition + direction * moveDistance);
+            Rigidbody.MovePosition(previousPosition + displacement);
         }
 
         public virtual void Initialize(ProjectileData data)

@@ -11,6 +11,7 @@ namespace Battlefield.Features.Dummy
         [SerializeField] private Transform _target;
 
         [Header("Fire")]
+        [SerializeField] private BulletPool _bulletPool;
         [SerializeField, Min(0.01f)] private float _fireInterval = 0.5f;
         [SerializeField, Min(0f)] private float _damage = 10f;
         [SerializeField, Min(0f)] private float _startDelay = 0.5f;
@@ -32,7 +33,7 @@ namespace Battlefield.Features.Dummy
         private void Update()
         {
             if (_target == null ||
-                BulletPool.Instance == null ||
+                _bulletPool == null ||
                 Time.time < _nextFireTime)
             {
                 return;
@@ -55,7 +56,7 @@ namespace Battlefield.Features.Dummy
             direction.Normalize();
             origin += direction * _muzzleOffset;
 
-            Bullet bullet = BulletPool.Instance.Get();
+            Bullet bullet = _bulletPool.Get();
             bullet.transform.SetPositionAndRotation(
                 origin,
                 Quaternion.LookRotation(direction));

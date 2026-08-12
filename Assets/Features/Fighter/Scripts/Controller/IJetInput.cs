@@ -21,5 +21,6 @@ namespace Battlefield.Features.Fighter
 
         // Weapon
         bool FireWeapon { get; }
+        int WeaponSlotSelection { get; }
     }
 }

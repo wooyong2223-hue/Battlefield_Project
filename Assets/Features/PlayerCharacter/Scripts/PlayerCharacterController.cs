@@ -14,6 +14,7 @@ namespace Battlefield.Features.PlayerCharacter
         [SerializeField, Min(0.01f)] private float _rotationSensitivity = 3f;
 
         [Header("Fire")]
+        [SerializeField] private BulletPool _bulletPool;
         [SerializeField, Min(0.01f)] private float _fireRate = 10f;
         [SerializeField, Min(0f)] private float _damage = 10f;
         [SerializeField, Min(0f)] private float _muzzleOffset = 0.6f;
@@ -94,7 +95,7 @@ namespace Battlefield.Features.PlayerCharacter
 
         private void TryFire()
         {
-            if (BulletPool.Instance == null || Time.time < _nextFireTime) return;
+            if (_bulletPool == null || Time.time < _nextFireTime) return;
 
             _nextFireTime = Time.time + 1f / _fireRate;
 
@@ -103,7 +104,7 @@ namespace Battlefield.Features.PlayerCharacter
             Vector3 origin = _collider.ClosestPoint(target) +
                              fireDirection * _muzzleOffset;
 
-            Bullet bullet = BulletPool.Instance.Get();
+            Bullet bullet = _bulletPool.Get();
             bullet.transform.SetPositionAndRotation(
                 origin,
                 transform.rotation);

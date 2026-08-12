@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 129682434}
   - component: {fileID: 129682433}
   - component: {fileID: 129682432}
+  - component: {fileID: 930000001}
   m_Layer: 0
   m_Name: Dummy_Enemy
   m_TagString: Untagged
@@ -1904,6 +1905,8 @@ GameObject:
   - component: {fileID: 900000036}
   - component: {fileID: 900000035}
   - component: {fileID: 920000001}
+  - component: {fileID: 930000003}
+  - component: {fileID: 930000004}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -2885,6 +2888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Dummy.DummyShooter
   _target: {fileID: 2114256057}
+  _bulletPool: {fileID: 1486456747}
   _fireInterval: 1
   _damage: 10
   _startDelay: 0.5
@@ -2902,6 +2906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Dummy.DummyShooter
   _target: {fileID: 129682438}
+  _bulletPool: {fileID: 1486456747}
   _fireInterval: 1
   _damage: 10
   _startDelay: 1
@@ -4036,6 +4041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.PlayerCharacter.PlayerCharacterController
   _moveSpeed: 8
   _rotationSensitivity: 3
+  _bulletPool: {fileID: 1486456747}
   _fireRate: 10
   _damage: 10
   _muzzleOffset: 0.6
@@ -5139,6 +5145,7 @@ GameObject:
   - component: {fileID: 2114256053}
   - component: {fileID: 2114256052}
   - component: {fileID: 2114256051}
+  - component: {fileID: 930000002}
   m_Layer: 0
   m_Name: Dummy_Neutral
   m_TagString: Untagged
@@ -5382,6 +5389,10 @@ PrefabInstance:
       propertyPath: _heatDotsView
       value: 
       objectReference: {fileID: 548307667}
+    - target: {fileID: 1620024984628651431, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
+      propertyPath: _bulletPool
+      value:
+      objectReference: {fileID: 1486456747}
     - target: {fileID: 2872367962350400426, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.1
@@ -5439,6 +5450,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
+--- !u!114 &930000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 129682431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c3b92a7f1484024a061325dd218a003, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Features.Targeting.AirTarget
+--- !u!114 &930000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 2114256050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c3b92a7f1484024a061325dd218a003, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Features.Targeting.AirTarget
+--- !u!114 &930000003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 757094935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c3b92a7f1484024a061325dd218a006, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Features.Targeting.AirTargetLock
+  _searchOrigin: {fileID: 757094942}
+  _lockDuration: 1.5
+  _scanner:
+    _maximumDistance: 1000
+    _maximumAngle: 30
+--- !u!114 &930000004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 757094935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c3b92a7f1484024a061325dd218a007, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Features.Dummy.DummyAirTargetLockDebug
+--- !u!1 &940000001
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 940000002}
+  - component: {fileID: 940000003}
+  m_Layer: 0
+  m_Name: HomingMissilePool
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &940000002
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 940000001}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &940000003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 940000001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15fa76d9312a44cc8294754732065f87, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Features.Projectile.HomingMissilePool
+  _initialSize: 4
+  _prefab: {fileID: 610000000000000006, guid: 2d229efc97f947b9ae93c540bc67f8f4, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5455,3 +5539,4 @@ SceneRoots:
   - {fileID: 1674321979}
   - {fileID: 1881343030}
   - {fileID: 910000002}
+  - {fileID: 940000002}

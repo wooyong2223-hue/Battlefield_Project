@@ -12,6 +12,7 @@ namespace Battlefield.Features.UI
         [SerializeField] private Camera _worldCamera;
         [SerializeField] private JetCamera _jetCamera;
         [SerializeField] private Image _boresightImage;
+        [SerializeField] private Graphic _lockOnAreaGraphic;
         [SerializeField] private Image _gunAimReticleImage;
         [SerializeField] private Color _reticleColor = Color.white;
         [SerializeField] private float _predictionDistance = 300f;
@@ -151,10 +152,20 @@ namespace Battlefield.Features.UI
             if (_boresightImage == null ||
                 _boresightImage.enabled == isVisible)
             {
+                SetLockOnAreaVisible(isVisible);
                 return;
             }
 
             _boresightImage.enabled = isVisible;
+            SetLockOnAreaVisible(isVisible);
+        }
+
+        private void SetLockOnAreaVisible(bool isVisible)
+        {
+            if (_lockOnAreaGraphic != null)
+            {
+                _lockOnAreaGraphic.enabled = isVisible;
+            }
         }
 
 #if UNITY_EDITOR
