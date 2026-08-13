@@ -5450,9 +5450,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Fighter.Movement.JetRotation
   _rotationSpeed: 15
-  _pitchSpeed: 4
-  _rollSpeed: 4
-  _yawSpeed: 4
+  _pitchSpeed: 3
+  _rollSpeed: 3
+  _yawSpeed: 0.8
   _minimumControlSpeed: 20
   _fullControlSpeed: 60
   _maximumSpeedControlMultiplier: 0.65
@@ -5629,27 +5629,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a94f1434e5399a42a87e363e6687924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Weapon.MachineGun
+  _displayName: GUN
   _fireRate: 10
   _damage: 10
   _overheat:
     _maxHeat: 100
-    _heatPerShot: 2.5
+    _heatPerShot: 4
     _coolDownPerSecond: 25
-    _recoverHeat: 40
+    _recoverHeat: 5
   _coolDownDelay: 0.15
   _heatDotsView: {fileID: 0}
-  _displayName: GUN
   _bulletPool: {fileID: 0}
   _firePoint: {fileID: 3439592890172946217}
   _muzzleFlash: {fileID: 5197639183017894661}
 --- !u!114 &970000001
 MonoBehaviour:
   m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3213146663861086480}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c3b92a7f1484024a061325dd218a006, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Features.Targeting.AirTargetLock
   _searchOrigin: {fileID: 2872367962350400426}
   _lockDuration: 1.5
@@ -5661,11 +5664,14 @@ MonoBehaviour:
 --- !u!114 &970000002
 MonoBehaviour:
   m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3213146663861086480}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7719528d8d0477d9df9286ee05fe671, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Features.Weapon.AirToAirMissileLauncher
   _displayName: MISSILE
   _fireRate: 0.5
@@ -5680,7 +5686,10 @@ MonoBehaviour:
   _missilePool: {fileID: 0}
   _targetLock: {fileID: 970000001}
   _firePoint: {fileID: 5788049725178721189}
-  _maximumAmmo: 2
+  _maximumAmmo: 1
+  _reserveAmmo: 1
+  _reloadDuration: 5
+  _reserveRefillDuration: 5
 --- !u!1 &3316952291242247643
 GameObject:
   m_ObjectHideFlags: 0

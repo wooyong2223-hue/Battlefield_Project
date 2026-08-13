@@ -12,6 +12,7 @@ namespace Battlefield.Features.Targeting
         [SerializeField] private AirTargetScreenArea _screenArea = new();
         private Team _ownerTeam;
         private float _elapsed;
+        private bool _isSearchingEnabled = true;
 
         public AirTarget CurrentTarget { get; private set; }
         public AirTargetLockState State { get; private set; }
@@ -26,6 +27,11 @@ namespace Battlefield.Features.Targeting
 
         private void Update()
         {
+            if (!_isSearchingEnabled)
+            {
+                return;
+            }
+
             AirTarget candidate = _scanner.FindBestTarget(
                 _searchOrigin,
                 transform,
@@ -48,6 +54,25 @@ namespace Battlefield.Features.Targeting
         }
 
         private void OnDisable()
+        {
+            ResetLock();
+        }
+
+        public void SetSearchingEnabled(bool isEnabled)
+        {
+            if (_isSearchingEnabled == isEnabled)
+            {
+                return;
+            }
+
+            _isSearchingEnabled = isEnabled;
+            if (!isEnabled)
+            {
+                ResetLock();
+            }
+        }
+
+        private void ResetLock()
         {
             CurrentTarget = null;
             _elapsed = 0f;

@@ -231,7 +231,7 @@
                 {
                     "name": "negative",
                     "id": "fbc3bd61-966b-44c9-945f-e20d70351cc8",
-                    "path": "<Keyboard>/numpad8",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -242,44 +242,11 @@
                 {
                     "name": "positive",
                     "id": "5ad3444e-290c-45b7-bfe2-36b3a2f7a377",
-                    "path": "<Keyboard>/numpad5",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Pitch",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Keyboard Roll",
-                    "id": "59eeae96-24d4-4684-8946-cb5558f58562",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Roll",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "80bc5fe3-ece0-45c7-a81b-570e623f6260",
-                    "path": "<Keyboard>/numpad6",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Roll",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "cb9f07ae-f7fc-41c9-8724-7271bedf4a07",
-                    "path": "<Keyboard>/numpad4",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Roll",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },

@@ -98,7 +98,7 @@ namespace Battlefield.Features.Fighter
 
             if (!FreeLook)
             {
-                Pitch += -scaledLook.y;
+                Pitch += scaledLook.y;
                 Roll += -scaledLook.x;
             }
 

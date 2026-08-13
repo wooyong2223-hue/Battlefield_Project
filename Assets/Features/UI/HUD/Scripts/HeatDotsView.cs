@@ -15,6 +15,7 @@ namespace Battlefield.Features.UI
 
         [Header("Dot Colors")]
         [SerializeField] private Color _offColor = new(1f, 1f, 1f, 0.15f);
+        [SerializeField] private Color _normalColor = Color.white;
         [SerializeField] private Color _warnColor = new(1.0f, 0.65f, 0.0f);     // Orange
         [SerializeField] private Color _hotColor = new(0.9f, 0.2f, 0.2f);      // Red
 
@@ -76,7 +77,7 @@ namespace Battlefield.Features.UI
         {
             if (heatPercent >= MaximumHeatPercent) return _hotColor;
             if (heatPercent >= WarningHeatPercent) return _warnColor;
-            return Color.white;
+            return _normalColor;
         }
 
         private Color ColorForCooling(float heatPercent)
@@ -89,7 +90,7 @@ namespace Battlefield.Features.UI
                 heatPercent);
 
             return Color.Lerp(
-                Color.white,
+                _normalColor,
                 _hotColor,
                 coolingColorRatio);
         }
