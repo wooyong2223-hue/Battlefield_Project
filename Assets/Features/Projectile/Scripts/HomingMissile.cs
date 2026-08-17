@@ -8,6 +8,7 @@ namespace Battlefield.Features.Projectile
         [SerializeField] private float _turnSpeed = 120f;
 
         private AirTarget _target;
+        private IMissileWarningReceiver _warningReceiver;
         private float _damage;
 
         protected override void FixedUpdate()
@@ -26,8 +27,15 @@ namespace Battlefield.Features.Projectile
             AirTarget target,
             float damage)
         {
+            ClearWarningReceiver();
             _target = target;
+            _warningReceiver = target != null
+                ? target.GetComponent<IMissileWarningReceiver>()
+                : null;
             Initialize(new ProjectileData(owner, damage));
+            _warningReceiver?.ReportThreatState(
+                this,
+                MissileWarningState.Incoming);
         }
 
         public override void Initialize(ProjectileData data)
@@ -40,11 +48,13 @@ namespace Battlefield.Features.Projectile
         public override void OnSpawn()
         {
             base.OnSpawn();
+            ClearWarningReceiver();
             ResetGuidance();
         }
 
         public override void OnDespawn()
         {
+            ClearWarningReceiver();
             base.OnDespawn();
             ResetGuidance();
         }
@@ -75,6 +85,12 @@ namespace Battlefield.Features.Projectile
         {
             _target = null;
             _damage = 0f;
+        }
+
+        private void ClearWarningReceiver()
+        {
+            _warningReceiver?.ClearThreatState(this);
+            _warningReceiver = null;
         }
     }
 }

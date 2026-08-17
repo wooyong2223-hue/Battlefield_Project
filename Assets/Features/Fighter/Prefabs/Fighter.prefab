@@ -5291,6 +5291,8 @@ GameObject:
   - component: {fileID: 1620024984628651431}
   - component: {fileID: 970000001}
   - component: {fileID: 970000002}
+  - component: {fileID: 970000003}
+  - component: {fileID: 970000004}
   m_Layer: 0
   m_Name: Fighter
   m_TagString: Untagged
@@ -5690,6 +5692,30 @@ MonoBehaviour:
   _reserveAmmo: 1
   _reloadDuration: 5
   _reserveRefillDuration: 5
+--- !u!114 &970000003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213146663861086480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c3b92a7f1484024a061325dd218a003, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Features.Targeting.AirTarget
+--- !u!114 &970000004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213146663861086480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782f46ba411f47709f249c34f080aa6e, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Features.Fighter.MissileThreatDetector
 --- !u!1 &3316952291242247643
 GameObject:
   m_ObjectHideFlags: 0
