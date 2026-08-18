@@ -21,6 +21,8 @@ namespace Battlefield.Features.Projectile
         protected TeamType OwnerTeam { get; private set; } = TeamType.Neutral;
         protected Vector3 Velocity { get; private set; }
 
+        private IHitEffectPlayer _hitEffectPlayer;
+
         public float Speed => _speed;
         public float LifeTime => _lifeTime;
         public float GravityScale => _gravityScale;
@@ -42,6 +44,11 @@ namespace Battlefield.Features.Projectile
         protected void SetVelocity(Vector3 velocity)
         {
             Velocity = velocity;
+        }
+
+        public void SetHitEffectPlayer(IHitEffectPlayer hitEffectPlayer)
+        {
+            _hitEffectPlayer = hitEffectPlayer;
         }
 
         private void MoveProjectile(Vector3 displacement)
@@ -113,7 +120,7 @@ namespace Battlefield.Features.Projectile
                 return true;
             }
 
-            HitEffectManager.Instance?.Play(
+            _hitEffectPlayer?.Play(
                 other.sharedMaterial,
                 hit.point,
                 hit.normal,

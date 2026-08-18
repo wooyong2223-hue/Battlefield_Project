@@ -131,10 +131,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a4ee2c616b24a53abbd599256359ede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Features.Projectile.HomingMissile
-  _speed: 150
-  _lifeTime: 10
+  _speed: 300
+  _lifeTime: 20
   _gravityScale: 0
   _hitMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  _turnSpeed: 120
+  _turnSpeed: 360
+  _maximumSpeed: 600
+  _acceleration: 250
+  _proximityFuseRadius: 8

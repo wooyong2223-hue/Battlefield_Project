@@ -5,6 +5,23 @@ using UnityEngine;
 
 namespace Battlefield.Features.Fighter
 {
+    public readonly struct MissileDirectionThreat
+    {
+        public MissileDirectionThreat(
+            Vector3 position,
+            MissileWarningState state,
+            float lockProgress)
+        {
+            Position = position;
+            State = state;
+            LockProgress = lockProgress;
+        }
+
+        public Vector3 Position { get; }
+        public MissileWarningState State { get; }
+        public float LockProgress { get; }
+    }
+
     [RequireComponent(typeof(AirTarget))]
     public sealed class MissileThreatDetector :
         MonoBehaviour,
@@ -14,6 +31,8 @@ namespace Battlefield.Features.Fighter
             _reportedThreatStates = new();
         private readonly Dictionary<UnityEngine.Object, float>
             _reportedLockProgress = new();
+        private readonly List<MissileDirectionThreat> _directionThreats =
+            new();
 
         public bool HasIncomingMissile => IncomingMissileCount > 0;
         public int IncomingMissileCount { get; private set; }
@@ -21,6 +40,8 @@ namespace Battlefield.Features.Fighter
             float.PositiveInfinity;
         public MissileWarningState WarningState { get; private set; }
         public float LockProgress { get; private set; }
+        public IReadOnlyList<MissileDirectionThreat> DirectionThreats =>
+            _directionThreats;
         public event Action<MissileWarningState> WarningStateChanged;
         public event Action<float> LockProgressChanged;
 
@@ -84,14 +105,32 @@ namespace Battlefield.Features.Fighter
 
         private void RefreshIncomingThreats()
         {
-            int incomingMissileCount = 0;
             float closestThreatDistance = float.PositiveInfinity;
+            _directionThreats.Clear();
+            int incomingMissileCount = 0;
 
             foreach (KeyValuePair<UnityEngine.Object, MissileWarningState>
                      report in _reportedThreatStates)
             {
-                if (report.Value != MissileWarningState.Incoming ||
-                    report.Key is not Component threat)
+                if (report.Key is not Component threat)
+                {
+                    continue;
+                }
+
+                float lockProgress = 1f;
+                if (report.Value == MissileWarningState.Locking)
+                {
+                    _reportedLockProgress.TryGetValue(
+                        report.Key,
+                        out lockProgress);
+                }
+
+                _directionThreats.Add(new MissileDirectionThreat(
+                    threat.transform.position,
+                    report.Value,
+                    lockProgress));
+
+                if (report.Value != MissileWarningState.Incoming)
                 {
                     continue;
                 }
@@ -100,9 +139,10 @@ namespace Battlefield.Features.Fighter
                 float distance = Vector3.Distance(
                     transform.position,
                     threat.transform.position);
-                closestThreatDistance = Mathf.Min(
-                    closestThreatDistance,
-                    distance);
+                if (distance < closestThreatDistance)
+                {
+                    closestThreatDistance = distance;
+                }
             }
 
             IncomingMissileCount = incomingMissileCount;
@@ -111,6 +151,7 @@ namespace Battlefield.Features.Fighter
 
         private void ClearThreats()
         {
+            _directionThreats.Clear();
             IncomingMissileCount = 0;
             ClosestThreatDistance = float.PositiveInfinity;
         }

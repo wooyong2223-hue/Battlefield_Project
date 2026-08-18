@@ -2,27 +2,22 @@ using UnityEngine;
 
 namespace Battlefield.Features.VFX
 {
-    public class HitEffectManager : MonoBehaviour
+    public interface IHitEffectPlayer
     {
-        public static HitEffectManager Instance { get; private set; }
+        void Play(
+            PhysicsMaterial material,
+            Vector3 position,
+            Vector3 normal,
+            Vector3 incomingDirection);
+    }
 
+    public sealed class HitEffectManager : MonoBehaviour, IHitEffectPlayer
+    {
         [SerializeField] private HitEffectDatabase _database;
         [SerializeField] private float _destroyDelay = 10f;
         [SerializeField, Min(0.01f)] private float _effectScale = 10f;
         [SerializeField] private float _bulletHoleDuration = 10f;
         [SerializeField, Min(0.01f)] private float _bulletHoleScale = 10f;
-
-        private void Awake()
-        {
-            if (Instance == null)
-            {
-                Instance = this;
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
 
         public void Play(
             PhysicsMaterial material,
