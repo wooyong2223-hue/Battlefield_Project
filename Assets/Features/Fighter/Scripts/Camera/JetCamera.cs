@@ -69,7 +69,8 @@ namespace Battlefield.Features.Fighter
                 _input.transform,
                 _input,
                 _isFirstPerson,
-                isRearView);
+                isRearView,
+                Time.deltaTime);
             _lens.UpdateFieldOfView(
                 _input.Zoom,
                 _isFirstPerson,
