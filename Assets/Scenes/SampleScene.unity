@@ -353,16 +353,14 @@ MonoBehaviour:
   _firstPersonCameraPoint: {fileID: 311484650}
   _thirdPersonCameraPoint: {fileID: 2066222288}
   _rearViewCameraPoint: {fileID: 651359105}
+  _enableJitterDiagnostics: 1
   _orbit:
     _freeLookSensitivity: 1
     _maximumFreeLookPitch: 80
     _cameraDistanceStep: 2
     _minimumThirdPersonDistance: 5
     _maximumThirdPersonDistance: 40
-    _thirdPersonPitchFollowSpeed: 14
-    _maximumPitchLagAngle: 4
-    _thirdPersonYawFollowSpeed: 7
-    _maximumYawLagAngle: 10
+    _thirdPersonOrbitFollowSpeed: 4
     _thirdPersonRollMultiplier: 0.1
     _thirdPersonRollFollowSpeed: 5
     _thirdPersonRollReturnSpeed: 3
