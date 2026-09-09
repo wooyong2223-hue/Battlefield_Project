@@ -224,18 +224,6 @@ namespace Battlefield.Features.Fighter
             _elapsedTime += Mathf.Max(0f, deltaTime);
 
             if (_elapsedTime < ReportInterval) return;
-
-            float divisor = Mathf.Max(1, _sampleCount);
-            Debug.LogWarning(
-                $"[CameraJitterPosition] frames={_sampleCount} " +
-                $"FighterStep(avg/max)={_fighterStepTotal / divisor:F4}/{_fighterStepMaximum:F4} " +
-                $"FighterChange={_fighterStepChangeTotal / divisor:F4}/{_fighterStepChangeMaximum:F4} " +
-                $"CameraStep={_cameraStepTotal / divisor:F4}/{_cameraStepMaximum:F4} " +
-                $"CameraChange={_cameraStepChangeTotal / divisor:F4}/{_cameraStepChangeMaximum:F4} " +
-                $"DistanceChange={_distanceChangeTotal / divisor:F4}/{_distanceChangeMaximum:F4} " +
-                $"OffsetChange={_cameraOffsetChangeTotal / divisor:F4}/{_cameraOffsetChangeMaximum:F4} " +
-                $"Transform-Rigidbody(max)={_transformRigidbodyErrorMaximum:F4}",
-                context);
             ResetInterval();
         }
 
@@ -384,19 +372,6 @@ namespace Battlefield.Features.Fighter
                 cameraRotation);
 
             if (_elapsedTime < ReportInterval) return;
-
-            float divisor = Mathf.Max(1, _sampleCount);
-            Debug.Log(
-                $"[CameraJitter] frames={_sampleCount} " +
-                $"Fighter(avg/max)={_fighterTransformStepTotal / divisor:F3}/{_fighterTransformStepMaximum:F3} " +
-                $"Rigidbody={_rigidbodyStepTotal / divisor:F3}/{_rigidbodyStepMaximum:F3} " +
-                $"Target={_targetStepTotal / divisor:F3}/{_targetStepMaximum:F3} " +
-                $"Orbit={_smoothedOrbitStepTotal / divisor:F3}/{_smoothedOrbitStepMaximum:F3} " +
-                $"Roll={_rollStepTotal / divisor:F3}/{_rollStepMaximum:F3} " +
-                $"Applied={_appliedStepTotal / divisor:F3}/{_appliedStepMaximum:F3} " +
-                $"Camera={_cameraStepTotal / divisor:F3}/{_cameraStepMaximum:F3} " +
-                $"Transform-Rigidbody(max)={_transformRigidbodyErrorMaximum:F3}",
-                context);
             ResetInterval();
         }
 

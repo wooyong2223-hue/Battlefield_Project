@@ -56,12 +56,31 @@ namespace Battlefield.Features.Fighter
                 _input.Roll * _rollSpeed * controlMultiplier
             ) * _rotationSpeed * Time.fixedDeltaTime;
 
-            Quaternion targetRotation =
-                _rigidbody.rotation * Quaternion.Euler(rotation);
-
-            _rigidbody.MoveRotation(targetRotation);
+            ApplyAngularVelocity(Quaternion.Euler(rotation), Time.fixedDeltaTime);
             ApplyTurnEnergyLoss(controlMultiplier);
             ApplyThrustVectoringEnergyLoss();
+        }
+
+        private void ApplyAngularVelocity(Quaternion localDelta, float deltaTime)
+        {
+            Vector3 axis = new Vector3(localDelta.x, localDelta.y, localDelta.z);
+            float axisLength = axis.magnitude;
+            if (axisLength <= Mathf.Epsilon || deltaTime <= 0f)
+            {
+                _rigidbody.angularVelocity = Vector3.zero;
+                return;
+            }
+
+            if (localDelta.w < 0f) axis = -axis;
+            float angleRadians = 2f * Mathf.Atan2(axisLength, Mathf.Abs(localDelta.w));
+            Vector3 localAngularVelocity = axis * (angleRadians / (axisLength * deltaTime));
+            _rigidbody.angularVelocity = _rigidbody.rotation * localAngularVelocity;
+        }
+
+        private void OnDisable()
+        {
+            if (_rigidbody != null && !_rigidbody.isKinematic)
+                _rigidbody.angularVelocity = Vector3.zero;
         }
 
         private float CalculateControlMultiplier()
