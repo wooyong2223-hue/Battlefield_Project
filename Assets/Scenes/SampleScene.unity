@@ -3872,6 +3872,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 950000002}
+  - component: {fileID: 950000003}
   m_Layer: 5
   m_Name: OverheatUI
   m_TagString: Untagged
@@ -3899,6 +3900,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &950000003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950000001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 395cc7919c034010ad633138e6a42bd8, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.UI.FighterOverheatReticleFollower
+  _ownerRigidbody: {fileID: 900000104}
+  _worldCamera: {fileID: 330585545}
+  _jetCamera: {fileID: 330585548}
+  _projectionDistance: 300
+  _moveSpeed: 10
 --- !u!1 &950000011
 GameObject:
   m_ObjectHideFlags: 0

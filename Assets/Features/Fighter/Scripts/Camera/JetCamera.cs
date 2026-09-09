@@ -33,6 +33,12 @@ namespace Battlefield.Features.Fighter
             !_input.RearView &&
             !_destructionView.IsActive;
 
+        public bool IsThirdPersonView =>
+            _input != null &&
+            !_isFirstPerson &&
+            !_input.RearView &&
+            !_destructionView.IsActive;
+
         private void Awake()
         {
             if (_input == null) Debug.Log("KeyboardJetInput is missing", this);
