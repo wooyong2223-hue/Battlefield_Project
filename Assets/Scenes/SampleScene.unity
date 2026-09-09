@@ -371,7 +371,6 @@ MonoBehaviour:
   _destructionView:
     _trackingSpeed: 3
   _enableJitterDiagnostics: 1
-  _freezeTrackingForDiagnostics: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -5737,7 +5736,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &995000002
 Transform:
   m_ObjectHideFlags: 0
@@ -7933,7 +7932,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1144596481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9869,6 +9868,14 @@ PrefabInstance:
     - target: {fileID: 5465069268099954159, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
       propertyPath: _minimumControlSpeed
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145184889031926840, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145184889031926840, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -23.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

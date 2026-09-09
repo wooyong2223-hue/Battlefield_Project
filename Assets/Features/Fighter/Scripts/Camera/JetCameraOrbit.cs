@@ -58,10 +58,10 @@ namespace Battlefield.Features.Fighter
             float deltaTime)
         {
             UpdateFreeLook(input);
-            UpdateCameraDistance(
-                input.CameraDistanceDelta,
-                isFirstPerson,
-                isRearView);
+            //UpdateCameraDistance(
+            //    input.CameraDistanceDelta,
+            //    isFirstPerson,
+            //    isRearView);
 
             float cameraRoll;
             Quaternion baseRotation = GetViewPointRotation(
@@ -74,8 +74,14 @@ namespace Battlefield.Features.Fighter
 
             if (!isFirstPerson && !isRearView)
             {
-                Vector3 targetOrbitDirection = cameraOffset.normalized;
-                Vector3 targetForward = -targetOrbitDirection;
+                _thirdPersonDistance = Mathf.Clamp(
+                    Vector3.Distance(fighter.position, viewPoint.position),
+                    _minimumThirdPersonDistance,
+                    _maximumThirdPersonDistance);
+
+                Vector3 localCameraOffset =
+                    Quaternion.Inverse(viewPoint.rotation) * cameraOffset;
+                Vector3 targetForward = viewPoint.forward;
 
                 if (!_isThirdPersonOrbitInitialized)
                 {
@@ -110,7 +116,7 @@ namespace Battlefield.Features.Fighter
                 SmoothedOrbitRotation = _thirdPersonOrbitRotation;
                 AppliedOrbitRotation = baseRotation;
                 AppliedRoll = cameraRoll;
-                cameraOffset = -(baseRotation * Vector3.forward)
+                cameraOffset = baseRotation * localCameraOffset.normalized
                     * _thirdPersonDistance;
             }
 
