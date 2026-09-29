@@ -1,9 +1,10 @@
+using Battlefield.Framework.Core;
 using UnityEngine;
 
 namespace Battlefield.Features.Fighter
 {
     [RequireComponent(typeof(Camera))]
-    public class JetCamera : MonoBehaviour
+    public class JetCamera : MonoBehaviour, IThirdPersonViewState
     {
         [Header("Input")]
         [SerializeField] private KeyboardJetInput _input;
@@ -38,6 +39,9 @@ namespace Battlefield.Features.Fighter
             !_isFirstPerson &&
             !_input.RearView &&
             !_destructionView.IsActive;
+
+        public bool IsThirdPersonFreeLook =>
+            IsThirdPersonView && _input.FreeLook;
 
         private void Awake()
         {

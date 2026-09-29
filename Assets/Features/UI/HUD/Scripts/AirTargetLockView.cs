@@ -36,7 +36,8 @@ namespace Battlefield.Features.UI
                 bool showLockArea =
                     isMissileSelected &&
                     _jetCamera != null &&
-                    _jetCamera.IsFirstPersonView;
+                    (_jetCamera.IsFirstPersonView ||
+                     _jetCamera.IsThirdPersonView);
                 _lockAreaGraphic.gameObject.SetActive(showLockArea);
             }
 

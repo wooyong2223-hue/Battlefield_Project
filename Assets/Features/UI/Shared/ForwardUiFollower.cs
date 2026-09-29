@@ -1,30 +1,33 @@
-using Battlefield.Features.Fighter;
+using Battlefield.Framework.Core;
 using UnityEngine;
 
 namespace Battlefield.Features.UI
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(RectTransform))]
-    public sealed class FighterOverheatReticleFollower : MonoBehaviour
+    public sealed class ForwardUiFollower : MonoBehaviour
     {
-        [SerializeField] private Rigidbody _ownerRigidbody;
+        [SerializeField] private Component _forwardSource;
         [SerializeField] private Camera _worldCamera;
-        [SerializeField] private JetCamera _jetCamera;
+        [SerializeField] private MonoBehaviour _viewStateSource;
         [SerializeField] private float _projectionDistance = 300f;
         [SerializeField] private float _moveSpeed = 10f;
+        [SerializeField] private bool _centerOnFreeLook;
 
         private RectTransform _rectTransform;
         private RectTransform _parentRectTransform;
+        private IThirdPersonViewState _viewState;
         private int _lastUpdatedFrame = -1;
 
         private void Awake()
         {
             _rectTransform = GetComponent<RectTransform>();
             _parentRectTransform = _rectTransform.parent as RectTransform;
+            _viewState = _viewStateSource as IThirdPersonViewState;
 
-            if (_ownerRigidbody == null)
+            if (_forwardSource == null)
             {
-                Debug.LogError("Owner Rigidbody is missing", this);
+                Debug.LogError("Forward source is missing", this);
             }
 
             if (_worldCamera == null)
@@ -32,9 +35,9 @@ namespace Battlefield.Features.UI
                 Debug.LogError("World Camera is missing", this);
             }
 
-            if (_jetCamera == null)
+            if (_viewState == null)
             {
-                Debug.LogError("Jet Camera is missing", this);
+                Debug.LogError("View state source must implement IThirdPersonViewState", this);
             }
 
             if (_parentRectTransform == null)
@@ -65,15 +68,23 @@ namespace Battlefield.Features.UI
 
             if (_rectTransform == null ||
                 _parentRectTransform == null ||
-                _ownerRigidbody == null ||
+                _forwardSource == null ||
                 _worldCamera == null ||
-                _jetCamera == null)
+                _viewState == null)
             {
                 return;
             }
 
+            if (_centerOnFreeLook &&
+                (!_viewState.IsThirdPersonView ||
+                 _viewState.IsThirdPersonFreeLook))
+            {
+                _rectTransform.anchoredPosition = Vector2.zero;
+                return;
+            }
+
             Vector2 targetPosition = Vector2.zero;
-            if (_jetCamera.IsThirdPersonView &&
+            if (_viewState.IsThirdPersonView &&
                 TryGetForwardScreenPosition(out Vector2 forwardPosition))
             {
                 targetPosition = forwardPosition;
@@ -89,9 +100,9 @@ namespace Battlefield.Features.UI
 
         private bool TryGetForwardScreenPosition(out Vector2 localPosition)
         {
-            Transform fighter = _ownerRigidbody.transform;
-            Vector3 targetPosition = fighter.position +
-                                     fighter.forward *
+            Transform forwardSource = _forwardSource.transform;
+            Vector3 targetPosition = forwardSource.position +
+                                     forwardSource.forward *
                                      Mathf.Max(1f, _projectionDistance);
             Vector3 viewportPosition =
                 _worldCamera.WorldToViewportPoint(targetPosition);

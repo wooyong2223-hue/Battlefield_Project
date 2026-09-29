@@ -3716,6 +3716,7 @@ GameObject:
   - component: {fileID: 930000020}
   - component: {fileID: 930000021}
   - component: {fileID: 930000022}
+  - component: {fileID: 930000023}
   m_Layer: 5
   m_Name: LockOnAreaRing
   m_TagString: Untagged
@@ -3772,6 +3773,24 @@ MonoBehaviour:
       m_Calls: []
   _thickness: 2
   _cornerLength: 14
+--- !u!114 &930000023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930000019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 395cc7919c034010ad633138e6a42bd8, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.UI.ForwardUiFollower
+  _forwardSource: {fileID: 900000104}
+  _worldCamera: {fileID: 330585545}
+  _viewStateSource: {fileID: 330585548}
+  _projectionDistance: 300
+  _moveSpeed: 10
+  _centerOnFreeLook: 1
 --- !u!1 &940000001
 GameObject:
   m_ObjectHideFlags: 0
@@ -3910,12 +3929,13 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 395cc7919c034010ad633138e6a42bd8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.UI.FighterOverheatReticleFollower
-  _ownerRigidbody: {fileID: 900000104}
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.UI.ForwardUiFollower
+  _forwardSource: {fileID: 900000104}
   _worldCamera: {fileID: 330585545}
-  _jetCamera: {fileID: 330585548}
+  _viewStateSource: {fileID: 330585548}
   _projectionDistance: 300
   _moveSpeed: 10
+  _centerOnFreeLook: 0
 --- !u!1 &950000011
 GameObject:
   m_ObjectHideFlags: 0
