@@ -3909,7 +3909,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 395cc7919c034010ad633138e6a42bd8, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.UI.FighterOverheatReticleFollower
   _ownerRigidbody: {fileID: 900000104}
   _worldCamera: {fileID: 330585545}
@@ -5736,7 +5736,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &995000002
 Transform:
   m_ObjectHideFlags: 0

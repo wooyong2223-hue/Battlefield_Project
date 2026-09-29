@@ -1,3 +1,4 @@
+using System;
 using Battlefield.Features.UI;
 using UnityEngine;
 
@@ -21,6 +22,8 @@ namespace Battlefield.Features.Weapon
 
         private float _nextFireTime;
         private float _lastFireTime;
+        public event Action Fired;
+        public float ShotInterval => 1f / Mathf.Max(0.01f, _fireRate);
         protected float Damage => _damage;
         protected Overheat Overheat => _overheat;
         public string DisplayName => string.IsNullOrWhiteSpace(_displayName)
@@ -55,6 +58,7 @@ namespace Battlefield.Features.Weapon
             if (!Fire()) return;
 
             _overheat.AddHeat();
+            Fired?.Invoke();
         }
 
         protected abstract bool Fire();
