@@ -1,0 +1,14 @@
+{
+    "name": "Battlefield.Features.Audio.Editor",
+    "rootNamespace": "Battlefield.Features.Audio.Editor",
+    "references": ["Battlefield.Features"],
+    "includePlatforms": ["Editor"],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,3 +1,4 @@
+using Battlefield.Features.Audio;
 using Battlefield.Framework.Core;
 using UnityEngine;
 
@@ -9,19 +10,24 @@ namespace Battlefield.Features.Weapon
         [SerializeField] private AirToAirMissileLauncher _launcher;
         [SerializeField] private Health _health;
         [SerializeField] private AudioSource _source;
+        [SerializeField] private MissileLaunchAudioProfile _profile;
 
         private bool _pendingLaunch;
         private bool _paused;
 
         private void Awake()
         {
-            if (_launcher == null || _source == null || _source.clip == null)
+            if (_launcher == null || _source == null ||
+                _profile == null || _profile.Launch == null)
             {
-                Debug.LogError("Missile launch audio requires a launcher, source, and clip.", this);
+                Debug.LogError("Missile launch audio requires a launcher, source, and profile with a clip.", this);
                 enabled = false;
                 return;
             }
 
+            _source.clip = _profile.Launch;
+            _source.volume = Mathf.Clamp01(_profile.Volume);
+            _source.outputAudioMixerGroup = _profile.OutputGroup;
             _source.playOnAwake = false;
             _source.loop = false;
         }

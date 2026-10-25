@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Projectile.MissileFlightAudio
   _source: {fileID: 610000000000000008}
+  _profile: {fileID: 11400000, guid: d84e83930b22470e91dae62ca3108b3d, type: 2}
 --- !u!82 &610000000000000008
 AudioSource:
   m_ObjectHideFlags: 0
@@ -167,9 +168,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 695e747273094e9dbce0aa7df1ea6dac, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0

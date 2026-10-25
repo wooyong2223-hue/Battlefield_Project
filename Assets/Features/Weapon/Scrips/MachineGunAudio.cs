@@ -1,3 +1,4 @@
+using Battlefield.Features.Audio;
 using Battlefield.Framework.Core;
 using UnityEngine;
 
@@ -9,21 +10,23 @@ namespace Battlefield.Features.Weapon
         [SerializeField] private MachineGun _gun;
         [SerializeField] private Health _health;
         [SerializeField] private AudioSource _source;
-        [SerializeField] private float _volume = 0.65f;
-        [SerializeField] private float _fadeSeconds = 0.05f;
+        [SerializeField] private MachineGunAudioProfile _profile;
 
         private float _lastShotTime = float.NegativeInfinity;
         private bool _paused;
 
         private void Awake()
         {
-            if (_gun == null || _source == null || _source.clip == null)
+            if (_gun == null || _source == null ||
+                _profile == null || _profile.FireLoop == null)
             {
-                Debug.LogError("Machine gun audio requires a gun, source, and clip.", this);
+                Debug.LogError("Machine gun audio requires a gun, source, and profile with a clip.", this);
                 enabled = false;
                 return;
             }
 
+            _source.clip = _profile.FireLoop;
+            _source.outputAudioMixerGroup = _profile.OutputGroup;
             _source.loop = true;
             _source.playOnAwake = false;
             StopPlayback();
@@ -68,11 +71,12 @@ namespace Battlefield.Features.Weapon
                 _source.Play();
             }
 
-            float level = Mathf.Clamp01(_volume);
+            float level = Mathf.Clamp01(_profile.Volume);
             _source.volume = Mathf.MoveTowards(
                 _source.volume,
                 firing ? level : 0f,
-                level * Time.deltaTime / Mathf.Max(0.01f, _fadeSeconds));
+                level * Time.deltaTime /
+                Mathf.Max(0.01f, _profile.FadeSeconds));
 
             if (!firing && _source.volume <= 0f)
             {

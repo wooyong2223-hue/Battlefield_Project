@@ -5300,6 +5300,7 @@ GameObject:
   - component: {fileID: 980000004}
   - component: {fileID: 980000006}
   - component: {fileID: 980000005}
+  - component: {fileID: 980000008}
   m_Layer: 0
   m_Name: Fighter
   m_TagString: Untagged
@@ -20833,12 +20834,7 @@ MonoBehaviour:
   _health: {fileID: 4812457280362249823}
   _engineSource: {fileID: 980000002}
   _afterburnerSource: {fileID: 980000003}
-  _idleVolume: 0.2
-  _flightVolume: 0.5
-  _afterburnerVolume: 0.5
-  _idlePitch: 0.9
-  _flightPitch: 1.1
-  _transitionSeconds: 0.2
+  _profile: {fileID: 11400000, guid: c0b4dcd39e724ac19ac86deda266e7fd, type: 2}
 --- !u!82 &980000002
 AudioSource:
   m_ObjectHideFlags: 0
@@ -20849,7 +20845,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: e1b965fa3f9c45568966f478c81497cc, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0
   m_Pitch: 1
@@ -20927,7 +20923,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 0f813bc0be8546d9aac2476f86766510, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0
   m_Pitch: 1
@@ -21011,8 +21007,7 @@ MonoBehaviour:
   _gun: {fileID: 1620024984628651431}
   _health: {fileID: 4812457280362249823}
   _source: {fileID: 980000005}
-  _volume: 0.65
-  _fadeSeconds: 0.05
+  _profile: {fileID: 11400000, guid: 92b1e24ea43e4b3fa8e4aaa4272ee3c3, type: 2}
 --- !u!82 &980000005
 AudioSource:
   m_ObjectHideFlags: 0
@@ -21023,7 +21018,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: ed2dbd3248eb4a91a6da442ead579c45, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0
   m_Pitch: 1
@@ -21107,6 +21102,7 @@ MonoBehaviour:
   _launcher: {fileID: 970000002}
   _health: {fileID: 4812457280362249823}
   _source: {fileID: 980000007}
+  _profile: {fileID: 11400000, guid: c6a7fe2eedaf49ee86fafcd85b0184c0, type: 2}
 --- !u!82 &980000007
 AudioSource:
   m_ObjectHideFlags: 0
@@ -21117,9 +21113,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 139aa4c355984cef8ce881878f4db951, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.65
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -21185,3 +21181,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+
+--- !u!114 &980000008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213146663861086480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb10e3252ef41e693c662cd498a7621, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Audio.AudioOverview
+  _relatedPrefabs:
+  - {fileID: 610000000000000001, guid: 2d229efc97f947b9ae93c540bc67f8f4, type: 3}

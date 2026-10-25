@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48eb6cf3d6b645fa8bc151868a74ef71, type: 3}
+  m_Name: FighterEngineAudioProfile
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Audio.FighterEngineAudioProfile
+  _outputGroup: {fileID: 8695208081278333068, guid: eeeb7913aed655b4a9bd24d57584f96f, type: 2}
+  _engineLoop: {fileID: 8300000, guid: e1b965fa3f9c45568966f478c81497cc, type: 3}
+  _afterburnerLoop: {fileID: 8300000, guid: 0f813bc0be8546d9aac2476f86766510, type: 3}
+  _idleVolume: 0.2
+  _flightVolume: 0.5
+  _afterburnerVolume: 0.5
+  _idlePitch: 0.9
+  _flightPitch: 1.1
+  _transitionSeconds: 0.2

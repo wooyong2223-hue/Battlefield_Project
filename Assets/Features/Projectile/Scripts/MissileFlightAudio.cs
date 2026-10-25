@@ -1,3 +1,4 @@
+using Battlefield.Features.Audio;
 using UnityEngine;
 namespace Battlefield.Features.Projectile
 {
@@ -5,16 +6,21 @@ namespace Battlefield.Features.Projectile
     public sealed class MissileFlightAudio : MonoBehaviour
     {
         [SerializeField] private AudioSource _source;
+        [SerializeField] private MissileFlightAudioProfile _profile;
         private bool _pendingStart;
         private bool _paused;
         private void Awake()
         {
-            if (_source == null || _source.clip == null)
+            if (_source == null ||
+                _profile == null || _profile.FlightLoop == null)
             {
-                Debug.LogError("Missile flight audio requires a source and clip.", this);
+                Debug.LogError("Missile flight audio requires a source and profile with a clip.", this);
                 enabled = false;
                 return;
             }
+            _source.clip = _profile.FlightLoop;
+            _source.volume = Mathf.Clamp01(_profile.Volume);
+            _source.outputAudioMixerGroup = _profile.OutputGroup;
             _source.playOnAwake = false;
             _source.loop = true;
         }

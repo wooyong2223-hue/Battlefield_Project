@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5914c3630ea46d99ec845f7cd46a2a4, type: 3}
+  m_Name: MissileFlightAudioProfile
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Audio.MissileFlightAudioProfile
+  _outputGroup: {fileID: -4014217406969705984, guid: eeeb7913aed655b4a9bd24d57584f96f, type: 2}
+  _flightLoop: {fileID: 8300000, guid: 695e747273094e9dbce0aa7df1ea6dac, type: 3}
+  _volume: 0.4

@@ -1,3 +1,4 @@
+using Battlefield.Features.Audio;
 using Battlefield.Framework.Core;
 using UnityEngine;
 
@@ -10,18 +11,11 @@ namespace Battlefield.Features.Fighter
         [SerializeField] private JetMovement _movement;
         [SerializeField] private Afterburner _afterburner;
         [SerializeField] private Health _health;
+        [SerializeField] private FighterEngineAudioProfile _profile;
 
         [Header("Loop Sources")]
         [SerializeField] private AudioSource _engineSource;
         [SerializeField] private AudioSource _afterburnerSource;
-
-        [Header("Mix")]
-        [SerializeField] private float _idleVolume = 0.2f;
-        [SerializeField] private float _flightVolume = 0.5f;
-        [SerializeField] private float _afterburnerVolume = 0.5f;
-        [SerializeField] private float _idlePitch = 0.9f;
-        [SerializeField] private float _flightPitch = 1.1f;
-        [SerializeField] private float _transitionSeconds = 0.2f;
 
         private bool _configured;
         private bool _playing;
@@ -31,20 +25,25 @@ namespace Battlefield.Features.Fighter
 
         private void Awake()
         {
-            _configured = _movement != null && _afterburner != null &&
+            _configured = _profile != null &&
+                          _profile.EngineLoop != null &&
+                          _profile.AfterburnerLoop != null &&
+                          _movement != null && _afterburner != null &&
                           _health != null && _engineSource != null &&
                           _afterburnerSource != null &&
-                          _engineSource != _afterburnerSource &&
-                          _engineSource.clip != null &&
-                          _afterburnerSource.clip != null;
+                          _engineSource != _afterburnerSource;
 
             if (!_configured)
             {
-                Debug.LogError("Fighter engine audio requires state references and two distinct loop sources with clips.", this);
+                Debug.LogError("Fighter engine audio requires a profile, state references, and two distinct loop sources.", this);
                 enabled = false;
                 return;
             }
 
+            _engineSource.clip = _profile.EngineLoop;
+            _afterburnerSource.clip = _profile.AfterburnerLoop;
+            _engineSource.outputAudioMixerGroup = _profile.OutputGroup;
+            _afterburnerSource.outputAudioMixerGroup = _profile.OutputGroup;
             _engineSource.playOnAwake = false;
             _afterburnerSource.playOnAwake = false;
             _engineSource.loop = true;
@@ -87,20 +86,24 @@ namespace Battlefield.Features.Fighter
                 _playing = true;
             }
 
-            float step = Time.deltaTime / Mathf.Max(0.01f, _transitionSeconds);
+            float step = Time.deltaTime /
+                         Mathf.Max(0.01f, _profile.TransitionSeconds);
             float speed = _movement.IsUnpowered ? 0f : Mathf.Clamp01(
                 _movement.EffectiveForwardSpeed / Mathf.Max(1f, _movement.MaxSpeed));
             float engineTarget = Mathf.Lerp(
-                Mathf.Clamp01(_idleVolume), Mathf.Clamp01(_flightVolume), speed);
+                Mathf.Clamp01(_profile.IdleVolume),
+                Mathf.Clamp01(_profile.FlightVolume), speed);
             _engineVolume = Mathf.MoveTowards(_engineVolume, engineTarget, step);
             float boostTarget = _afterburner.isActiveAndEnabled && _afterburner.IsActive ? 1f : 0f;
             _afterburnerBlend = Mathf.MoveTowards(_afterburnerBlend, boostTarget, step);
 
             // Both recordings contain engine sound: crossfade instead of adding two full engines.
             _engineSource.volume = _engineVolume * (1f - _afterburnerBlend);
-            _afterburnerSource.volume = Mathf.Clamp01(_afterburnerVolume) * _afterburnerBlend;
+            _afterburnerSource.volume =
+                Mathf.Clamp01(_profile.AfterburnerVolume) * _afterburnerBlend;
             _engineSource.pitch = Mathf.Lerp(
-                Mathf.Clamp(_idlePitch, 0.1f, 3f), Mathf.Clamp(_flightPitch, 0.1f, 3f), speed);
+                Mathf.Clamp(_profile.IdlePitch, 0.1f, 3f),
+                Mathf.Clamp(_profile.FlightPitch, 0.1f, 3f), speed);
             _afterburnerSource.pitch = 1f;
         }
 
