@@ -1,4 +1,4 @@
-namespace Battlefield.Features.UI
+namespace Battlefield.Features.Weapon
 {
     public enum RefillProgressType
     {

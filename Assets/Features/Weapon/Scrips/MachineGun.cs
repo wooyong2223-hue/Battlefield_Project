@@ -13,6 +13,8 @@ namespace Battlefield.Features.Weapon
         [Header("Effect")]
         [SerializeField] private MuzzleFlash _muzzleFlash;
 
+        private bool _missingFireSetupReported;
+
         public Transform FirePoint => _firePoint;
         public Bullet ProjectilePrefab => _bulletPool != null
             ? _bulletPool.ProjectilePrefab
@@ -22,9 +24,18 @@ namespace Battlefield.Features.Weapon
         {
             if (_firePoint == null || _bulletPool == null)
             {
-                Debug.LogWarning("Fire Point Missing.", this);
+                if (!_missingFireSetupReported)
+                {
+                    Debug.LogWarning(
+                        "Machine gun requires a fire point and bullet pool.",
+                        this);
+                    _missingFireSetupReported = true;
+                }
+
                 return false;
             }
+
+            _missingFireSetupReported = false;
 
             if (_muzzleFlash != null)
             {

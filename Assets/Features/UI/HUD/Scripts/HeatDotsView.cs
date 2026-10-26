@@ -12,6 +12,7 @@ namespace Battlefield.Features.UI
 
         [Header("Dot Images")]
         [SerializeField] private List<Image> _dots = new();
+        [SerializeField] private WeaponBase _weapon;
 
         [Header("Dot Colors")]
         [SerializeField] private Color _offColor = new(1f, 1f, 1f, 0.15f);
@@ -22,15 +23,6 @@ namespace Battlefield.Features.UI
         [Header("Dot Alpha")]
         [SerializeField] private float _activeAlpha = 1f;
         [SerializeField] private float _inactiveAlpha = 0.15f;
-
-        private Overheat _overheat;
-        private float _maxHeat;
-
-        public void Bind(Overheat overheat)
-        {
-            _overheat = overheat;
-            _maxHeat = Mathf.Max(1f, overheat.MaxHeat);
-        }
 
         [ContextMenu("Collect Dots From Children")]
         private void CollectDotsFromChildren()
@@ -50,13 +42,15 @@ namespace Battlefield.Features.UI
 
         private void LateUpdate()
         {
-            if (_overheat == null || _dots.Count == 0) return;
-            float heatPercent = Mathf.Clamp01(_overheat.Heat / _maxHeat) * 100f;
+            if (_weapon == null || _dots.Count == 0) return;
+
+            float maxHeat = Mathf.Max(1f, _weapon.MaxHeat);
+            float heatPercent = Mathf.Clamp01(_weapon.Heat / maxHeat) * 100f;
 
             int litCount = Mathf.RoundToInt((heatPercent / 100f) * _dots.Count);
 
-            Color stateColor = _overheat.IsOverheated
-                ? ColorForCooling(heatPercent)
+            Color stateColor = _weapon.IsOverheated
+                ? ColorForCooling(heatPercent, maxHeat)
                 : ColorForHeat(heatPercent);
 
             for (int i = 0; i < _dots.Count; i++)
@@ -80,10 +74,10 @@ namespace Battlefield.Features.UI
             return _normalColor;
         }
 
-        private Color ColorForCooling(float heatPercent)
+        private Color ColorForCooling(float heatPercent, float maxHeat)
         {
             float recoverHeatPercent =
-                (_overheat.RecoverHeat / _maxHeat) * MaximumHeatPercent;
+                (_weapon.RecoverHeat / maxHeat) * MaximumHeatPercent;
             float coolingColorRatio = Mathf.InverseLerp(
                 recoverHeatPercent,
                 MaximumHeatPercent,

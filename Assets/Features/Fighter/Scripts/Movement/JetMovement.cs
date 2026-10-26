@@ -72,6 +72,11 @@ namespace Battlefield.Features.Fighter
             if (_input == null) Debug.Log($"{nameof(IJetInput)} is missing", this);
         }
 
+        private void OnDisable()
+        {
+            _afterburner?.Stop();
+        }
+
         private void Update()
         {
             if (_input == null) return;

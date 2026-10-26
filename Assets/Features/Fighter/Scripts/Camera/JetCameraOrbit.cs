@@ -28,13 +28,6 @@ namespace Battlefield.Features.Fighter
         private Quaternion _thirdPersonOrbitRotation;
         private bool _isThirdPersonOrbitInitialized;
 
-        internal Quaternion TargetOrbitRotation { get; private set; }
-        internal Quaternion SmoothedOrbitRotation { get; private set; }
-        internal Quaternion AppliedOrbitRotation { get; private set; }
-        internal float AppliedRoll { get; private set; }
-        internal float ThirdPersonDistance => _thirdPersonDistance;
-        internal Vector3 AppliedCameraOffset { get; private set; }
-
         public void Initialize(
             Transform fighter,
             Transform thirdPersonCameraPoint)
@@ -85,10 +78,10 @@ namespace Battlefield.Features.Fighter
 
                 if (!_isThirdPersonOrbitInitialized)
                 {
-                    TargetOrbitRotation = Quaternion.LookRotation(
+                    Quaternion targetOrbitRotation = Quaternion.LookRotation(
                         targetForward,
                         baseRotation * Vector3.up);
-                    _thirdPersonOrbitRotation = TargetOrbitRotation;
+                    _thirdPersonOrbitRotation = targetOrbitRotation;
                     _isThirdPersonOrbitInitialized = true;
                 }
                 else
@@ -98,14 +91,14 @@ namespace Battlefield.Features.Fighter
                     Quaternion directionChange = Quaternion.FromToRotation(
                         currentForward,
                         targetForward);
-                    TargetOrbitRotation =
+                    Quaternion targetOrbitRotation =
                         directionChange * _thirdPersonOrbitRotation;
                     float followRatio = 1f - Mathf.Exp(
                         -Mathf.Max(0f, _thirdPersonOrbitFollowSpeed)
                         * deltaTime);
                     _thirdPersonOrbitRotation = Quaternion.Slerp(
                         _thirdPersonOrbitRotation,
-                        TargetOrbitRotation,
+                        targetOrbitRotation,
                         followRatio);
                 }
 
@@ -113,9 +106,6 @@ namespace Battlefield.Features.Fighter
                     * Quaternion.AngleAxis(
                         cameraRoll,
                         Vector3.forward);
-                SmoothedOrbitRotation = _thirdPersonOrbitRotation;
-                AppliedOrbitRotation = baseRotation;
-                AppliedRoll = cameraRoll;
                 cameraOffset = baseRotation * localCameraOffset.normalized
                     * _thirdPersonDistance;
             }
@@ -128,9 +118,9 @@ namespace Battlefield.Features.Fighter
                 * freeLookRotation
                 * Quaternion.Inverse(baseRotation);
 
-            AppliedCameraOffset = worldOrbitRotation * cameraOffset;
+            Vector3 appliedCameraOffset = worldOrbitRotation * cameraOffset;
             cameraTransform.position = fighter.position
-                + AppliedCameraOffset;
+                + appliedCameraOffset;
             cameraTransform.rotation = baseRotation * freeLookRotation;
         }
 

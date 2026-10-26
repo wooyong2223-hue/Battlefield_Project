@@ -1,7 +1,6 @@
 using System.Collections;
 using Battlefield.Features.Projectile;
 using Battlefield.Features.Targeting;
-using Battlefield.Features.UI;
 using UnityEngine;
 
 namespace Battlefield.Features.Weapon

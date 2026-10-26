@@ -1,3 +1,4 @@
+using Battlefield.Features.Weapon;
 using UnityEngine;
 using UnityEngine.UI;
 

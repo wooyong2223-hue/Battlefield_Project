@@ -18,9 +18,5 @@ namespace Battlefield.Features.Fighter
         float CameraDistanceDelta { get; }
         bool FreeLook { get; }
         bool Zoom { get; }
-
-        // Weapon
-        bool FireWeapon { get; }
-        int WeaponSlotSelection { get; }
     }
 }

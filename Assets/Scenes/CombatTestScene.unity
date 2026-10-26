@@ -1646,6 +1646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4748c1913c5c94bb1f3d61e502b5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.UI.HUD.HeatDotsView
+  _weapon: {fileID: 930000099}
   _dots:
   - {fileID: 1101142260}
   - {fileID: 1852672171}
@@ -2419,7 +2420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.VFX.Hit.HitEffectPool
   _initialSize: 10
-  _effectPrefab: {fileID: 19800002, guid: 99c73c92ac40473459640b165473206f, type: 3}
+  _effectPrefab: {fileID: 11400000, guid: 10a6f71e1d124db2a17ba8aca21c4101, type: 3}
 --- !u!1 &900000006
 GameObject:
   m_ObjectHideFlags: 0
@@ -2465,7 +2466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.VFX.Hit.HitEffectPool
   _initialSize: 10
-  _effectPrefab: {fileID: 19800002, guid: 56bfc2f4b4a0c534c8ef3d0fd1124c44, type: 3}
+  _effectPrefab: {fileID: 11400000, guid: 20b7f82f2e235ec3b28cb9bdb32d5202, type: 3}
 --- !u!1 &900000009
 GameObject:
   m_ObjectHideFlags: 0
@@ -2511,7 +2512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.VFX.Hit.HitEffectPool
   _initialSize: 10
-  _effectPrefab: {fileID: 19800002, guid: 00fedc70b62a31e448e8ccc298257b56, type: 3}
+  _effectPrefab: {fileID: 11400000, guid: 30c809303f346fd4c39dcaec43e63003, type: 3}
 --- !u!1 &900000012
 GameObject:
   m_ObjectHideFlags: 0
@@ -2557,7 +2558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.VFX.Hit.HitEffectPool
   _initialSize: 10
-  _effectPrefab: {fileID: 19800002, guid: fc7f8379080d0a844ad699b91bfd56f0, type: 3}
+  _effectPrefab: {fileID: 11400000, guid: 40d91a41404570e5d4aedbfd54f74004, type: 3}
 --- !u!1 &900000015
 GameObject:
   m_ObjectHideFlags: 0
@@ -2603,7 +2604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battlefield.VFX.Hit.HitEffectPool
   _initialSize: 10
-  _effectPrefab: {fileID: 19800002, guid: ac1aa04288fad804ba1cd769f4377aaf, type: 3}
+  _effectPrefab: {fileID: 11400000, guid: 50ea2b52515681f6e5bfec0e65085005, type: 3}
 --- !u!1 &900000018
 GameObject:
   m_ObjectHideFlags: 0
@@ -5386,10 +5387,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1620024984628651431, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
-      propertyPath: _heatDotsView
-      value: 
-      objectReference: {fileID: 548307667}
-    - target: {fileID: 1620024984628651431, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
       propertyPath: _bulletPool
       value:
       objectReference: {fileID: 1486456747}
@@ -5450,6 +5447,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
+--- !u!114 &930000099 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1620024984628651431, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
+  m_PrefabInstance: {fileID: 1866848542226446226}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a94f1434e5399a42a87e363e6687924, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Weapon.MachineGun
 --- !u!114 &930000001
 MonoBehaviour:
   m_ObjectHideFlags: 0

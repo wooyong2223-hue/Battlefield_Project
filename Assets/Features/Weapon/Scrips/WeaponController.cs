@@ -1,5 +1,4 @@
 using System;
-using Battlefield.Features.Fighter;
 using UnityEngine;
 
 namespace Battlefield.Features.Weapon
@@ -7,7 +6,7 @@ namespace Battlefield.Features.Weapon
     public sealed class WeaponController : MonoBehaviour
     {
         [SerializeField] private WeaponBase[] _weapons;
-        private IJetInput _input;
+        private IWeaponInput _input;
 
         public int SelectedIndex { get; private set; }
         public WeaponBase SelectedWeapon =>
@@ -25,8 +24,8 @@ namespace Battlefield.Features.Weapon
 
         private void Awake()
         {
-            _input = GetComponent<IJetInput>();
-            if (_input == null) Debug.LogError($"{nameof(IJetInput)} Missing.", this);
+            _input = GetComponent<IWeaponInput>();
+            if (_input == null) Debug.LogError($"{nameof(IWeaponInput)} Missing.", this);
         }
 
         private void Start() => SelectSlot(1);

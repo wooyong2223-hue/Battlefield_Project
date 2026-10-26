@@ -72,8 +72,15 @@ namespace Battlefield.Features.Fighter
 
         private void BeginDestructionCamera()
         {
-            JetCamera jetCamera = FindAnyObjectByType<JetCamera>();
-            jetCamera?.BeginDestructionView(transform);
+            foreach (JetCamera jetCamera in
+                     FindObjectsByType<JetCamera>(FindObjectsSortMode.None))
+            {
+                if (jetCamera.isActiveAndEnabled &&
+                    jetCamera.IsFollowing(transform))
+                {
+                    jetCamera.BeginDestructionView(transform);
+                }
+            }
         }
 
         private void PlayExplosion()

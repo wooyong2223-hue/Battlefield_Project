@@ -1,5 +1,4 @@
 using System;
-using Battlefield.Features.UI;
 using UnityEngine;
 
 namespace Battlefield.Features.Weapon
@@ -17,27 +16,20 @@ namespace Battlefield.Features.Weapon
         [SerializeField]
         private float _coolDownDelay = 0.15f;
 
-        [Header("UI")]
-        [SerializeField] private HeatDotsView _heatDotsView;
-
         private float _nextFireTime;
         private float _lastFireTime;
         public event Action Fired;
         public float ShotInterval => 1f / Mathf.Max(0.01f, _fireRate);
+        public float Heat => _overheat.Heat;
+        public float MaxHeat => _overheat.MaxHeat;
+        public float RecoverHeat => _overheat.RecoverHeat;
+        public bool IsOverheated => _overheat.IsOverheated;
         protected float Damage => _damage;
         protected Overheat Overheat => _overheat;
         public string DisplayName => string.IsNullOrWhiteSpace(_displayName)
             ? GetType().Name
             : _displayName;
         public virtual string AmmoText => "∞";
-
-        private void Start()
-        {
-            if(_heatDotsView != null)
-            {
-                _heatDotsView.Bind(_overheat);
-            }
-        }
 
         private void Update()
         {
@@ -52,11 +44,10 @@ namespace Battlefield.Features.Weapon
             if (!_overheat.CanFire()) return;
             if (Time.time < _nextFireTime) return;
 
-            _nextFireTime = Time.time + 1f / _fireRate;
-            _lastFireTime = Time.time;
-
             if (!Fire()) return;
 
+            _nextFireTime = Time.time + 1f / _fireRate;
+            _lastFireTime = Time.time;
             _overheat.AddHeat();
             Fired?.Invoke();
         }

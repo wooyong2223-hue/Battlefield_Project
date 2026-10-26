@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Battlefield.Features.Weapon;
 
 namespace Battlefield.Features.Fighter
 {
-    public class KeyboardJetInput : MonoBehaviour, IJetInput
+    public class KeyboardJetInput : MonoBehaviour, IJetInput, IWeaponInput
     {
         private const float MouseDeltaScale = 0.1f;
 

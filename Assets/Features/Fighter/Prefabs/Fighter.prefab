@@ -5648,7 +5648,6 @@ MonoBehaviour:
     _coolDownPerSecond: 25
     _recoverHeat: 5
   _coolDownDelay: 0.15
-  _heatDotsView: {fileID: 0}
   _bulletPool: {fileID: 0}
   _firePoint: {fileID: 3439592890172946217}
   _muzzleFlash: {fileID: 5197639183017894661}
@@ -5692,7 +5691,6 @@ MonoBehaviour:
     _coolDownPerSecond: 25
     _recoverHeat: 30
   _coolDownDelay: 0.15
-  _heatDotsView: {fileID: 0}
   _missilePool: {fileID: 0}
   _targetLock: {fileID: 970000001}
   _firePoint: {fileID: 5788049725178721189}
