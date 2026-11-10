@@ -32,6 +32,10 @@ namespace Battlefield.Features.Fighter
             Transform fighter,
             Transform thirdPersonCameraPoint)
         {
+            _freeLookYaw = 0f;
+            _freeLookPitch = 0f;
+            _isThirdPersonOrbitInitialized = false;
+            _rollFollow.Reset();
             float authoredDistance = Vector3.Distance(
                 fighter.position,
                 thirdPersonCameraPoint.position);

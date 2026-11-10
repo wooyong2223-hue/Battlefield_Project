@@ -16,12 +16,14 @@ namespace Battlefield.Features.Fighter
         private readonly List<ParticleState> _particles = new();
 
         private Afterburner _afterburner;
+        private JetMovement _movement;
         private IJetInput _input;
         private bool _isPlaying;
 
         private void Awake()
         {
             _afterburner = GetComponent<Afterburner>();
+            _movement = GetComponent<JetMovement>();
             _input = GetComponent<IJetInput>();
 
             if (_effectPrefab == null ||
@@ -39,7 +41,8 @@ namespace Battlefield.Features.Fighter
 
         private void Update()
         {
-            bool shouldPlay = _input.Throttle > 0f || _afterburner.IsActive;
+            bool shouldPlay = (_movement == null || _movement.IsEngineRunning) &&
+                              (_input.Throttle > 0f || _afterburner.IsActive);
             if (!shouldPlay)
             {
                 SetPlaying(false);

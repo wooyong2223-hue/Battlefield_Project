@@ -29,8 +29,19 @@ namespace Battlefield.Features.Fighter
         public float CurrentSpeed { get; private set; }
         public float EffectiveForwardSpeed { get; private set; }
         public float MaxSpeed => _maxSpeed;
+        public bool IsEngineRunning { get; private set; } = true;
         public bool IsUnpowered =>
-            _targetSpeed <= _minSpeed + Mathf.Epsilon;
+            !IsEngineRunning || _targetSpeed <= _minSpeed + Mathf.Epsilon;
+
+        public void SetEngineRunning(bool running)
+        {
+            if (IsEngineRunning == running) return;
+            IsEngineRunning = running;
+            if (running) return;
+            _targetSpeed = 0f;
+            _queuedEnergyLoss = 0f;
+            _afterburner?.Stop();
+        }
 
         public void ApplyTurnEnergyLoss(float speedLoss)
         {
@@ -81,6 +92,12 @@ namespace Battlefield.Features.Fighter
         {
             if (_input == null) return;
 
+            if (!IsEngineRunning)
+            {
+                _afterburner.Tick(false, Time.deltaTime);
+                return;
+            }
+
             _afterburner.Tick(_input.Afterburner, Time.deltaTime);
 
             float acceleration =
@@ -123,7 +140,7 @@ namespace Battlefield.Features.Fighter
             bool isUnpoweredFall =
                 _rigidbody.useGravity &&
                 forwardSpeed <= _minSpeed + Mathf.Epsilon;
-            if (isUnpoweredFall)
+            if (!IsEngineRunning || isUnpoweredFall)
             {
                 _queuedEnergyLoss = 0f;
                 _wasUsingGravity = true;

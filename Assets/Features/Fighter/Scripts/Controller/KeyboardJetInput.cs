@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Battlefield.Features.Weapon;
+using Battlefield.Features.Vehicles;
 
 namespace Battlefield.Features.Fighter
 {
-    public class KeyboardJetInput : MonoBehaviour, IJetInput, IWeaponInput
+    public class KeyboardJetInput : MonoBehaviour, IJetInput, IWeaponInput, IVehicleSeatInput
     {
         private const float MouseDeltaScale = 0.1f;
 
@@ -23,7 +24,11 @@ namespace Battlefield.Features.Fighter
         private InputAction _freeLookAction;
         private InputAction _zoomAction;
         private InputAction _cameraDistanceAction;
+        private InputAction _primaryWeaponAction;
+        private InputAction _secondaryWeaponAction;
+        private int _pendingWeaponSlot;
         private bool _isFreeLookAllowed = true;
+        private bool _weaponFireAllowed = true;
 
         // Controller
         public float Throttle { get; private set; }
@@ -66,6 +71,12 @@ namespace Battlefield.Features.Fighter
             _zoomAction = _playerActions.FindAction("Zoom", true);
             _cameraDistanceAction =
                 _playerActions.FindAction("CameraDistance", true);
+            _primaryWeaponAction = _playerActions.AddAction(
+                "SelectPrimaryWeapon", InputActionType.Button, "<Keyboard>/1");
+            _secondaryWeaponAction = _playerActions.AddAction(
+                "SelectSecondaryWeapon", InputActionType.Button, "<Keyboard>/2");
+            _primaryWeaponAction.performed += SelectPrimaryWeapon;
+            _secondaryWeaponAction.performed += SelectSecondaryWeapon;
         }
 
         private void OnEnable()
@@ -114,12 +125,13 @@ namespace Battlefield.Features.Fighter
             CameraDistanceDelta =
                 _cameraDistanceAction.ReadValue<float>();
             Zoom = _zoomAction.IsPressed();
-            FireWeapon = _attackAction.IsPressed();
-            Keyboard keyboard = Keyboard.current;
-            WeaponSlotSelection = keyboard != null && keyboard.digit1Key.wasPressedThisFrame
-                ? 1
-                : keyboard != null && keyboard.digit2Key.wasPressedThisFrame ? 2 : 0;
+            FireWeapon = _weaponFireAllowed && _attackAction.IsPressed();
+            WeaponSlotSelection = _pendingWeaponSlot;
+            _pendingWeaponSlot = 0;
         }
+
+        private void SelectPrimaryWeapon(InputAction.CallbackContext context) => _pendingWeaponSlot = 1;
+        private void SelectSecondaryWeapon(InputAction.CallbackContext context) => _pendingWeaponSlot = 2;
 
         public void SetFreeLookAllowed(bool isAllowed)
         {
@@ -131,6 +143,12 @@ namespace Battlefield.Features.Fighter
 
             FreeLook = false;
             CameraLook = Vector2.zero;
+        }
+
+        public void SetWeaponFireAllowed(bool allowed)
+        {
+            _weaponFireAllowed = allowed;
+            if (!allowed) FireWeapon = false;
         }
 
         private void ResetInput()
@@ -148,6 +166,7 @@ namespace Battlefield.Features.Fighter
             Zoom = false;
             FireWeapon = false;
             WeaponSlotSelection = 0;
+            _pendingWeaponSlot = 0;
         }
     }
 }

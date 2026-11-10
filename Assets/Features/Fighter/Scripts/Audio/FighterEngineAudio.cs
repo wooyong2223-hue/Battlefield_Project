@@ -55,7 +55,7 @@ namespace Battlefield.Features.Fighter
         {
             // Observe state after movement has ticked the afterburner, including depletion.
             if (!_configured) return;
-            if (_health.IsDead || !_movement.isActiveAndEnabled)
+            if (_health.IsDead || !_movement.isActiveAndEnabled || !_movement.IsEngineRunning)
             {
                 StopPlayback();
                 return;

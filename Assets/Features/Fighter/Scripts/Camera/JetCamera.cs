@@ -20,6 +20,7 @@ namespace Battlefield.Features.Fighter
         [SerializeField] private JetDestructionView _destructionView = new();
 
         private bool _isFirstPerson;
+        private bool _initialized;
 
         public bool IsFirstPersonView =>
             _input != null &&
@@ -45,6 +46,15 @@ namespace Battlefield.Features.Fighter
 
             if (_input == null || _thirdPersonCameraPoint == null) return;
 
+            _input.SetFreeLookAllowed(!_isFirstPerson);
+            _orbit.Initialize(_input.transform, _thirdPersonCameraPoint);
+            _lens.Initialize(GetComponent<Camera>(), _isFirstPerson);
+            _initialized = true;
+        }
+
+        private void OnEnable()
+        {
+            if (!_initialized) return;
             _input.SetFreeLookAllowed(!_isFirstPerson);
             _orbit.Initialize(_input.transform, _thirdPersonCameraPoint);
             _lens.Initialize(GetComponent<Camera>(), _isFirstPerson);
