@@ -7,6 +7,7 @@ using Battlefield.Features.Fighter;
 using Battlefield.Features.PlayerCharacter;
 using Battlefield.Features.Projectile;
 using Battlefield.Features.UI;
+using Battlefield.Features.Vehicles;
 using Battlefield.Features.VFX;
 using Battlefield.Features.Weapon;
 using Battlefield.Framework.Core;
@@ -19,13 +20,12 @@ using Object = UnityEngine.Object;
 
 namespace Battlefield.Tests.PlayMode
 {
-    [NonParallelizable]
     public class CombatStructureTests
     {
         [UnityTest]
         public IEnumerator CombatRangeResolvesEffectPoolsAndHeatHud()
         {
-            yield return LoadScene("CombatTestScene");
+            yield return LoadScene("SampleScene");
 
             HitEffectPool[] pools = FindInScene<HitEffectPool>();
             Assert.That(pools.Length, Is.EqualTo(5));
@@ -41,9 +41,50 @@ namespace Battlefield.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator MaterialPanelsSpawnParticlesAndBulletHoles()
+        {
+            yield return LoadScene("SampleScene");
+            Transform owner = AlliedDummyShooter();
+            owner.SetParent(null, true);
+            MachineGun gun = CreateGun(owner, FindInScene<BulletPool>().Single());
+            HitEffectDatabase database = FindInScene<HitEffectDatabase>().Single();
+            string[] names = { "MaterialTarget_Concreat", "MaterialTarget_Dirt", "MaterialTarget_Metal", "MaterialTarget_Sand", "MaterialTarget_Wood", "Dummy_Enemy", "Dummy_Neutral" };
+
+            for (int i = 0; i < names.Length; i++)
+            {
+                Collider target = FindInScene<Collider>().Single(collider => collider.name == names[i]);
+                Collider surface = target;
+                HitEffectDatabase.Entry entry = database.GetEntry(surface.sharedMaterial);
+                Assert.That(entry, Is.Not.Null, names[i]);
+                int effectsBefore = entry.EffectPool.GetComponentsInChildren<HitEffect>().Length;
+                int holesBefore = entry.BulletHolePool.GetComponentsInChildren<BulletHole>().Length;
+                Vector3 origin = new Vector3(10000f + i * 100f, 10000f, 10000f);
+                owner.SetPositionAndRotation(origin, Quaternion.identity);
+                target.transform.SetParent(null, true);
+                target.transform.position = origin + Vector3.forward * 20f;
+                Physics.SyncTransforms();
+                gun.FirePoint.SetPositionAndRotation(
+                    owner.GetComponent<Collider>().bounds.ClosestPoint(target.transform.position) + Vector3.forward * 0.2f,
+                    Quaternion.identity);
+
+                gun.TryFire();
+                yield return new WaitForSeconds(0.15f);
+
+                HitEffect[] effects = entry.EffectPool.GetComponentsInChildren<HitEffect>();
+                Assert.That(effects.Length, Is.EqualTo(effectsBefore + 1), names[i] + " hit effect");
+                Assert.That(effects.Any(effect => effect.GetComponentsInChildren<ParticleSystem>()
+                    .Any(particle => particle.isPlaying)), Is.True, names[i] + " particles");
+                BulletHole[] holes = entry.BulletHolePool.GetComponentsInChildren<BulletHole>();
+                Assert.That(holes.Length, Is.EqualTo(holesBefore + 1), names[i] + " bullet hole");
+                foreach (HitEffect effect in effects) entry.EffectPool.Return(effect);
+                foreach (BulletHole hole in holes) entry.BulletHolePool.Return(hole);
+            }
+        }
+
+        [UnityTest]
         public IEnumerator FailedFireDoesNotDelayNextSuccessfulShot()
         {
-            yield return LoadScene("CombatTestScene");
+            yield return LoadScene("SampleScene");
             Transform owner = AlliedDummyShooter();
             owner.SetParent(null, true);
             owner.SetPositionAndRotation(new Vector3(10000f, 10000f, 10000f), Quaternion.identity);
@@ -70,11 +111,11 @@ namespace Battlefield.Tests.PlayMode
         [UnityTest]
         public IEnumerator AlliedDummyWeaponDamagesEnemyAndNeutralButNotAlliedDummy()
         {
-            yield return LoadScene("CombatTestScene");
+            yield return LoadScene("SampleScene");
             Transform owner = AlliedDummyShooter();
             owner.SetParent(null, true);
             MachineGun gun = CreateGun(owner, FindInScene<BulletPool>().Single());
-            string[] names = { "Dummy_Enemy", "Dummy_Neutral", "Dummy_Wood" };
+            string[] names = { "Dummy_Enemy", "Dummy_Neutral", "Ally_10m" };
 
             for (int i = 0; i < names.Length; i++)
             {
@@ -91,7 +132,7 @@ namespace Battlefield.Tests.PlayMode
                 target.transform.position = origin + Vector3.forward * 20f;
                 Physics.SyncTransforms();
                 gun.FirePoint.SetPositionAndRotation(
-                    owner.GetComponent<Collider>().ClosestPoint(target.transform.position) + Vector3.forward * 0.2f,
+                    owner.GetComponent<Collider>().bounds.ClosestPoint(target.transform.position) + Vector3.forward * 0.2f,
                     Quaternion.identity);
                 float previousHealth = target.CurrentHealth;
 
@@ -107,6 +148,19 @@ namespace Battlefield.Tests.PlayMode
         public IEnumerator FighterDeathStopsBoostAndOnlyChangesItsFollowingCamera()
         {
             yield return LoadScene("SampleScene");
+            PlayerVehicleOccupant occupant = FindInScene<PlayerVehicleOccupant>().Single();
+            VehicleSeat seat = FindInScene<VehicleSeat>().Single();
+            CharacterController characterBody = occupant.GetComponent<CharacterController>();
+            characterBody.enabled = false;
+            occupant.transform.position = GetField<Transform>(seat, "_entryPoint").position;
+            characterBody.enabled = true;
+            PlayerCharacterInput input = occupant.GetComponent<PlayerCharacterInput>();
+            SetField(input, "_captured", true);
+            SetField(input, "_captureFrame", -1);
+            yield return null;
+            Assert.That(input.HasPointerCapture, Is.True);
+            Assert.That(seat.TryEnter(occupant), Is.True);
+
             JetMovement movement = FindInScene<JetMovement>().Single();
             JetCamera camera = FindInScene<JetCamera>().Single();
             Assert.That(camera.IsFollowing(movement.transform), Is.True);
@@ -149,7 +203,11 @@ namespace Battlefield.Tests.PlayMode
                 new LoadSceneParameters(LoadSceneMode.Single));
             foreach (DummyShooter shooter in FindInScene<DummyShooter>()) shooter.enabled = false;
             foreach (DummyMissileShooter shooter in FindInScene<DummyMissileShooter>()) shooter.enabled = false;
-            foreach (PlayerCharacterController player in FindInScene<PlayerCharacterController>()) player.enabled = false;
+            foreach (PlayerCharacterController player in FindInScene<PlayerCharacterController>())
+            {
+                player.enabled = false;
+                player.GetComponent<PlayerCharacterMovement>().enabled = false;
+            }
             yield return null;
         }
 
@@ -198,7 +256,7 @@ namespace Battlefield.Tests.PlayMode
         private static T[] FindInScene<T>() where T : Component
         {
             Scene activeScene = SceneManager.GetActiveScene();
-            return Object.FindObjectsByType<T>(FindObjectsInactive.Include, FindObjectsSortMode.None)
+            return Object.FindObjectsByType<T>(FindObjectsInactive.Include)
                 .Where(component => component.gameObject.scene == activeScene).ToArray();
         }
 
