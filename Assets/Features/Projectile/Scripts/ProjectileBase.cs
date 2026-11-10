@@ -64,7 +64,10 @@ namespace Battlefield.Features.Projectile
             }
 
             Rigidbody.MovePosition(previousPosition + displacement);
+            OnAdvanced(previousPosition + displacement);
         }
+
+        protected virtual void OnAdvanced(Vector3 position) { }
 
         public virtual void Initialize(ProjectileData data)
         {
@@ -114,6 +117,7 @@ namespace Battlefield.Features.Projectile
             Collider other = hit.collider;
 
             if (ShouldIgnore(other)) return false;
+            OnAdvanced(hit.point);
             if (IsAlly(other))
             {
                 DestroyProjectile();

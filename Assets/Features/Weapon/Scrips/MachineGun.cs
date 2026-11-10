@@ -9,6 +9,8 @@ namespace Battlefield.Features.Weapon
         [Header("Projectile")]
         [SerializeField] private BulletPool _bulletPool;
         [SerializeField] private Transform _firePoint;
+        [SerializeField] private Mesh _projectileMesh;
+        [SerializeField, Min(.01f)] private float _tracerLengthMultiplier = 1f;
 
         [Header("Effect")]
         [SerializeField] private MuzzleFlash _muzzleFlash;
@@ -43,10 +45,12 @@ namespace Battlefield.Features.Weapon
             }
 
             Bullet bullet = _bulletPool.Get();
+            if (bullet.TryGetComponent<BulletVisual>(out var visual))
+                visual.SetMesh(_projectileMesh);
             bullet.transform.SetPositionAndRotation(_firePoint.position, _firePoint.rotation);
 
             ProjectileData projectileData = new ProjectileData(transform.root, Damage);
-            bullet.Initialize(projectileData);
+            bullet.InitializeWithTracer(projectileData, _tracerLengthMultiplier);
             return true;
         }
     }
