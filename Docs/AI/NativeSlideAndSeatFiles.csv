@@ -1,0 +1,21 @@
+﻿작업,파일,코드·직렬화 변경 및 이유
+수정,Assets/Features/PlayerCharacter/Animation/PlayerCharacter.controller,SlideEntryTime(float 기본 0)과 LowerBodySlideEntry Override 레이어/SlideEntry 상태 추가. 기존 SlideLowerBody.mask를 공유. 기존 5개 레이어의 내용·마스크·이름은 보존; 총 레이어 5→6. 새 레이어는 LowerBodySlide와 UpperCombat 사이.
+수정,Assets/Features/PlayerCharacter/Editor/MixamoSlideImporter.cs,"UseRunningSlideLowerBody의 제한 IsContinuous→IsValid. 기존 메뉴 이름 Use Forward Slide Entry를 새 UseForwardSlideEntry 메서드로 제공: _start=Quaternius Slide_Start, _loop/_exit=원본 RunningSlide, _lowerBodyOnly=true. 재수입 보존 동작은 유지."
+수정,Assets/Features/PlayerCharacter/Scripts/PlayerCharacterAnimationView.cs,"LateUpdate→Update, DefaultExecutionOrder(20) 추가. 이동 결과/SlideTime 파라미터를 Animator 평가 전에 제공. 기존 이동 속도·전환 시간·조작 규칙은 변경 없음."
+수정,Assets/Features/PlayerCharacter/Scripts/PlayerCharacterPostureView.cs,LateUpdate의 fadingLowerBody에 LowerBodySlideEntry 가중치 검사 추가. 진입 중 슬라이드가 취소되어 아래 원본 레이어가 0이어도 지면 접촉 맞춤 유지.
+수정,Assets/Features/PlayerCharacter/Scripts/PlayerCharacterSlideAnimationView.cs,"LateUpdate→Update. _lowerBodyWeight, EntryLayer, EntryTime 추가. UpdateLowerBody가 두 네이티브 하체 레이어의 시간·가중치를 설정. 진입 시간 p/.5, 혼합 SmoothStep(.5,.8), 진입 f*(1-b), 아래 원본 f*b/(1-entry). ResetLowerBody는 두 레이어와 상태를 초기화. 장비 Override 합성/일시 중단 복원 정책은 보존."
+수정,Assets/Features/PlayerCharacter/Scripts/SeatedCharacterPose.cs,"ApplyPose의 PoseLeg 2회/PoseArm 2회를 !IsUsingAnimation 분기로 한정. 유효한 외부 탑승 클립이 팔다리를 소유. 원본이 없을 때 대체 자세, 골반 좌석 정렬, 등받이·머리 맞춤, 캡처/복원 유지."
+수정,Assets/Features/PlayerCharacter/Scripts/SlideAnimationSet.cs,LowerBodyOnly getter: _lowerBodyOnly && IsContinuous→_lowerBodyOnly. UsesForwardEntry getter 추가: 하체 선택이며 시작 클립과 반복 클립이 다르고 반복=종료일 때 true. 기존 serialized 필드 삭제/이름 변경 없음.
+수정,Assets/Tests/PlayMode/PlayerCharacterSeatedAnimationTests.cs,SeatedSourceKeepsItsAuthoredLimbRotationsAfterCockpitFitting 추가. 같은 PlayerCharacterArmature 프리팹을 초기화한 참조 Animator에서 외부 SeatedIdle을 평가하여 실제 탑승한 10개 팔다리 관절 각도를 비교하고 골반 좌석 거리 검증. 기존 탑승/일시정지/복원/대체/거부 검사 유지.
+수정,Assets/Tests/PlayMode/PlayerCharacterTraversalAnimationTests.cs,SlideContactProbe의 fade 판정에 진입 레이어 추가. 중단 후 지면 검사도 진입 레이어 잔여 가중치를 인식.
+수정,Assets/Tests/PlayMode/SlideAnimationOverrideTests.cs,두 베이크 곡선 검사를 외부 원본 참조·마스크/레이어 검사 및 NativeSlidePoseTests의 실제 리타깃 자세 검사로 대체. ReadRotation 베이크 곡선 보조 메서드 제거. 최종 하체 기여량을 entry+lower*(1-entry)로 검증. 조합이 다른 전체 Mixamo 포즈와 골반 높이를 같다고 보던 비교/원본 전신 샘플링 분기는 제거하고 실제 하체 저하·원본 관절 일치·지면 검사로 분리. CancellingDuringTheForwardEntryFadesBothLayersWithoutRewinding 추가.
+수정,Assets/ThirdParty/MixamoLocal/RunningSlide.asset,_start: 생성 클립 guid51fabf…→Quaternius Slide_Start guid6e20ca…; _loop/_exit: 생성 클립→원본 RunningSlide FBX 하위 클립. _lowerBodyOnly:1 유지. _originalStart/Loop/Exit 키 참조 유지. 이 파일은 로컬 Mixamo 프로필로 Git ignore 대상.
+추가,Assets/Tests/PlayMode/NativeSlidePoseTests.cs,신규: 원본/대상 Humanoid를 같은 리그로 평가. 진입 1~49%와 종료 81~99%에서 좌우 허벅지·정강이·발의 원본 localRotation을 .25도 이내로 비교. 복귀 51~80%의 인접 1% 샘플 다리 회전이 뒤집히지 않는지 검사. Root Motion OFF/원본 보존 검사와 함께 사용.
+추가,Assets/Tests/PlayMode/NativeSlidePoseTests.cs.meta,신규 테스트 스크립트 GUID. Unity에서 생성한 값을 그대로 보존.
+Assets 밖으로 이동,Assets/Features/PlayerCharacter/Editor/ForwardSlideClipComposer.cs,"Assets에서 제거하고 Library/CodexNativeMotionMigration/Retired에 보관. Apply, Compose, RotationCurves, EvaluateRotation, ClipPath 및 진입/종료 상수의 베이크 구현 제거. 메뉴는 MixamoSlideImporter.UseForwardSlideEntry로 대체. 런타임 원본 레이어로 바뀌어 곡선 생성이 불필요."
+Assets 밖으로 이동,Assets/Features/PlayerCharacter/Editor/ForwardSlideClipComposer.cs.meta,위 생성 도구의 메타도 함께 Assets에서 제거/보관. 원본 에셋 메타는 보존.
+Assets 밖으로 이동,Assets/ThirdParty/MixamoLocal/RunningSlideForwardEntry.anim,사용하던 RootQ/근육 곡선 합성 자산을 Assets에서 제거/보관. 새 프로필은 두 원본을 직접 참조.
+Assets 밖으로 이동,Assets/ThirdParty/MixamoLocal/RunningSlideForwardEntry.anim.meta,생성 자산의 메타도 함께 제거/보관. 참조 guid51fabf…는 프로필에서 완전히 교체.
+문서,Docs/AI/NativeSlideAndSeatChanges.md,신규: 교체 전후 코드·검증·설계 검토와 상체 전환 미적용 사유 기록.
+문서,Docs/AI/NativeSlideAndSeatFiles.csv,신규: 이번 작업의 모든 수정·추가·Assets 밖 이동 파일과 코드/직렬화 변경을 기록.
+문서,Docs/AI/UnityProjectContext.md,"기존 내용 유지하고 슬라이드·탑승의 부분 전환, 191개 검증, 상체/장전 유지 및 다음 작업 근거를 추가."

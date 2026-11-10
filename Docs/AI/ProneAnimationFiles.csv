@@ -1,0 +1,60 @@
+﻿path,status,specific_change,sha256
+E:\GitHub\Battlefield_Project\Assets\Features\PlayerCharacter\Scripts\FirstPersonArmsView.cs,modified,ProneAnimationChanges.md의 파일별 코드/필드/동작 표 참조,d37a6b8811d5d0ce487cae95d8cf71200fd1d5e1fbdfe56525a8ca7176a5b9ff
+E:\GitHub\Battlefield_Project\Assets\Features\PlayerCharacter\Scripts\PlayerCharacterCombatView.cs,modified,ProneAnimationChanges.md의 파일별 코드/필드/동작 표 참조,19096cd97f4e1e453491a812f8f4047dd91c4241a971da66e4513a3884fc5341
+E:\GitHub\Battlefield_Project\Assets\Features\PlayerCharacter\Scripts\PlayerCharacterPostureView.cs,modified,ProneAnimationChanges.md의 파일별 코드/필드/동작 표 참조,4b980a8832edf3ed790f534ace99d7e59fb8a0f3043174ee21012f1608ae7398
+E:\GitHub\Battlefield_Project\Assets\Features\PlayerCharacter\Scripts\PlayerCharacterRifleReloadView.cs,modified,ProneAnimationChanges.md의 파일별 코드/필드/동작 표 참조,f04afa678a15fd217696877d3d2c9f93fd5e29e40baba9ffc3c2946578d85efd
+E:\GitHub\Battlefield_Project\Assets\Features\PlayerCharacter\Scripts\PlayerCharacterWeaponAimView.cs,modified,ProneAnimationChanges.md의 파일별 코드/필드/동작 표 참조,c1d3a30d0c619be102d02b7863e034985e1b7de60c4974e24f3ad4ac52c0107f
+E:\GitHub\Battlefield_Project\Assets\Features\PlayerCharacter\Scripts\PlayerCharacterProneAnimationView.cs,added,ProneAnimationChanges.md의 파일별 코드/필드/동작 표 참조,b718af198d1ab0a43de933f5ce039e5046b3cfd61fa9eceb0e433a8e12d6af3a
+E:\GitHub\Battlefield_Project\Assets\Features\PlayerCharacter\Scripts\PlayerCharacterProneAnimationView.cs.meta,added,Unity 생성 GUID/메타데이터 보존,372520ae9a7a21be40ca57f00b6363833a2932af5525cad3dbba21bb2400864c
+E:\GitHub\Battlefield_Project\Assets\Features\PlayerCharacter\Scripts\ProneAnimationSet.cs,added,ProneAnimationChanges.md의 파일별 코드/필드/동작 표 참조,15a801a05e8a9f19c64225eab98542ad2529bb0b70169ebd5662e0d7d0f7cc2f
+E:\GitHub\Battlefield_Project\Assets\Features\PlayerCharacter\Scripts\ProneAnimationSet.cs.meta,added,Unity 생성 GUID/메타데이터 보존,d6d14bcd3d59cbd48fdd780b938382f790ed1d39134329552f57c357e3a3983d
+E:\GitHub\Battlefield_Project\Assets\Features\PlayerCharacter\Editor\LocalProneAnimationSetup.cs,added,ProneAnimationChanges.md의 파일별 코드/필드/동작 표 참조,e49f600c88c70026624591c8d65eb07bfc113fb3adb604c71e5d559139984039
+E:\GitHub\Battlefield_Project\Assets\Features\PlayerCharacter\Editor\LocalProneAnimationSetup.cs.meta,added,Unity 생성 GUID/메타데이터 보존,ca2f39b7c78067aba764c82a6df6fe030ab137da12ee861031d63b522268283b
+E:\GitHub\Battlefield_Project\Assets\Features\PlayerCharacter\Animation\ProneMeleeArms.mask,added,포복 근접 팔/손가락만 재생; 몸통/루트/다리 제외,a0f2d13dfac7e628a8b987139c32a20100015da08fe047ccbc4196e29e020b34
+E:\GitHub\Battlefield_Project\Assets\Features\PlayerCharacter\Animation\ProneMeleeArms.mask.meta,added,Unity 생성 GUID/메타데이터 보존,141f5b076ae72159bdb24dca0386200fb3f7b6a71c2ea222ab68488483867754
+E:\GitHub\Battlefield_Project\Assets\Tests\PlayMode\ProneAnimationTests.cs,added,전진/좌우 이동·방향 유지·원본 재생 및 액션/수명 검증,a7180b355b1b549e7aa045bd60afed33c4d83cad93719f61050d0abd8be14736
+E:\GitHub\Battlefield_Project\Assets\Tests\PlayMode\ProneAnimationTests.cs.meta,added,Unity 생성 GUID/메타데이터 보존,dc976f0c2f52dcd9d67ffed8545a1e05dfae25e312ad9b62f0f002225939b62a
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone.meta,added,Unity 생성 GUID/메타데이터 보존,70253ed24aeb04b6f9a8372fe3ff139a854af0a4291c2b8d598a414487fa32e8
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Crawl Backwards In Prone.fbx,added,사용자 원본 그대로 임포트; 전진/후진/좌우 대체 및 포복 액션 자료,bf209bb995b5a09ae22a919fea7d201b0f6c4aba185518c1e5360df841f665ce
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Crawl Backwards In Prone.fbx.meta,added,Unity Humanoid 임포트 설정 및 고유 GUID,b2610168a84ac1bc88aeae443a07225113e8fa6fb99b75c4fd30ade696520763
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Crouch To Prone.fbx,added,사용자 원본 그대로 임포트; 전진/후진/좌우 대체 및 포복 액션 자료,2ae931435487549821b02048c8e2fe2aaf715c5dadcafadb928d1e45ad6ad365
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Crouch To Prone.fbx.meta,added,Unity Humanoid 임포트 설정 및 고유 GUID,5a4109284c9dcb6414a93b571c365c22f66169f4449426e36330a9b845871cfb
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Moving Backward In Prone Position.fbx,added,사용자 원본 그대로 임포트; 전진/후진/좌우 대체 및 포복 액션 자료,88ccb98f17a2dd81bac066b52a102a2037702bfb41f3e41819d611810b32df50
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Moving Backward In Prone Position.fbx.meta,added,Unity Humanoid 임포트 설정 및 고유 GUID,b196bb03df35a3f264bd4c4c866fe336d6a7fba9a9995bb3a74f3ed528967e39
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Backwards Start.fbx,added,사용자 원본 그대로 임포트; 전진/후진/좌우 대체 및 포복 액션 자료,0798087229e3a4034ac0ec2433ef2d1563805c27f11332bf5a26a103dd7fdc9e
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Backwards Start.fbx.meta,added,Unity Humanoid 임포트 설정 및 고유 GUID,0d92c45ccde54c0b9018ad0307d5f5324d93a5530f18568002e27cb17c604987
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Backwards Stop.fbx,added,사용자 원본 그대로 임포트; 전진/후진/좌우 대체 및 포복 액션 자료,af6f74390452627576fd1233cebb9b32346dcfacc7db6f78055d60facfb9681f
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Backwards Stop.fbx.meta,added,Unity Humanoid 임포트 설정 및 고유 GUID,02a19d7e68188521708a30e6e45e7c3cb1bfdb4bbc1fec47cf284dd51ee7b5e6
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Death.fbx,added,사용자 원본 그대로 임포트; 전진/후진/좌우 대체 및 포복 액션 자료,764a059ca776591f9c0ce055e2711de0ecbd400c6ff5428eefa1ab602c41fefd
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Death.fbx.meta,added,Unity Humanoid 임포트 설정 및 고유 GUID,ea10d8c47a3b326b61cbfad1ed7bf7b8ef67216c98a8400555089a5d20ee2c59
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Firing Rifle.fbx,added,사용자 원본 그대로 임포트; 전진/후진/좌우 대체 및 포복 액션 자료,c2c686d4ea8339a18612d3dfc682d569cbf37817b01566107b8f26a087bc456f
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Firing Rifle.fbx.meta,added,Unity Humanoid 임포트 설정 및 고유 GUID,93a42059c62e5f4b09343f9feecd40721a8d283d061f74fc6d453b4dbd66b658
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Forward Stop.fbx,added,사용자 원본 그대로 임포트; 전진/후진/좌우 대체 및 포복 액션 자료,451834a82c140cad92efcae8d72dc031d43f388fcfbe905ee2fb4211795ae4a2
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Forward Stop.fbx.meta,added,Unity Humanoid 임포트 설정 및 고유 GUID,e9f4b66453b75ba64095bbe511f6d7c69b8128352a52fc0c19151cce7fb1d8c4
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Forward.fbx,added,사용자 원본 그대로 임포트; 전진/후진/좌우 대체 및 포복 액션 자료,86e5a72fd52636fc75a5504396ed690fe269a6bb4f80b589d7632f2da921d8aa
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Forward.fbx.meta,added,Unity Humanoid 임포트 설정 및 고유 GUID,950de9b1ad91aaad26eccc0424081d3349a38071c9e431df13b53a3f67ab9116
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Idle.fbx,added,사용자 원본 그대로 임포트; 전진/후진/좌우 대체 및 포복 액션 자료,7bd1e3e5293c77f0854687749f2e6db4a133b02b77dba537e70f666bdad2766d
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Idle.fbx.meta,added,Unity Humanoid 임포트 설정 및 고유 GUID,4bfb396452507b1621e4c3668b1c76e297401972572c26e109e6d6c7e23154b6
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Left Turn.fbx,added,사용자 원본 그대로 임포트; 전진/후진/좌우 대체 및 포복 액션 자료,5236f9ae2721bc976edfbbcedbe99f5cc73006e2c2d20f45df1a7ca90b3a2943
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Left Turn.fbx.meta,added,Unity Humanoid 임포트 설정 및 고유 GUID,3ed0f6af6cee3f34d00146caeb128d642417b0ca78fd74fbdf0d622ccc49a63e
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Reloading.fbx,added,사용자 원본 그대로 임포트; 전진/후진/좌우 대체 및 포복 액션 자료,7928c902ef187bc71124626554ffb4d611b0784379b95786d9d6cca1cda9d287
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Reloading.fbx.meta,added,Unity Humanoid 임포트 설정 및 고유 GUID,e73624623da141814da2daaaf50e040e9c9d7f695eb214e83bc148fc54b71ebd
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Right Turn.fbx,added,사용자 원본 그대로 임포트; 전진/후진/좌우 대체 및 포복 액션 자료,bd215f473452455fb7fd1f786a3b0727d245d9f3f062518075752062e532dadd
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone Right Turn.fbx.meta,added,Unity Humanoid 임포트 설정 및 고유 GUID,4004a4b203d8bf771df3d236062d84b151239102579841e10efa97aae0352291
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone To Crouch Transition.fbx,added,사용자 원본 그대로 임포트; 전진/후진/좌우 대체 및 포복 액션 자료,92df33f5d404d8003c6be2f1a60ff9e0c2c669b44dc8617520ec328b2dddeabd
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Prone To Crouch Transition.fbx.meta,added,Unity Humanoid 임포트 설정 및 고유 GUID,ba5ba963eb015f040b888b493d918b04920fda9f67e4f7d6c5a8ae7fd069e1bc
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\ProneAnimations.asset,added,"원본 클립 프로필; _forward=Prone Forward, _left/right=Prone Left/Right Turn 및 보고서의 전체 참조",7b868c8b8e70919af3bcc955f61d0c1ce8ffcd29c5ddfc6fd3fdbe37a405fc2c
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\ProneAnimations.asset.meta,added,Unity 생성 GUID/메타데이터 보존,4f89b22ef7f58d6481b4a9855b645319706e481fc44ae10c3cce30861f2a7d5d
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Rifle Kneel To Prone.fbx,added,사용자 원본 그대로 임포트; 전진/후진/좌우 대체 및 포복 액션 자료,4e77f384a5079a600ddb01963ed8008f9a1e5e74f58b8058f276fa9b1691b00e
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Rifle Kneel To Prone.fbx.meta,added,Unity Humanoid 임포트 설정 및 고유 GUID,7baf2431e69e4297382c0e9fac23837ced53331d338bce5c4693b8c6f15d65df
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Rifle Prone Hit Reaction.fbx,added,사용자 원본 그대로 임포트; 전진/후진/좌우 대체 및 포복 액션 자료,777b99ac993e9fb03eb7ca092314e80211fe13aedb23414f1eb99b542f8e0f5c
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Rifle Prone Hit Reaction.fbx.meta,added,Unity Humanoid 임포트 설정 및 고유 GUID,c488f67d2e90f979d69ea4577cfb8816519e0624d56f51aba8d0e6de5e688db6
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Rifle Prone To Kneel.fbx,added,사용자 원본 그대로 임포트; 전진/후진/좌우 대체 및 포복 액션 자료,736447eb8d8dc77817bab53f07119bd1c1dddb6be327db4cfbfd2348afad0ad0
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Rifle Prone To Kneel.fbx.meta,added,Unity Humanoid 임포트 설정 및 고유 GUID,95ce16411ec721ce293c9d24cbf9a1953206105e57daadac93bc9db0335a2d5c
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Throw Grenade.fbx,added,사용자 원본 그대로 임포트; 전진/후진/좌우 대체 및 포복 액션 자료,67ea250da3ac607df99a8f65bbbd6ab7fd3130f87ad8ef4bd3f959e77074b40d
+E:\GitHub\Battlefield_Project\Assets\ThirdParty\MixamoLocal\Prone\Throw Grenade.fbx.meta,added,Unity Humanoid 임포트 설정 및 고유 GUID,98d1e57c69232b496dfdf6d0a3e3063edd610719e27414ab95b944afe325428b
+E:\GitHub\Battlefield_Project\Assets\Tests\PlayMode\PlayerCharacterInfantryTests.cs,modified,원본 진입 길이를 기다리도록 포복 검사 대기 시간만 변경,4b309a1339d9c3fda1a05fb650c13cfb50dc0b614efa8edc2b643f2486354307
+E:\GitHub\Battlefield_Project\Assets\Tests\PlayMode\PlayerCharacterReloadPoseTests.cs,modified,원본 진입 길이를 기다리도록 포복 검사 대기 시간만 변경,3a60cd7fa1998034ec7ebbab33b44c6277bd4ff278d8def4d2b318784aaa0e79
+E:\GitHub\Battlefield_Project\Docs\AI\ProneAnimationChanges.md,added,전체 스크립트 변경·클립 참조·검증·설계·남은 확인 기록,fd21bec678cb3ba0b9b89b8f5da06b4ebc1700a3294e339ae26d571e481c756e
+E:\GitHub\Battlefield_Project\Docs\AI\ProneAnimationFiles.csv,added,이번 변경 전체 파일 목록,
+E:\GitHub\Battlefield_Project\Docs\AI\UnityProjectContext.md,modified,포복 적용 상태와 검증 근거 추가,c33ff3b66df0f8e9bb7ff60261a48c9da1caedcf25da9d91813710b002d26cc5

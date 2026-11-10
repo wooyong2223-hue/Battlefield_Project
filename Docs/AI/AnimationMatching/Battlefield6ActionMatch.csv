@@ -1,0 +1,35 @@
+﻿action,pack,clips,grade,current_use,adjustment,evidence,assets
+비무장 대기,UAL1,Idle_Loop,A 기본 채택,기존 적용,기본 자세 유지. 무장 대기는 별도 상체 레이어 필요,기존 적용 검증,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Idle_Loop.anim
+느린 걷기,UAL1,Walk_Loop,A 기본 채택,기존 적용,접지와 보폭을 실제 이동 속도에 맞춤,이번 4시점 확인,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Walk_Loop.anim
+보통 달리기,UAL1,Jog_Fwd_Loop,A 기본 채택,추가 후보,걷기와 전력 질주 사이 후보. 현재 이동 속도 8을 변경하지 않음,이번 4시점 확인,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Jog_Fwd_Loop.anim
+전력 질주,UAL1,Sprint_Loop,A 기본 채택,기존 적용,상체 무장 자세/1인칭 무기 흔들림은 별도,이번 4시점 확인; 영상 00:14–00:24,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Sprint_Loop.anim
+앉기 대기·이동,UAL1,Crouch_Idle_Loop;Crouch_Fwd_Loop,A 기본 채택,기존 적용,앉기 전환·방향별 이동·앉은 질주는 별도 부족,이동 이번 4시점; 대기 기존 적용,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Crouch_Idle_Loop.anim;Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Crouch_Fwd_Loop.anim
+점프·공중·착지,UAL1,Jump_Start;Jump_Loop;Jump_Land,A 기본 채택,기존 적용,물리 비행과 재생 시점 동기화; 무기를 든 상체 별도,"기존 적용; 영상 00:14–00:24, 05:50–06:00",Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Jump_Start.anim;Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Jump_Loop.anim;Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Jump_Land.anim
+슬라이드 시작·유지·복귀,UAL2,Slide_Start;Slide_Loop;Slide_Exit,A 기본 채택,기존 적용,현 접지 보정 유지. 전환·취소·무장 상체 품질은 후속 확인,기존 적용; 영상 00:14–00:24,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Slide_Start.anim;Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Slide_Loop.anim;Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Slide_Exit.anim
+권총 전방·상하 조준,UAL1,Pistol_Aim_Down;Pistol_Aim_Neutral;Pistol_Aim_Up,A 기본 채택,기존 적용,3점 조준용. 1인칭 ADS와 총구·가늠쇠 정렬은 별도 보정,기존 적용; 영상 05:50–06:00,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Pistol_Aim_Down.anim;Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Pistol_Aim_Neutral.anim;Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Pistol_Aim_Up.anim
+권총 대기,UAL1,Pistol_Idle_Loop,B 조건부 후보,추가 후보,양손을 앞으로 든 권총 대기. 총을 내린 low-ready로 선정하지 않음,이번 4시점 확인,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Pistol_Idle_Loop.anim
+권총 발사·장전,UAL1,Pistol_Shoot;Pistol_Reload,A 기본 채택,기존 적용,손·탄창·무기 소켓 및 발사/탄창 이벤트 필요. BF 장전 동일 재현 아님,기존 적용; 베타 영상 00:01–00:04 및 가이드 권총 구간,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Pistol_Shoot.anim;Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Pistol_Reload.anim
+정면 주먹 공격,UAL1,Punch_Jab;Punch_Cross,A 기본 채택,기존 적용,직선 공격 유지. 가드는 원본 전용 클립 없이 파생 포즈 사용 중,기존 적용,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Punch_Jab.anim;Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Punch_Cross.anim
+추가 근접 훅,UAL2,Melee_Hook;Melee_Hook_Rec,B 조건부 후보,추가 후보,옆으로 크게 휘두르는 공격·복귀. 정면 잽/총 개머리판 대체로 사용하지 않음,이번 4시점 확인; BF 동일 모션 미확인,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Melee_Hook.anim;Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Melee_Hook_Rec.anim
+가슴·머리 피격,UAL1,Hit_Chest;Hit_Head,A 기본 채택,추가 후보,짧은 반응. 이동/조준을 끊지 않도록 레이어 범위와 가중치 결정 필요,이번 4시점 확인; BF 세부 자세 미확인,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Hit_Chest.anim;Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Hit_Head.anim
+사망,UAL1,Death01,A 기본 채택,기존 적용,단일 방향. 다방향 죽음·래그돌·빈사 상태를 포함하지 않음,기존 적용,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Death01.anim
+폭발 등 강한 밀려남,UAL2,Hit_Knockback,B 조건부 후보,추가 후보,뒤로 넘어지는 큰 반응. 일반 총탄 피격으로 쓰지 않음,이번 4시점 확인,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Hit_Knockback.anim
+넘어진 뒤 일어나기,UAL2,LayToIdle,B 조건부 후보,추가 후보,등을 대고 누운 자세에서 기상. 엎드린 포복 기상과 다름,이번 4시점 확인,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/LayToIdle.anim
+수류탄 던지기,UAL2,OverhandThrow,B 조건부 후보,추가 후보,팔을 들어 던지는 베이스. 핀 뽑기·쥐고 대기·취소 및 투척물 접점은 없음,이번 4시점 확인; BF 투척 세부 비교 미완료,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/OverhandThrow.anim
+착지 구르기,UAL1,Roll,B 조건부 후보,추가 후보,몸을 말아 구르는 원본. 낙하 착지·방향·무기 유지·카메라용으로 별도 보정 필요,이번 4시점; EA Combat Rolls 기능 근거,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Roll.anim
+장애물 올라가기,UAL2,ClimbUp_1m,B 조건부 후보,기존 Vault 임시 적용,1m 올라가기용. 낮은 장애물 넘기기/높이별 맨틀 전체 세트가 아님,기존 적용,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/ClimbUp_1m.anim
+문·버튼 상호작용,UAL1,Interact,B 조건부 후보,추가 후보,한 손을 내미는 베이스. 문의 손잡이와 접점/카메라 타이밍 조정,이번 4시점; 영상 00:56–00:59,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Interact.anim
+허리 높이 물건 집기,UAL1,PickUp_Table,B 조건부 후보,추가 후보,테이블 높이 집기. 바닥 총기 줍기로 그대로 사용 불가,이번 4시점 확인,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/PickUp_Table.anim
+물체 들고 걷기,UAL2,Walk_Carry_Loop,B 조건부 후보,추가 후보,몸 앞에 물체를 든 자세. 보급 상자 후보; 부상자 끌기와 다름,이번 4시점 확인,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Walk_Carry_Loop.anim
+수영 대기·전진,UAL1,Swim_Idle_Loop;Swim_Fwd_Loop,B 조건부 후보,추가 후보,입수·출수·수면 높이·무기 처리 및 물 이동 구현 별도,이번 4시점 확인,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Swim_Idle_Loop.anim;Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Swim_Fwd_Loop.anim
+조종석 착석,UAL1,Sitting_Idle_Loop,B 조건부 후보,기존 SeatedIdle 적용,일반 착석 베이스에 기존 파일럿 보정 유지. 전용 조종간 손 동작 아님,기존 적용,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Sitting_Idle_Loop.anim
+차량 운전 자세,UAL1,Driving_Loop,B 조건부 후보,추가 후보,양손 핸들 잡기 자세. 전투기 조종간 자세로 선정하지 않음,이번 4시점 확인,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Driving_Loop.anim
+소생·부상자 끌기,UAL1,,C 보유 적합 클립 없음,Fixing_Kneeling 임시 사용,무릎 꿇은 작업 모션이므로 완성 소생으로 간주하지 않음. 두 사람 접점과 빈사 동작 필요,이번 Fixing_Kneeling 확인; EA Drag and Revive 기능 근거,
+포복 대기·이동·상태 전환,,,C 보유 적합 클립 없음,별도 표현 존재 여부와 무관,LayToIdle은 등을 댄 기상이므로 대체하지 않음,전체 보유 목록; LayToIdle 4시점 확인,
+좌우·후진·대각 이동 및 정지 회전,,,C 보유 적합 클립 없음,KayKit 좌우·후진 보조 유지,무료 Standard에 완성 8방향 세트/턴 인 플레이스/시작·정지 전용 없음,전체 보유 목록; 영상 03:48–03:54,
+소총·기관단총·산탄총의 준비·발사·장전,,,C 보유 적합 클립 없음,미선정,권총 모션이나 Sword 계열을 장총 모션으로 대체하지 않음,전체 보유 목록,
+총 근접·칼·테이크다운,,,C 보유 적합 클립 없음,권총 근접은 현재 PunchCross 임시 재사용,무기 그립·타격면·상대 캐릭터 접점에 맞는 전용 모션 필요,전체 보유 목록,
+차량 승차·하차,,,C 보유 적합 클립 없음,미선정,Sitting_Enter/Exit는 의자에 앉기/일어서기; 기체 오르내림/해치 통과 아님,이번 Sitting_Enter/Exit 확인,
+기울이기·엄폐 무기 거치,,,C 보유 적합 클립 없음,미선정,전용 자세 또는 절차적 보정 설계 필요,전체 보유 목록; EA Peek and Lean / Weapon Mount 근거,
+사다리·낙하산·전투 다이브,,,C 보유 적합 클립 없음,미선정,NinjaJump 계열을 군인 전술 동작으로 대체하지 않음,전체 목록; NinjaJump 4시점 확인,
+치료·주사기·제세동기·장비 전용 조작,,,C 보유 적합 클립 없음,미선정,Consume은 입으로 소비하는 동작; 자동으로 치료 모션으로 분류하지 않음,전체 목록; Consume 4시점 확인,

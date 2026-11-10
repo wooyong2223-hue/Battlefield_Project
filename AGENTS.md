@@ -1,5 +1,14 @@
 # Battlefield Project Rules
 
+## Test audio
+
+Run automated Unity tests, diagnostic Play Mode sessions, and captures with
+`-noaudio` unless the user explicitly requests sound testing. For an existing
+Editor session, mute audio only for the diagnostic session and restore its
+previous state afterward. Do not change gameplay AudioSource values, audio
+profiles, scene AudioListeners, or persistent project audio settings to mute
+unrelated tests.
+
 ## Change reporting
 
 After modifying project files, always report the following to the user:

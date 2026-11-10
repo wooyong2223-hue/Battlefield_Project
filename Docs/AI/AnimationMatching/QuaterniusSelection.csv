@@ -1,0 +1,87 @@
+﻿pack,clip,selection,target,current_use,seconds,pose_review,reason,asset
+UAL1,A_TPose,R 리그 참조,,컬렉션 보관,2.500000,인벤토리 분류; 상세 자세 미심사,게임 동작 아님. 리타깃/리그 점검용 보관,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/A_TPose.anim
+UAL1,Crouch_Fwd_Loop,A 기본 채택,앉기 대기·이동,기존 적용,2.000000,이번 4시점 렌더 확인,앉기 전환·방향별 이동·앉은 질주는 별도 부족,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Crouch_Fwd_Loop.anim
+UAL1,Crouch_Idle_Loop,A 기본 채택,앉기 대기·이동,기존 적용,2.933333,기존 적용 검증 기록,앉기 전환·방향별 이동·앉은 질주는 별도 부족,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Crouch_Idle_Loop.anim
+UAL1,Dance_Loop,D 이번 보병 세트 제외,,컬렉션 보관,1.000000,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Dance_Loop.anim
+UAL1,Death01,A 기본 채택,사망,기존 적용,2.400000,기존 적용 검증 기록,단일 방향. 다방향 죽음·래그돌·빈사 상태를 포함하지 않음,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Death01.anim
+UAL1,Driving_Loop,B 조건부 후보,차량 운전 자세,추가 후보,1.666667,이번 4시점 렌더 확인,양손 핸들 잡기 자세. 전투기 조종간 자세로 선정하지 않음,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Driving_Loop.anim
+UAL1,Fixing_Kneeling,P 임시 표현,,InfantryRevive 임시 적용,5.200000,이번 4시점 렌더 확인,현재 소생 대용. 무릎 작업 모션이며 전용 소생 에셋 확보 시 재검토,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Fixing_Kneeling.anim
+UAL1,Hit_Chest,A 기본 채택,가슴·머리 피격,추가 후보,0.333333,이번 4시점 렌더 확인,짧은 반응. 이동/조준을 끊지 않도록 레이어 범위와 가중치 결정 필요,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Hit_Chest.anim
+UAL1,Hit_Head,A 기본 채택,가슴·머리 피격,추가 후보,0.433333,이번 4시점 렌더 확인,짧은 반응. 이동/조준을 끊지 않도록 레이어 범위와 가중치 결정 필요,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Hit_Head.anim
+UAL1,Idle_Loop,A 기본 채택,비무장 대기,기존 적용,2.500000,기존 적용 검증 기록,기본 자세 유지. 무장 대기는 별도 상체 레이어 필요,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Idle_Loop.anim
+UAL1,Idle_Talking_Loop,D 이번 보병 세트 제외,,컬렉션 보관,2.933333,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Idle_Talking_Loop.anim
+UAL1,Idle_Torch_Loop,D 이번 보병 세트 제외,,컬렉션 보관,1.266667,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Idle_Torch_Loop.anim
+UAL1,Interact,B 조건부 후보,문·버튼 상호작용,추가 후보,2.000000,이번 4시점 렌더 확인,한 손을 내미는 베이스. 문의 손잡이와 접점/카메라 타이밍 조정,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Interact.anim
+UAL1,Jog_Fwd_Loop,A 기본 채택,보통 달리기,추가 후보,0.933333,이번 4시점 렌더 확인,걷기와 전력 질주 사이 후보. 현재 이동 속도 8을 변경하지 않음,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Jog_Fwd_Loop.anim
+UAL1,Jump_Land,A 기본 채택,점프·공중·착지,기존 적용,1.266667,기존 적용 검증 기록,물리 비행과 재생 시점 동기화; 무기를 든 상체 별도,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Jump_Land.anim
+UAL1,Jump_Loop,A 기본 채택,점프·공중·착지,기존 적용,2.500000,기존 적용 검증 기록,물리 비행과 재생 시점 동기화; 무기를 든 상체 별도,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Jump_Loop.anim
+UAL1,Jump_Start,A 기본 채택,점프·공중·착지,기존 적용,1.333333,기존 적용 검증 기록,물리 비행과 재생 시점 동기화; 무기를 든 상체 별도,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Jump_Start.anim
+UAL1,PickUp_Table,B 조건부 후보,허리 높이 물건 집기,추가 후보,0.833333,이번 4시점 렌더 확인,테이블 높이 집기. 바닥 총기 줍기로 그대로 사용 불가,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/PickUp_Table.anim
+UAL1,Pistol_Aim_Down,A 기본 채택,권총 전방·상하 조준,기존 적용,0.166667,기존 적용 검증 기록,3점 조준용. 1인칭 ADS와 총구·가늠쇠 정렬은 별도 보정,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Pistol_Aim_Down.anim
+UAL1,Pistol_Aim_Neutral,A 기본 채택,권총 전방·상하 조준,기존 적용,0.166667,기존 적용 검증 기록,3점 조준용. 1인칭 ADS와 총구·가늠쇠 정렬은 별도 보정,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Pistol_Aim_Neutral.anim
+UAL1,Pistol_Aim_Up,A 기본 채택,권총 전방·상하 조준,기존 적용,0.166667,기존 적용 검증 기록,3점 조준용. 1인칭 ADS와 총구·가늠쇠 정렬은 별도 보정,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Pistol_Aim_Up.anim
+UAL1,Pistol_Idle_Loop,B 조건부 후보,권총 대기,추가 후보,1.666667,이번 4시점 렌더 확인,양손을 앞으로 든 권총 대기. 총을 내린 low-ready로 선정하지 않음,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Pistol_Idle_Loop.anim
+UAL1,Pistol_Reload,A 기본 채택,권총 발사·장전,기존 적용,1.666667,기존 적용 검증 기록,손·탄창·무기 소켓 및 발사/탄창 이벤트 필요. BF 장전 동일 재현 아님,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Pistol_Reload.anim
+UAL1,Pistol_Shoot,A 기본 채택,권총 발사·장전,기존 적용,0.633333,기존 적용 검증 기록,손·탄창·무기 소켓 및 발사/탄창 이벤트 필요. BF 장전 동일 재현 아님,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Pistol_Shoot.anim
+UAL1,Punch_Cross,A 기본 채택,정면 주먹 공격,기존 적용,1.000000,기존 적용 검증 기록,직선 공격 유지. 가드는 원본 전용 클립 없이 파생 포즈 사용 중,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Punch_Cross.anim
+UAL1,Punch_Jab,A 기본 채택,정면 주먹 공격,기존 적용,0.866667,기존 적용 검증 기록,직선 공격 유지. 가드는 원본 전용 클립 없이 파생 포즈 사용 중,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Punch_Jab.anim
+UAL1,Push_Loop,D 이번 보병 세트 제외,,컬렉션 보관,2.666667,이번 4시점 렌더 확인,양손으로 물체를 미는 자세. 부상자 끌기용으로 제외,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Push_Loop.anim
+UAL1,Roll,B 조건부 후보,착지 구르기,추가 후보,1.466667,이번 4시점 렌더 확인,몸을 말아 구르는 원본. 낙하 착지·방향·무기 유지·카메라용으로 별도 보정 필요,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Roll.anim
+UAL1,Sitting_Enter,D 이번 보병 세트 제외,,컬렉션 보관,1.300000,이번 4시점 렌더 확인,의자 앉기/일어서기. 실제 차량 승하차용으로 제외,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Sitting_Enter.anim
+UAL1,Sitting_Exit,D 이번 보병 세트 제외,,컬렉션 보관,1.033333,이번 4시점 렌더 확인,의자 앉기/일어서기. 실제 차량 승하차용으로 제외,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Sitting_Exit.anim
+UAL1,Sitting_Idle_Loop,B 조건부 후보,조종석 착석,기존 SeatedIdle 적용,1.666667,기존 적용 검증 기록,일반 착석 베이스에 기존 파일럿 보정 유지. 전용 조종간 손 동작 아님,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Sitting_Idle_Loop.anim
+UAL1,Sitting_Talking_Loop,D 이번 보병 세트 제외,,컬렉션 보관,2.933333,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Sitting_Talking_Loop.anim
+UAL1,Spell_Simple_Enter,D 이번 보병 세트 제외,,컬렉션 보관,0.533333,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Spell_Simple_Enter.anim
+UAL1,Spell_Simple_Exit,D 이번 보병 세트 제외,,컬렉션 보관,0.433333,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Spell_Simple_Exit.anim
+UAL1,Spell_Simple_Idle_Loop,D 이번 보병 세트 제외,,컬렉션 보관,2.100000,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Spell_Simple_Idle_Loop.anim
+UAL1,Spell_Simple_Shoot,D 이번 보병 세트 제외,,컬렉션 보관,0.500000,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Spell_Simple_Shoot.anim
+UAL1,Sprint_Loop,A 기본 채택,전력 질주,기존 적용,0.666667,이번 4시점 렌더 확인,상체 무장 자세/1인칭 무기 흔들림은 별도,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Sprint_Loop.anim
+UAL1,Swim_Fwd_Loop,B 조건부 후보,수영 대기·전진,추가 후보,1.333333,이번 4시점 렌더 확인,입수·출수·수면 높이·무기 처리 및 물 이동 구현 별도,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Swim_Fwd_Loop.anim
+UAL1,Swim_Idle_Loop,B 조건부 후보,수영 대기·전진,추가 후보,3.333333,이번 4시점 렌더 확인,입수·출수·수면 높이·무기 처리 및 물 이동 구현 별도,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Swim_Idle_Loop.anim
+UAL1,Sword_Attack,D 이번 보병 세트 제외,,컬렉션 보관,1.533333,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Sword_Attack.anim
+UAL1,Sword_Idle,D 이번 보병 세트 제외,,컬렉션 보관,1.666667,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Sword_Idle.anim
+UAL1,Walk_Formal_Loop,D 이번 보병 세트 제외,,컬렉션 보관,1.333333,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Walk_Formal_Loop.anim
+UAL1,Walk_Loop,A 기본 채택,느린 걷기,기존 적용,1.333333,이번 4시점 렌더 확인,접지와 보폭을 실제 이동 속도에 맞춤,Assets/ThirdParty/Quaternius/Library/UAL1/InPlace/Walk_Loop.anim
+UAL2,A_TPose,R 리그 참조,,컬렉션 보관,2.500000,인벤토리 분류; 상세 자세 미심사,게임 동작 아님. 리타깃/리그 점검용 보관,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/A_TPose.anim
+UAL2,Chest_Open,D 이번 보병 세트 제외,,컬렉션 보관,1.366667,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Chest_Open.anim
+UAL2,ClimbUp_1m,B 조건부 후보,장애물 올라가기,기존 Vault 임시 적용,0.666667,기존 적용 검증 기록,1m 올라가기용. 낮은 장애물 넘기기/높이별 맨틀 전체 세트가 아님,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/ClimbUp_1m.anim
+UAL2,Consume,D 이번 보병 세트 제외,,컬렉션 보관,1.333333,이번 4시점 렌더 확인,먹기/마시기 계열. 의료 장비 사용으로 선정하지 않음,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Consume.anim
+UAL2,Farm_Harvest,D 이번 보병 세트 제외,,컬렉션 보관,2.500000,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Farm_Harvest.anim
+UAL2,Farm_PlantSeed,D 이번 보병 세트 제외,,컬렉션 보관,2.766667,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Farm_PlantSeed.anim
+UAL2,Farm_Watering,D 이번 보병 세트 제외,,컬렉션 보관,3.800000,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Farm_Watering.anim
+UAL2,Hit_Knockback,B 조건부 후보,폭발 등 강한 밀려남,추가 후보,0.833333,이번 4시점 렌더 확인,뒤로 넘어지는 큰 반응. 일반 총탄 피격으로 쓰지 않음,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Hit_Knockback.anim
+UAL2,Idle_FoldArms_Loop,D 이번 보병 세트 제외,,컬렉션 보관,2.500000,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Idle_FoldArms_Loop.anim
+UAL2,Idle_Lantern_Loop,D 이번 보병 세트 제외,,컬렉션 보관,2.500000,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Idle_Lantern_Loop.anim
+UAL2,Idle_No_Loop,D 이번 보병 세트 제외,,컬렉션 보관,2.500000,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Idle_No_Loop.anim
+UAL2,Idle_Rail_Call,D 이번 보병 세트 제외,,컬렉션 보관,2.500000,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Idle_Rail_Call.anim
+UAL2,Idle_Rail_Loop,D 이번 보병 세트 제외,,컬렉션 보관,2.500000,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Idle_Rail_Loop.anim
+UAL2,Idle_Shield_Break,D 이번 보병 세트 제외,,컬렉션 보관,1.066667,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Idle_Shield_Break.anim
+UAL2,Idle_Shield_Loop,D 이번 보병 세트 제외,,컬렉션 보관,2.500000,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Idle_Shield_Loop.anim
+UAL2,Idle_TalkingPhone_Loop,D 이번 보병 세트 제외,,컬렉션 보관,2.933333,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Idle_TalkingPhone_Loop.anim
+UAL2,LayToIdle,B 조건부 후보,넘어진 뒤 일어나기,추가 후보,1.533333,이번 4시점 렌더 확인,등을 대고 누운 자세에서 기상. 엎드린 포복 기상과 다름,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/LayToIdle.anim
+UAL2,Melee_Hook,B 조건부 후보,추가 근접 훅,추가 후보,0.466667,이번 4시점 렌더 확인,옆으로 크게 휘두르는 공격·복귀. 정면 잽/총 개머리판 대체로 사용하지 않음,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Melee_Hook.anim
+UAL2,Melee_Hook_Rec,B 조건부 후보,추가 근접 훅,추가 후보,0.600000,이번 4시점 렌더 확인,옆으로 크게 휘두르는 공격·복귀. 정면 잽/총 개머리판 대체로 사용하지 않음,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Melee_Hook_Rec.anim
+UAL2,NinjaJump_Idle_Loop,D 이번 보병 세트 제외,,컬렉션 보관,2.000000,이번 4시점 렌더 확인,무릎을 크게 접은 점프. 현재 군인 점프 세트 대신 사용하지 않음,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/NinjaJump_Idle_Loop.anim
+UAL2,NinjaJump_Land,D 이번 보병 세트 제외,,컬렉션 보관,1.266667,이번 4시점 렌더 확인,무릎을 크게 접은 점프. 현재 군인 점프 세트 대신 사용하지 않음,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/NinjaJump_Land.anim
+UAL2,NinjaJump_Start,D 이번 보병 세트 제외,,컬렉션 보관,0.966667,이번 4시점 렌더 확인,무릎을 크게 접은 점프. 현재 군인 점프 세트 대신 사용하지 않음,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/NinjaJump_Start.anim
+UAL2,OverhandThrow,B 조건부 후보,수류탄 던지기,추가 후보,1.333333,이번 4시점 렌더 확인,팔을 들어 던지는 베이스. 핀 뽑기·쥐고 대기·취소 및 투척물 접점은 없음,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/OverhandThrow.anim
+UAL2,Shield_Dash,D 이번 보병 세트 제외,,컬렉션 보관,1.100000,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Shield_Dash.anim
+UAL2,Shield_OneShot,D 이번 보병 세트 제외,,컬렉션 보관,0.833333,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Shield_OneShot.anim
+UAL2,Slide_Exit,A 기본 채택,슬라이드 시작·유지·복귀,기존 적용,0.500000,기존 적용 검증 기록,현 접지 보정 유지. 전환·취소·무장 상체 품질은 후속 확인,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Slide_Exit.anim
+UAL2,Slide_Loop,A 기본 채택,슬라이드 시작·유지·복귀,기존 적용,2.000000,기존 적용 검증 기록,현 접지 보정 유지. 전환·취소·무장 상체 품질은 후속 확인,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Slide_Loop.anim
+UAL2,Slide_Start,A 기본 채택,슬라이드 시작·유지·복귀,기존 적용,0.833333,기존 적용 검증 기록,현 접지 보정 유지. 전환·취소·무장 상체 품질은 후속 확인,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Slide_Start.anim
+UAL2,Sword_Block,D 이번 보병 세트 제외,,컬렉션 보관,1.233333,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Sword_Block.anim
+UAL2,Sword_Dash,D 이번 보병 세트 제외,,컬렉션 보관,1.566667,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Sword_Dash.anim
+UAL2,Sword_Heavy_Combo,D 이번 보병 세트 제외,,컬렉션 보관,4.333333,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Sword_Heavy_Combo.anim
+UAL2,Sword_Regular_A,D 이번 보병 세트 제외,,컬렉션 보관,0.433333,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Sword_Regular_A.anim
+UAL2,Sword_Regular_A_Rec,D 이번 보병 세트 제외,,컬렉션 보관,0.966667,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Sword_Regular_A_Rec.anim
+UAL2,Sword_Regular_B,D 이번 보병 세트 제외,,컬렉션 보관,0.533333,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Sword_Regular_B.anim
+UAL2,Sword_Regular_B_Rec,D 이번 보병 세트 제외,,컬렉션 보관,1.033333,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Sword_Regular_B_Rec.anim
+UAL2,Sword_Regular_C,D 이번 보병 세트 제외,,컬렉션 보관,2.000000,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Sword_Regular_C.anim
+UAL2,Sword_Regular_Combo,D 이번 보병 세트 제외,,컬렉션 보관,3.000000,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Sword_Regular_Combo.anim
+UAL2,TreeChopping_Loop,D 이번 보병 세트 제외,,컬렉션 보관,0.966667,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/TreeChopping_Loop.anim
+UAL2,Walk_Carry_Loop,B 조건부 후보,물체 들고 걷기,추가 후보,2.000000,이번 4시점 렌더 확인,몸 앞에 물체를 든 자세. 보급 상자 후보; 부상자 끌기와 다름,Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Walk_Carry_Loop.anim
+UAL2,Yes,D 이번 보병 세트 제외,,컬렉션 보관,2.500000,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Yes.anim
+UAL2,Zombie_Idle_Loop,D 이번 보병 세트 제외,,컬렉션 보관,1.333333,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Zombie_Idle_Loop.anim
+UAL2,Zombie_Scratch,D 이번 보병 세트 제외,,컬렉션 보관,1.800000,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Zombie_Scratch.anim
+UAL2,Zombie_Walk_Fwd_Loop,D 이번 보병 세트 제외,,컬렉션 보관,1.333333,인벤토리 분류; 상세 자세 미심사,"현재 보병 목표에 맞는 동작으로 선정하지 않음; 이름/분류 기반 보관, 상세 포즈 미심사",Assets/ThirdParty/Quaternius/Library/UAL2/InPlace/Zombie_Walk_Fwd_Loop.anim
