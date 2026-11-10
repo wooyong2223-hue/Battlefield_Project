@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70ff0d11fe8a98f4e8896316fd363585, type: 3}
+  m_Name: AK47
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Weapon.InfantryWeaponDefinition
+  _displayName: AK-47
+  _fireRate: 10
+  _damage: 10
+  _capacity: 30
+  _reserve: 180
+  _reloadDuration: 1.6
+  _modelPrefab: {fileID: 5705553340063245990, guid: 0cd2fdb1ec29dea48a80c8053ee3250f, type: 3}
+  _animations: {fileID: 22100000, guid: 612cd581d4eae394ab2f1cb901239d05, type: 2}
+  _customGrip: 1
+  _gripPosition: {x: 0.012945553, y: -0.03099503, z: 0.020586709}
+  _gripEuler: {x: 55.290474, y: 255.3365, z: 328.1393}
+  _firstPersonEuler: {x: 20.779833, y: 0.12529466, z: 357.8087}
+  _firstPersonOffset: {x: 0.3, y: -0.42, z: 0.65}
+  _firstPersonAdsOffset: {x: 0, y: -0.16834281, z: 0.45}
+  _firstPersonScale: 0.7
+  _recoilDegrees: 1.5
+  _recoilDistance: 0.01

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70ff0d11fe8a98f4e8896316fd363585, type: 3}
+  m_Name: Pistol
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Weapon.InfantryWeaponDefinition
+  _displayName: PISTOL
+  _fireRate: 0
+  _damage: 10
+  _capacity: 15
+  _reserve: 90
+  _reloadDuration: 1.666667
+  _modelPrefab: {fileID: 0}
+  _animations: {fileID: 0}
+  _customGrip: 0
+  _gripPosition: {x: 0, y: 0, z: 0}
+  _gripEuler: {x: 0, y: 0, z: 0}
+  _firstPersonEuler: {x: 0, y: 0, z: 0}
+  _firstPersonOffset: {x: 0, y: 0, z: 0}
+  _firstPersonAdsOffset: {x: 0, y: 0, z: 0}
+  _firstPersonScale: 1
+  _recoilDegrees: 1.5
+  _recoilDistance: 0.01
