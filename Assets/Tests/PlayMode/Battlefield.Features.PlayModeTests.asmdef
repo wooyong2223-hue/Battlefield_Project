@@ -3,7 +3,9 @@
     "rootNamespace": "Battlefield.Tests.PlayMode",
     "references": [
         "Battlefield.Features",
-        "Battlefield.Framework"
+        "Battlefield.Framework",
+        "Unity.InputSystem",
+        "Unity.InputSystem.TestFramework"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
