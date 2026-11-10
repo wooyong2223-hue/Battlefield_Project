@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aa8e154c3474aa4a90ad37da8df4174, type: 3}
+  m_Name: FragGrenade
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Weapon.GrenadeDefinition
+  _projectile: {fileID: 81522465842999397, guid: 36cc37109a3a821439a8e449a9da03a9, type: 3}
+  _useAnimations: 0
+  _throwAnimation: {fileID: -203655887218126122, guid: be9a4bdd452e665479e5146aa6dddcc6, type: 3}
+  _leftThrowAnimation: {fileID: -203655887218126122, guid: 3e00ad789eaa30642b76b1a860675a3c, type: 3}
+  _equipAnimation: {fileID: 7400000, guid: f321d21416165ef499508f2d36a7b51f, type: 2}
+  _idleAnimation: {fileID: 7400000, guid: f43c19dfce0e89e428b1e1980a6c6231, type: 2}
+  _fuse: 3
+  _damage: 100
+  _radius: 6
+  _launchSpeed: 18
+  _upwardSpeed: 4
+  _underhandLaunchSpeed: 8
+  _underhandUpwardSpeed: 1.5
+  _releaseFraction: 0.7
+  _firstPersonOffset: {x: -0.35, y: 0.6, z: 1.2}
+  _handlingFirstPersonOffset: {x: -0.1, y: -0.4, z: 1.2}

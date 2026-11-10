@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cece7f26add48194cbb8ebb3a2f606e0, type: 3}
+  m_Name: TacticalActions
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.PlayerCharacter.TacticalAnimationSet
+  _mantlePlaceholder: {fileID: 7400000, guid: e904b93605a60f942859aa1ce92e118f, type: 2}
+  _throwPlaceholder: {fileID: 7400000, guid: f1ab5a2949d22ac418fb6158d8e5da8f, type: 2}
+  _equipPlaceholder: {fileID: 7400000, guid: f321d21416165ef499508f2d36a7b51f, type: 2}
+  _idlePlaceholder: {fileID: 7400000, guid: f43c19dfce0e89e428b1e1980a6c6231, type: 2}
+  _leftThrowPlaceholder: {fileID: 7400000, guid: ac122c575f1a6c548a0d59c8f48402e9, type: 2}
+  _mantle: {fileID: 11400000, guid: 1c59064da168030468a072fe9100f0a7, type: 2}
+  _grenade: {fileID: 11400000, guid: 8f26bd481103828449a47046f0d34167, type: 2}
