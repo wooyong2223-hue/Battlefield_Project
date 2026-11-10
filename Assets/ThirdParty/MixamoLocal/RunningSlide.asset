@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20eb874133bae5040a68df8a4346171e, type: 3}
+  m_Name: RunningSlide
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.PlayerCharacter.SlideAnimationSet
+  _originalStart: {fileID: 7400000, guid: 6e20ca25b8f913d47b2ab8371be816dc, type: 2}
+  _originalLoop: {fileID: 7400000, guid: b26295a63584c8d4a9f48a9476c39409, type: 2}
+  _originalExit: {fileID: 7400000, guid: 3665f0bcbb33dea428bc18c388dab803, type: 2}
+  _start: {fileID: 7400000, guid: 6e20ca25b8f913d47b2ab8371be816dc, type: 2}
+  _loop: {fileID: -203655887218126122, guid: 7cfed57023e8da04184e091cea74f911, type: 3}
+  _exit: {fileID: -203655887218126122, guid: 7cfed57023e8da04184e091cea74f911, type: 3}
+  _lowerBodyOnly: 1
