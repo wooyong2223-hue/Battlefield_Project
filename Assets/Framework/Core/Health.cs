@@ -9,10 +9,11 @@ namespace Battlefield.Framework.Core
         public float MaxHealth => _maxHealth;
         public float CurrentHealth { get; private set; }
         public bool IsDead => CurrentHealth <= 0f;
+        private IHealthDamagePolicy _damagePolicy;
 
-        public UnityEvent OnDamaged;
-        public UnityEvent OnHealed;
-        public UnityEvent OnDeath;
+        public UnityEvent OnDamaged = new();
+        public UnityEvent OnHealed = new();
+        public UnityEvent OnDeath = new();
 
         private void Awake()
         {
@@ -21,8 +22,9 @@ namespace Battlefield.Framework.Core
 
         public void TakeDamage(float damage)
         {
-            if (IsDead) return;
             if (damage <= 0f) return;
+            if (_damagePolicy != null && _damagePolicy.TryHandleDamage(damage)) return;
+            if (IsDead) return;
 
             CurrentHealth = Mathf.Max(CurrentHealth - damage, 0f);
             OnDamaged?.Invoke();
@@ -42,6 +44,20 @@ namespace Battlefield.Framework.Core
         public void Die()
         {
             OnDeath?.Invoke();
+        }
+
+        public void BindDamagePolicy(IHealthDamagePolicy policy) => _damagePolicy = policy;
+        public void UnbindDamagePolicy(IHealthDamagePolicy policy)
+        {
+            if (ReferenceEquals(_damagePolicy, policy)) _damagePolicy = null;
+        }
+
+        public bool TryRevive(float amount)
+        {
+            if (!IsDead || amount <= 0f) return false;
+            CurrentHealth = Mathf.Min(amount, _maxHealth);
+            OnHealed?.Invoke();
+            return true;
         }
     }
 }
