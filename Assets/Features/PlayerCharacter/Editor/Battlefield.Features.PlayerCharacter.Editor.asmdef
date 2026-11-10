@@ -1,0 +1,7 @@
+{
+    "name": "Battlefield.Features.PlayerCharacter.Editor",
+    "rootNamespace": "Battlefield.Editor.PlayerCharacter",
+    "references": ["Battlefield.Features", "Battlefield.Framework"],
+    "includePlatforms": ["Editor"],
+    "autoReferenced": true
+}

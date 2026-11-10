@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab848f07f7253e4999d7df8940766c0, type: 3}
+  m_Name: PlayerCharacterMotion
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.PlayerCharacter.PlayerCharacterMotionProfile
+  _walkStride: 5.6
+  _sprintStride: 7.5
+  _walkCameraBob: {x: 0.012, y: 0.02}
+  _sprintCameraBob: {x: 0.022, y: 0.038}
+  _cameraRoll: 0.45
+  _adsMotionMultiplier: 0.1
+  _weaponBob: {x: 0.022, y: 0.032, z: 0.008}
+  _lookSway: {x: 0.006, y: 0.008, z: 0.006}
+  _maximumSway: 2.5
+  _sprintOffset: {x: 0.04, y: -0.05, z: -0.04}
+  _sprintEuler: {x: 8, y: -5, z: -8}
+  _response: 18
+  _aimResponse: 18
+  _landingImpulse: 0.12
+  _maximumLandingImpulse: 2
+  _landingRecovery: 14
+  _jumpVerticalLag: 0.025
+  _maximumJumpLag: 0.12
+  _jumpRecovery: 10
+  _landingCameraMultiplier: 3
+  _jumpPitchPerMeter: 8
+  _landingPitchPerMeter: 40
+  _thirdPersonJumpMultiplier: 0.6
