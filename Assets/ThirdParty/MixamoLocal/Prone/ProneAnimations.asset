@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6b660ef6c11d4d46a14474507d65490, type: 3}
+  m_Name: ProneAnimations
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.PlayerCharacter.ProneAnimationSet
+  _idle: {fileID: -203655887218126122, guid: 541bbdbe49892aa458acb4e5e52f8d49, type: 3}
+  _forward: {fileID: -203655887218126122, guid: 6ade0272bcb4f9c429489770e7df00ce, type: 3}
+  _backward: {fileID: -203655887218126122, guid: c76171cd67739204b9459642ed1c2769, type: 3}
+  _left: {fileID: -203655887218126122, guid: f50aa80e0919b424fa0be85e01448023, type: 3}
+  _right: {fileID: -203655887218126122, guid: 6c51a547453949b4cb186bdc1afca846, type: 3}
+  _enter: {fileID: -203655887218126122, guid: 39623129acda95649bdda53322c0dec2, type: 3}
+  _exit: {fileID: -203655887218126122, guid: e765b39bbff872d4eae9a9a88455c452, type: 3}
+  _fire: {fileID: -203655887218126122, guid: dad64040a950f0a47a6ab179c6784caf, type: 3}
+  _reload: {fileID: -203655887218126122, guid: 23aad82d485fd864ebfac9683f2fa9fb, type: 3}
+  _death: {fileID: -203655887218126122, guid: 4b29820a862e8984fa1a39185280e7ce, type: 3}
+  _armedEnter: {fileID: -203655887218126122, guid: c37c210e1f882a24983a9e23622cf65d, type: 3}
+  _armedExit: {fileID: -203655887218126122, guid: 788dbbd7b2c7ef6499016cddd0502a1b, type: 3}
+  _meleeMask: {fileID: 31900000, guid: a43fdcfef0408c240b1fc1d28a374360, type: 2}
+  _meleeWeapon: {fileID: 7400000, guid: 1060a9705a38aec4fbc568392ec773f2, type: 2}
+  _meleeJab: {fileID: 7400000, guid: 3f05c149dbb52654fb69b10cff737562, type: 2}
+  _meleeCross: {fileID: 7400000, guid: 1060a9705a38aec4fbc568392ec773f2, type: 2}
+  _retargetStandingMelee: 1
+  _crawlPlaybackSpeed: 1.5
