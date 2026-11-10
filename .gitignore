@@ -104,3 +104,11 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# Local review copies of third-party animation assets (not for redistribution)
+/LocalAssets/AnimationReview/HumanSoldierAnimationsFREE/
+
+# Mixamo source and locally imported/derived animations (not for raw redistribution)
+/LocalAssets/Mixamo/
+/Assets/ThirdParty/MixamoLocal/
+/Assets/ThirdParty/MixamoLocal.meta

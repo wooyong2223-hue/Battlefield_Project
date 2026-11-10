@@ -5,6 +5,7 @@
         "Battlefield.Framework",
         "WarFX.Runtime",
         "Unity.InputSystem",
+        "Unity.Cinemachine",
         "Unity.TextMeshPro",
         "UnityEngine.UI"
     ],
