@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Battlefield.Features.Dummy;
+using Battlefield.Features.Training;
 using Battlefield.Features.PlayerCharacter;
+using Battlefield.Features.Weapon;
 using NUnit.Framework;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -32,7 +33,7 @@ namespace Battlefield.Tests.PlayMode
             yield return CharacterViewTestContext.Load();
             var movement = Object.FindObjectsByType<PlayerCharacterMovement>().Single();
             var camera = Object.FindObjectsByType<PlayerCharacterCamera>().Single();
-            movement.GetComponent<PlayerCharacterController>().enabled = false;
+            movement.GetComponent<PlayerCharacterCombatController>().enabled = false;
             var body = movement.GetComponent<CharacterController>();
             Transform root = movement.transform;
             Vector3 center = root.TransformPoint(body.center);
@@ -197,8 +198,8 @@ namespace Battlefield.Tests.PlayMode
 
     internal sealed class CharacterViewTestContext
     {
-        internal readonly PlayerCharacterController Shooter;
-        internal readonly PlayerCharacterView View;
+        internal readonly PlayerCharacterCombatController Shooter;
+        internal readonly PlayerCharacterLookController View;
         internal readonly PlayerCharacterCamera Follow;
         internal readonly Camera Camera;
         internal readonly SkinnedMeshRenderer Renderer;
@@ -207,8 +208,8 @@ namespace Battlefield.Tests.PlayMode
 
         internal CharacterViewTestContext(bool useRealInput = false)
         {
-            Shooter = Object.FindObjectsByType<PlayerCharacterController>().Single();
-            View = Shooter.GetComponent<PlayerCharacterView>();
+            Shooter = Object.FindObjectsByType<PlayerCharacterCombatController>().Single();
+            View = Shooter.GetComponent<PlayerCharacterLookController>();
             Follow = Object.FindObjectsByType<PlayerCharacterCamera>().Single();
             Camera = Follow.GetComponent<Camera>();
             Renderer = Shooter.GetComponentInChildren<SkinnedMeshRenderer>();
@@ -234,6 +235,15 @@ namespace Battlefield.Tests.PlayMode
             Input.TogglePerspectivePressed = true;
             View.Tick(Input, 0.02f);
             Input.TogglePerspectivePressed = false;
+        }
+
+        internal CombatInput EnableCombatInput()
+        {
+            var input = new CombatInput();
+            SetField(Shooter, "_input", input);
+            SetField(Shooter, "_combatInput", input);
+            Shooter.enabled = true;
+            return input;
         }
 
         internal void TapAim()
@@ -266,6 +276,28 @@ namespace Battlefield.Tests.PlayMode
             public bool AimHeld { get; set; }
             public bool AimPressed { get; set; }
             public bool AimReleased { get; set; }
+        }
+
+        internal sealed class CombatInput : IWeaponInput, IPlayerCharacterCombatInput
+        {
+            private int _firePressFrame = -1;
+            private int _fireModePressFrame = -1;
+
+            public bool FireWeapon { get; set; }
+            public int WeaponSlotSelection { get; set; }
+            public bool ReloadPressed { get; set; }
+            public bool FirePressed => Time.frameCount == _firePressFrame;
+            public bool ToggleFireModePressed => Time.frameCount == _fireModePressFrame;
+            public bool MeleePressed { get; set; }
+
+            public void PressFire()
+            {
+                FireWeapon = true;
+                // Play Mode test coroutines set input after Update for the next frame.
+                _firePressFrame = Time.frameCount + 1;
+            }
+
+            public void PressFireModeToggle() => _fireModePressFrame = Time.frameCount + 1;
         }
     }
 }

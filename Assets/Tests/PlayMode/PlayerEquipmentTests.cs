@@ -15,7 +15,7 @@ namespace Battlefield.Tests.PlayMode
         public IEnumerator SceneStartsWithAk47AndExplicitEquipmentObjects()
         {
             yield return CharacterViewTestContext.Load();
-            var combat=Object.FindAnyObjectByType<PlayerCharacterController>();var loadout=combat.GetComponent<PlayerCharacterLoadout>();
+            var combat=Object.FindAnyObjectByType<PlayerCharacterCombatController>();var loadout=combat.GetComponent<PlayerCharacterLoadout>();
             Assert.That(loadout.CurrentSlot,Is.EqualTo(1));Assert.That(combat.WeaponName,Is.EqualTo("AK-47"));
             var rifle=combat.transform.Find("Equipment/Rifle").GetComponent<PlayerCharacterWeaponEquipment>();
             var pistol=combat.transform.Find("Equipment/Pistol").GetComponent<PlayerCharacterWeaponEquipment>();

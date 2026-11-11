@@ -111,16 +111,16 @@
 
 ## 도구 메뉴
 
-- `Tools/Battlefield/Animations/Create Missing Grenade Handling Clips` — [GrenadeHandlingAnimationAuthoring.cs](<../../Assets/Features/PlayerCharacter/Editor/GrenadeHandlingAnimationAuthoring.cs>)
-- `Tools/Battlefield/Animations/Mixamo/Apply Throw With Throw Object Left Arm` — [GrenadeThrowCompositionSetup.cs](<../../Assets/Features/PlayerCharacter/Editor/GrenadeThrowCompositionSetup.cs>)
-- `Tools/Battlefield/Animations/Mixamo/Import Prone Animations` — [LocalProneAnimationSetup.cs](<../../Assets/Features/PlayerCharacter/Editor/LocalProneAnimationSetup.cs>)
-- `Tools/Battlefield/Animations/Mixamo/Import Armed Locomotion` — [MixamoArmedLocomotionImporter.cs](<../../Assets/Features/PlayerCharacter/Editor/MixamoArmedLocomotionImporter.cs>)
-- `Tools/Battlefield/Animations/Mixamo/Import Running Slide` — [MixamoSlideImporter.cs](<../../Assets/Features/PlayerCharacter/Editor/MixamoSlideImporter.cs>)
-- `Tools/Battlefield/Animations/Mixamo/Restore Original Running Slide` — [MixamoSlideImporter.cs](<../../Assets/Features/PlayerCharacter/Editor/MixamoSlideImporter.cs>)
-- `Tools/Battlefield/Animations/Mixamo/Use Running Slide Lower Body` — [MixamoSlideImporter.cs](<../../Assets/Features/PlayerCharacter/Editor/MixamoSlideImporter.cs>)
-- `Tools/Battlefield/Animations/Mixamo/Use Forward Slide Entry` — [MixamoSlideImporter.cs](<../../Assets/Features/PlayerCharacter/Editor/MixamoSlideImporter.cs>)
-- `Tools/Battlefield/Diagnostics/Record Upper Body Aim (2 minutes)` — [PlayerCharacterAimDiagnostics.cs](<../../Assets/Features/PlayerCharacter/Editor/PlayerCharacterAimDiagnostics.cs>)
-- `Tools/Battlefield/Diagnostics/Stop Upper Body Aim Recording` — [PlayerCharacterAimDiagnostics.cs](<../../Assets/Features/PlayerCharacter/Editor/PlayerCharacterAimDiagnostics.cs>)
-- `Tools/Battlefield/Animations/Mixamo/Import Grenade And Mantle` — [TacticalActionImporter.cs](<../../Assets/Features/PlayerCharacter/Editor/TacticalActionImporter.cs>)
+- `Tools/Battlefield/Animations/Create Missing Grenade Handling Clips` — [GrenadeHandlingAnimationAuthoring.cs](<../../Assets/Features/PlayerCharacter/Editor/Authoring/GrenadeHandlingAnimationAuthoring.cs>)
+- `Tools/Battlefield/Animations/Mixamo/Apply Throw With Throw Object Left Arm` — [GrenadeThrowCompositionSetup.cs](<../../Assets/Features/PlayerCharacter/Editor/Authoring/GrenadeThrowCompositionSetup.cs>)
+- `Tools/Battlefield/Animations/Mixamo/Import Prone Animations` — [ProneAnimationSceneSetup.cs](<../../Assets/Features/PlayerCharacter/Editor/Composition/ProneAnimationSceneSetup.cs>)
+- `Tools/Battlefield/Animations/Mixamo/Import Armed Locomotion` — [MixamoArmedLocomotionImporter.cs](<../../Assets/Features/PlayerCharacter/Editor/Importers/MixamoArmedLocomotionImporter.cs>)
+- `Tools/Battlefield/Animations/Mixamo/Import Running Slide` — [MixamoSlideImporter.cs](<../../Assets/Features/PlayerCharacter/Editor/Importers/MixamoSlideImporter.cs>)
+- `Tools/Battlefield/Animations/Mixamo/Restore Original Running Slide` — [MixamoSlideImporter.cs](<../../Assets/Features/PlayerCharacter/Editor/Importers/MixamoSlideImporter.cs>)
+- `Tools/Battlefield/Animations/Mixamo/Use Running Slide Lower Body` — [MixamoSlideImporter.cs](<../../Assets/Features/PlayerCharacter/Editor/Importers/MixamoSlideImporter.cs>)
+- `Tools/Battlefield/Animations/Mixamo/Use Forward Slide Entry` — [MixamoSlideImporter.cs](<../../Assets/Features/PlayerCharacter/Editor/Importers/MixamoSlideImporter.cs>)
+- `Tools/Battlefield/Diagnostics/Record Upper Body Aim (2 minutes)` — [PlayerCharacterAimDiagnostics.cs](<../../Assets/Features/PlayerCharacter/Editor/Diagnostics/PlayerCharacterAimDiagnostics.cs>)
+- `Tools/Battlefield/Diagnostics/Stop Upper Body Aim Recording` — [PlayerCharacterAimDiagnostics.cs](<../../Assets/Features/PlayerCharacter/Editor/Diagnostics/PlayerCharacterAimDiagnostics.cs>)
+- `Tools/Battlefield/Animations/Mixamo/Import Grenade And Mantle` — [TacticalActionImporter.cs](<../../Assets/Features/PlayerCharacter/Editor/Importers/TacticalActionImporter.cs>)
 
 InfantryTestTools에는 Play 모드의 Down Player, Spawn Downed Ally 메뉴가 있다. 테스트 지형/재질 판은 SampleScene에서 확인한다. 이번 문서 생성 중 진단 메뉴는 실행하지 않았다.

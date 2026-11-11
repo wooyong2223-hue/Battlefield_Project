@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Reflection;
-using Battlefield.Features.Dummy;
+using Battlefield.Features.Training;
 using Battlefield.Features.PlayerCharacter;
 using Battlefield.Features.Weapon;
 using Battlefield.Framework.Core;
@@ -73,7 +73,7 @@ namespace Battlefield.Tests.PlayMode
             var owner=Object.FindObjectsByType<PlayerVehicleOccupant>().Single().transform;
             Assert.That(owner.GetComponent<DummyShooter>(),Is.Not.Null);
             Assert.That(owner.GetComponent<Team>().CurrentTeam,Is.EqualTo(TeamType.Player));
-            owner.GetComponent<PlayerCharacterController>().enabled=false;owner.GetComponent<PlayerCharacterMovement>().enabled=false;
+            owner.GetComponent<PlayerCharacterCombatController>().enabled=false;owner.GetComponent<PlayerCharacterMovement>().enabled=false;
             var body=owner.GetComponent<CharacterController>();body.enabled=false;owner.position=new Vector3(30000,12000,30000);body.enabled=true;Physics.SyncTransforms();return owner;
         }
         private static void Set(object target,string name,object value)=>target.GetType().GetField(name,BindingFlags.Instance|BindingFlags.NonPublic).SetValue(target,value);

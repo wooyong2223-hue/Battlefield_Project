@@ -1,7 +1,7 @@
 #if UNITY_EDITOR
 using System.Collections;
 using System.Linq;
-using Battlefield.Features.Dummy;
+using Battlefield.Features.Training;
 using Battlefield.Features.Projectile;
 using Battlefield.Features.Weapon;
 using Battlefield.Framework.Core;

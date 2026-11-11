@@ -105,7 +105,7 @@ namespace Battlefield.Tests.PlayMode
             }
             finally{if(clone!=null)Object.Destroy(clone);Object.Destroy(floor);}
         }
-        private sealed class GrenadeInput:IPlayerCharacterThrowInput,IWeaponInput
+        private sealed class GrenadeInput:IPlayerCharacterThrowInput,IWeaponInput,IPlayerCharacterCombatInput
         {
             public bool EquipGrenadePressed{get;set;}
             public bool ThrowGrenadePressed{get;set;}
@@ -117,6 +117,10 @@ namespace Battlefield.Tests.PlayMode
             public bool PrimaryHeld{get;set;}
             private bool _consumed;
             public bool FireWeapon=>PrimaryHeld&&!_consumed;
+            public bool FirePressed=>ThrowGrenadePressed&&!_consumed;
+            public bool ReloadPressed=>false;
+            public bool MeleePressed=>false;
+            public bool ToggleFireModePressed=>false;
             public void ConsumePrimaryUntilRelease()=>_consumed=true;
             public void ConsumeAimUntilRelease(){}
             public void PressPrimary(){PrimaryHeld=ThrowGrenadePressed=true;ThrowGrenadeReleased=false;}
@@ -199,6 +203,7 @@ namespace Battlefield.Tests.PlayMode
             yield return CharacterViewTestContext.Load();var c=new CharacterViewTestContext();var motor=Motor(c);
             var grenade=c.Actor.GetComponent<PlayerCharacterGrenadeThrow>();var input=new GrenadeInput{PrimaryHeld=true};
             CharacterViewTestContext.SetField(grenade,"_input",input);CharacterViewTestContext.SetField(c.Shooter,"_input",input);
+            CharacterViewTestContext.SetField(c.Shooter,"_combatInput",input);
             int shots=0;c.Shooter.Fired+=()=>shots++;
             var floor=Box(c.Actor.position+Vector3.down*2.25f,new Vector3(100,.5f,100));float old=Time.captureDeltaTime;Time.captureDeltaTime=.02f;
             try
@@ -212,8 +217,10 @@ namespace Battlefield.Tests.PlayMode
                 Assert.That(grenade.IsAiming,Is.True);input.ReleasePrimary();yield return null;
                 for(int n=0;n<220;n++)yield return null;
                 Assert.That(grenade.IsEquipped,Is.False);Assert.That(shots,Is.Zero,"The grenade click must not spill into gun fire.");
-                input.ReleasePrimary();input.PrimaryHeld=true;yield return null;yield return null;
-                Assert.That(shots,Is.GreaterThan(0),"A fresh click after returning must fire normally.");
+                input.ReleasePrimary();input.PressPrimary();yield return null;input.ThrowGrenadePressed=false;
+                Assert.That(shots,Is.EqualTo(1),"A fresh click after returning must fire exactly once.");
+                yield return new WaitForSeconds(c.Shooter.ShotInterval*2f);
+                Assert.That(shots,Is.EqualTo(1),"Holding the restored pistol must not repeat the single shot.");
             }
             finally{Time.captureDeltaTime=old;Object.Destroy(floor);}
         }

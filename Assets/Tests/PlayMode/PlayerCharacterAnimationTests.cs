@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Reflection;
-using Battlefield.Features.Dummy;
+using Battlefield.Features.Training;
 using Battlefield.Features.PlayerCharacter;
 using NUnit.Framework;
 using UnityEditor.SceneManagement;
@@ -123,7 +123,7 @@ namespace Battlefield.Tests.PlayMode
                 "Assets/Scenes/SampleScene.unity", new LoadSceneParameters(LoadSceneMode.Single));
             foreach (DummyShooter shooter in Object.FindObjectsByType<DummyShooter>()) shooter.enabled = false;
             foreach (DummyMissileShooter shooter in Object.FindObjectsByType<DummyMissileShooter>()) shooter.enabled = false;
-            foreach (PlayerCharacterController shooter in Object.FindObjectsByType<PlayerCharacterController>()) shooter.enabled = false;
+            foreach (PlayerCharacterCombatController shooter in Object.FindObjectsByType<PlayerCharacterCombatController>()) shooter.enabled = false;
         }
 
         private static IEnumerator Advance(PlayerCharacterMovement movement, Animator animator, Vector2 move, bool sprint, int frames)

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: AssaultRifle
   m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Weapon.InfantryWeaponDefinition
   _displayName: ASSAULT RIFLE
+  _fireMode: 3
   _fireRate: 10
   _damage: 10
   _capacity: 30

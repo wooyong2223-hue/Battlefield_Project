@@ -50,7 +50,7 @@ namespace Battlefield.Tests.PlayMode
         public IEnumerator EmptyEnlargedFighterSettlesOnRunwayWithExistingPhysicsTuning()
         {
             yield return BoardingTestContext.Load();
-            FighterEngine engine = Object.FindObjectsByType<FighterEngine>().Single();
+            FighterEngineActivation engine = Object.FindObjectsByType<FighterEngineActivation>().Single();
             Rigidbody body = engine.GetComponent<Rigidbody>();
             yield return new WaitForSeconds(1f);
             MeshCollider hull = engine.GetComponentInChildren<MeshCollider>();

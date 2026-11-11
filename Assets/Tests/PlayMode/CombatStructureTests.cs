@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Reflection;
-using Battlefield.Features.Dummy;
+using Battlefield.Features.Training;
 using Battlefield.Features.Fighter;
 using Battlefield.Features.PlayerCharacter;
 using Battlefield.Features.Projectile;
@@ -203,7 +203,7 @@ namespace Battlefield.Tests.PlayMode
                 new LoadSceneParameters(LoadSceneMode.Single));
             foreach (DummyShooter shooter in FindInScene<DummyShooter>()) shooter.enabled = false;
             foreach (DummyMissileShooter shooter in FindInScene<DummyMissileShooter>()) shooter.enabled = false;
-            foreach (PlayerCharacterController player in FindInScene<PlayerCharacterController>())
+            foreach (PlayerCharacterCombatController player in FindInScene<PlayerCharacterCombatController>())
             {
                 player.enabled = false;
                 player.GetComponent<PlayerCharacterMovement>().enabled = false;

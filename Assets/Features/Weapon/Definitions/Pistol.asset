@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Weapon.InfantryWeaponDefinition
   _displayName: PISTOL
+  _fireMode: 1
   _fireRate: 0
   _damage: 10
   _capacity: 15

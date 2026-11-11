@@ -327,7 +327,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4551202586802466512}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDamaged
         m_Mode: 1
         m_Arguments:
@@ -345,7 +345,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4551202586802466512}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDeath
         m_Mode: 1
         m_Arguments:
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5cb8f6af9007834e90078622809ac3b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DummyDebug
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Training.DummyDebug
 --- !u!114 &4759864777386025695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1181,7 +1181,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5240764937554220603}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDamaged
         m_Mode: 1
         m_Arguments:
@@ -1199,7 +1199,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5240764937554220603}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDeath
         m_Mode: 1
         m_Arguments:
@@ -1221,7 +1221,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5cb8f6af9007834e90078622809ac3b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DummyDebug
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Training.DummyDebug
 --- !u!114 &6334149420275322188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2631,7 +2631,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3329206549532075902}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDamaged
         m_Mode: 1
         m_Arguments:
@@ -2649,7 +2649,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3329206549532075902}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDeath
         m_Mode: 1
         m_Arguments:
@@ -2671,7 +2671,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5cb8f6af9007834e90078622809ac3b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DummyDebug
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Training.DummyDebug
 --- !u!114 &7459916862113041017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3597,7 +3597,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1051934645058751037}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDamaged
         m_Mode: 1
         m_Arguments:
@@ -3615,7 +3615,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1051934645058751037}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDeath
         m_Mode: 1
         m_Arguments:
@@ -3637,7 +3637,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5cb8f6af9007834e90078622809ac3b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DummyDebug
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Training.DummyDebug
 --- !u!114 &1550237195165922780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4201,7 +4201,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1920052856595959088}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDamaged
         m_Mode: 1
         m_Arguments:
@@ -4219,7 +4219,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1920052856595959088}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDeath
         m_Mode: 1
         m_Arguments:
@@ -4241,7 +4241,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5cb8f6af9007834e90078622809ac3b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DummyDebug
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Training.DummyDebug
 --- !u!114 &273988886999484462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4581,7 +4581,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8999434053415497736}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDamaged
         m_Mode: 1
         m_Arguments:
@@ -4599,7 +4599,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8999434053415497736}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDeath
         m_Mode: 1
         m_Arguments:
@@ -4621,7 +4621,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5cb8f6af9007834e90078622809ac3b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DummyDebug
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Training.DummyDebug
 --- !u!114 &3963098162140422407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5991,7 +5991,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1277221453669224688}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDamaged
         m_Mode: 1
         m_Arguments:
@@ -6009,7 +6009,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1277221453669224688}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDeath
         m_Mode: 1
         m_Arguments:
@@ -6031,7 +6031,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5cb8f6af9007834e90078622809ac3b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DummyDebug
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Training.DummyDebug
 --- !u!114 &7914113065356676781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6819,7 +6819,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3286633382291417838}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDamaged
         m_Mode: 1
         m_Arguments:
@@ -6837,7 +6837,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3286633382291417838}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDeath
         m_Mode: 1
         m_Arguments:
@@ -6859,7 +6859,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5cb8f6af9007834e90078622809ac3b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DummyDebug
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Training.DummyDebug
 --- !u!114 &1723361344055087848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7311,7 +7311,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2581445067739933901}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDamaged
         m_Mode: 1
         m_Arguments:
@@ -7329,7 +7329,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2581445067739933901}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDeath
         m_Mode: 1
         m_Arguments:
@@ -7351,7 +7351,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5cb8f6af9007834e90078622809ac3b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DummyDebug
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Training.DummyDebug
 --- !u!114 &118008827851213905
 MonoBehaviour:
   m_ObjectHideFlags: 0

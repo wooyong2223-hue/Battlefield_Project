@@ -16,7 +16,7 @@ namespace Battlefield.Tests.PlayMode
         {
             yield return BoardingTestContext.Load();
             var context = new BoardingTestContext();
-            FighterEngine engine = context.Seat.GetComponent<FighterEngine>();
+            FighterEngineActivation engine = context.Seat.GetComponent<FighterEngineActivation>();
             JetMovement movement = context.Seat.GetComponent<JetMovement>();
             FighterEngineAudio audio = context.Seat.GetComponent<FighterEngineAudio>();
             Assert.That(engine.IsRunning, Is.False);
@@ -86,7 +86,7 @@ namespace Battlefield.Tests.PlayMode
             yield return null;
             yield return null;
             Assert.That(context.Occupant.IsSeated, Is.True);
-            Assert.That(context.Seat.GetComponent<FighterEngine>().IsRunning, Is.False);
+            Assert.That(context.Seat.GetComponent<FighterEngineActivation>().IsRunning, Is.False);
             Assert.That(Read<bool>(context.Seat.GetComponent<FighterEngineAudio>(), "_playing"), Is.False);
         }
 

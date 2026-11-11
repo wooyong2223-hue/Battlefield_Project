@@ -4,6 +4,8 @@
 
 ## 판단
 
+이 문서의 우선순위 표는 구조 개선 전 점검 기준이다. A01의 테스트 입력 수정, A02의 그립·몸통·장전 기준 분리, A03의 발사 모드·사격 경로 분리를 적용했다. A04는 Play·빌드의 씬 구성 진입점을 통일했다. 현재 진입점은 [스크립트 찾기](ScriptNavigation.md)를 참고한다.
+
 입력·게임 상태·표시·설정 데이터·풀링이 여러 컴포넌트로 분리되어 있다. 특히 Loadout의 장비 상태, MagazineState의 탄약 상태, VehicleSeat/Occupant의 역할 분리와 JetCamera의 Orbit/Lens 합성은 유지할 가치가 있다. 집중 개선 후보는 보병 Controller의 무기별 분기, WeaponAimView의 자세별 보정, 로컬 Editor 연결 의존, 제거된 HUD의 잔여 참조다.
 
 줄 수만으로 SRP 위반을 판정하지 않는다. 기능 변경 이유, 소유 상태, 의존 관계, 독립 테스트 가능성을 기준으로 판단한다. 예를 들어 MissileWarningView 370줄은 경고 표시라는 공통 책임 아래 여러 시각 상태를 다뤄, 줄 수만으로 분리할 근거가 약하다.
@@ -25,11 +27,11 @@ A01은 테스트 실패가 확인된 항목이다. A02·A03은 설계 개선 후
 ## 근거 위치
 
 - A01 — [PlayerCharacterCombatTests.cs](<../../Assets/Tests/PlayMode/PlayerCharacterCombatTests.cs#L42>), [TacticalActionTests.cs](<../../Assets/Tests/PlayMode/TacticalActionTests.cs#L201>)와 검증 XML.
-- A02 — [PlayerCharacterWeaponAimView](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterWeaponAimView.cs>)의 GetReloadGrip, StabilizeArmedTorso, StabilizeLocomotionTorso, ApplyUpperBodyAim, FitProneItemContact.
-- A03 — [PlayerCharacterController.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterController.cs#L40>), Update/TryFire. [PlayerCharacterWeaponEquipment](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterWeaponEquipment.cs>)는 장비별 상태 이동 후보.
-- A04 — [LocalTacticalActionSetup.cs](<../../Assets/Features/PlayerCharacter/Editor/LocalTacticalActionSetup.cs#L22>), [TacticalAnimationSet](<../../Assets/Features/PlayerCharacter/Scripts/TacticalAnimationSet.cs>), [.gitignore](<../../.gitignore>).
-- A05 — [PlayerCombatHud.cs](<../../Assets/Features/UI/PlayerCombatHud.cs#L12>). 단순 문자열 제거 작업에서 필드/씬 연결 정리는 보류되어 남은 상태다.
-- A06 — [InfantryWeaponDefinition.cs](<../../Assets/Features/Weapon/Scrips/InfantryWeaponDefinition.cs#L25>)와 Controller의 FireRate/Damage 속성.
+- A02 — [PlayerCharacterWeaponAimView](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Combat/PlayerCharacterWeaponAimView.cs>)의 GetReloadGrip, StabilizeArmedTorso, StabilizeLocomotionTorso, ApplyUpperBodyAim, FitProneItemContact.
+- A03 — [PlayerCharacterCombatController.cs](<../../Assets/Features/PlayerCharacter/Scripts/Combat/PlayerCharacterCombatController.cs#L40>), Update/TryFire. [PlayerCharacterWeaponEquipment](<../../Assets/Features/PlayerCharacter/Scripts/Equipment/PlayerCharacterWeaponEquipment.cs>)는 장비별 상태 이동 후보.
+- A04 — [TacticalActionSceneSetup.cs](<../../Assets/Features/PlayerCharacter/Editor/Composition/TacticalActionSceneSetup.cs#L22>), [TacticalAnimationSet](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Locomotion/TacticalAnimationSet.cs>), [.gitignore](<../../.gitignore>).
+- A05 — [PlayerCombatHud.cs](<../../Assets/Features/UI/Player/PlayerCombatHud.cs#L12>). 단순 문자열 제거 작업에서 필드/씬 연결 정리는 보류되어 남은 상태다.
+- A06 — [InfantryWeaponDefinition.cs](<../../Assets/Features/Weapon/Scripts/Definitions/InfantryWeaponDefinition.cs#L25>)와 Controller의 FireRate/Damage 속성.
 - A07 — [JetCameraOrbit.cs](<../../Assets/Features/Fighter/Scripts/Camera/JetCameraOrbit.cs#L58>).
 
 ## 객체지향 4원칙

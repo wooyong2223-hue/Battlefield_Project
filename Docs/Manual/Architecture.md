@@ -21,7 +21,7 @@ Features.asmdef는 Framework와 Unity.InputSystem, Cinemachine, TMP, UI, WarFX.R
 ```mermaid
 flowchart TD
     Bind["Input Actions"] --> Input["PlayerCharacterInput"]
-    Input -->|입력 계약| Combat["PlayerCharacterController"]
+    Input -->|입력 계약| Combat["PlayerCharacterCombatController"]
     Combat -->|행동 가능 여부 조회| Policy["PlayerCharacterActionPolicy"]
     Combat -->|장착 요청 · 현재 무기 조회| Loadout["PlayerCharacterLoadout"]
     Loadout --> Equipment["PlayerCharacterWeaponEquipment"]
@@ -58,7 +58,7 @@ flowchart LR
     Specific --> Anim
     Specific --> IK
     IK --> Arms["FirstPersonArmsView"]
-    Sight["PlayerCharacterView"] --> Camera["PlayerCharacterCamera"]
+    Sight["PlayerCharacterLookController"] --> Camera["PlayerCharacterCamera"]
     Camera --> Arms
 ```
 
@@ -73,7 +73,7 @@ flowchart TD
     Occupant --> OnFoot["보병 컴포넌트 중지/복구 · 카메라 교체"]
     Occupant --> Pose["좌석 Transform · 착석 표현"]
     Seat --> Gates["운전자 입력 권한"]
-    Engine["FighterEngine"] -->|좌석 상태 조회| Seat
+    Engine["FighterEngineActivation"] -->|좌석 상태 조회| Seat
     Engine -->|시동 상태 설정| Move["JetMovement"]
     Gates --> JetInput["KeyboardJetInput · IJetInput"]
     JetInput --> Move
@@ -107,4 +107,4 @@ AudioOverviewEditor가 Fighter 및 관련 프리팹의 AudioProfile/AudioSource 
 
 ## Editor에서 추가되는 연결
 
-LocalArmedLocomotionSetup, LocalSlideAnimationSetup, LocalProneAnimationSetup, LocalTacticalActionSetup이 로컬 프로필을 읽어 Play 진입과 빌드 씬 처리 때 구성한다. 편집 중 Hierarchy에 없는 컴포넌트가 Play에서 생길 수 있다. 특히 TacticalActionSetup은 PlayerCharacter에 Mantle·GrenadeThrow·GrenadeTrajectoryView를 추가하고 Animator에 TacticalAnimationView를 연결한다. 로컬 프로필이 없거나 무효이면 이 단계가 생략된다.
+`PlayerCharacterSceneComposition`이 Play 진입과 빌드 씬 처리에서 슬라이드 → 포복 → 무장 이동 → 전술 동작 순서로 구성한다. 편집 중 Hierarchy에 없는 컴포넌트가 Play에서 생길 수 있다. `TacticalActionSceneSetup`은 PlayerCharacter에 Mantle·GrenadeThrow·GrenadeTrajectoryView를 추가하고 Animator에 TacticalAnimationView를 연결한다. 프로필이 없거나 유효하지 않은 구성은 생략된다.

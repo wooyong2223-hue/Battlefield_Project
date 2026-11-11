@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Reflection;
-using Battlefield.Features.Dummy;
+using Battlefield.Features.Training;
 using Battlefield.Features.PlayerCharacter;
 using NUnit.Framework;
 using UnityEditor.SceneManagement;
@@ -31,8 +31,8 @@ namespace Battlefield.Tests.PlayMode
             foreach (var shooter in Object.FindObjectsByType<DummyMissileShooter>()) shooter.enabled = false;
             _movement = Object.FindObjectsByType<PlayerCharacterMovement>().Single();
             _animator = _movement.GetComponentInChildren<Animator>();
-            Set(_movement.GetComponent<PlayerCharacterController>(), "_input", new PassiveWeaponInput());
-            _movement.GetComponent<PlayerCharacterView>().enabled = false;
+            Set(_movement.GetComponent<PlayerCharacterCombatController>(), "_input", new PassiveWeaponInput());
+            _movement.GetComponent<PlayerCharacterLookController>().enabled = false;
             Set(_movement, "_input", null);
             Set(_animator.GetComponent<PlayerCharacterAnimationView>(), "_speedDamping", 0f);
             CharacterController body = _movement.GetComponent<CharacterController>();
@@ -146,7 +146,7 @@ namespace Battlefield.Tests.PlayMode
                 c.clip.name == Expected("LocomotionIdle") && c.weight > .98f), Is.True);
         }
 
-        private bool UsesMixamo => _movement.GetComponent<Battlefield.Features.PlayerCharacter.PlayerCharacterController>().IsArmed &&
+        private bool UsesMixamo => _movement.GetComponent<Battlefield.Features.PlayerCharacter.PlayerCharacterCombatController>().IsArmed &&
             AssetDatabase.LoadAssetAtPath<Battlefield.Features.PlayerCharacter.ArmedLocomotionAnimationSet>("Assets/ThirdParty/MixamoLocal/ArmedLocomotion/ArmedLocomotion.asset") != null;
         private string Expected(string legacy) => !UsesMixamo ? legacy : legacy switch
         {

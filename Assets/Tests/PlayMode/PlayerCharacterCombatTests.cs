@@ -4,6 +4,7 @@ using System.Linq;
 using Battlefield.Features.PlayerCharacter;
 using Battlefield.Features.Weapon;
 using Battlefield.Framework.Core;
+using TMPro;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -13,20 +14,73 @@ namespace Battlefield.Tests.PlayMode
 {
     public class PlayerCharacterCombatTests
     {
-        private sealed class InputState : IWeaponInput,IPlayerCharacterCombatInput
-        {
-            public bool FireWeapon {get;set;}
-            public int WeaponSlotSelection {get;set;}
-            public bool ReloadPressed {get;set;}
-            public bool FirePressed { get; set; }
-            public bool ToggleFireModePressed { get; set; }
-            public bool MeleePressed {get;set;}
-        }
-        private static InputState Enable(CharacterViewTestContext context, bool aiming = false)
+        private static CharacterViewTestContext.CombatInput Enable(CharacterViewTestContext context, bool aiming = false)
         {
             context.Input.AimHeld = aiming; context.View.Tick(context.Input, .02f);
-            var input=new InputState();CharacterViewTestContext.SetField(context.Shooter,"_input",input);
-            CharacterViewTestContext.SetField(context.Shooter,"_combatInput",input);context.Shooter.enabled=true;return input;
+            return context.EnableCombatInput();
+        }
+
+        [UnityTest]
+        public IEnumerator WeaponDefinitionControlsFireModeAndRifleSelectionSurvivesSlotChanges()
+        {
+            yield return CharacterViewTestContext.Load();
+            var context = new CharacterViewTestContext();
+            var loadout = context.Actor.GetComponent<PlayerCharacterLoadout>();
+            var pistol = loadout.Definition;
+            Assert.That(pistol.FireMode, Is.EqualTo(InfantryFireMode.Single));
+            Assert.That(loadout.TryEquip(PlayerCharacterLoadout.RifleSlot), Is.True);
+            var rifle = loadout.Definition;
+            Assert.That(rifle.FireMode, Is.EqualTo(InfantryFireMode.Selectable));
+            var hud = Object.FindObjectsByType<Battlefield.Features.UI.PlayerCombatHud>().Single();
+            var label = (TMP_Text)hud.GetType().GetField("_label",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(hud);
+            var input = context.EnableCombatInput();
+            int shots = 0;
+            context.Shooter.Fired += () => shots++;
+            float holdDuration = context.Shooter.ShotInterval * 3f;
+
+            input.PressFire();
+            yield return new WaitForSeconds(holdDuration);
+            input.FireWeapon = false;
+            Assert.That(shots, Is.GreaterThan(1), "The rifle starts in automatic mode.");
+            Assert.That(label.text, Does.Contain("{연발}"));
+
+            input.PressFireModeToggle();
+            yield return null;
+            Assert.That(context.Shooter.IsRifleSingleFire, Is.True);
+            Assert.That(loadout.TryEquip(PlayerCharacterLoadout.PistolSlot), Is.True);
+            Assert.That(loadout.TryEquip(PlayerCharacterLoadout.RifleSlot), Is.True);
+            Assert.That(context.Shooter.IsRifleSingleFire, Is.True);
+            yield return new WaitForSeconds(holdDuration);
+
+            int beforeSingleShot = shots;
+            input.PressFire();
+            yield return new WaitForSeconds(holdDuration);
+            input.FireWeapon = false;
+            Assert.That(shots, Is.EqualTo(beforeSingleShot + 1), "The selected rifle mode fires once per click.");
+
+            input.PressFireModeToggle();
+            yield return null;
+            Assert.That(context.Shooter.IsRifleSingleFire, Is.False);
+            Assert.That(loadout.GetEquipment(PlayerCharacterLoadout.RifleSlot).TryEquip(pistol), Is.True);
+            yield return new WaitForSeconds(holdDuration);
+
+            int beforeDefinitionShot = shots;
+            input.PressFire();
+            yield return new WaitForSeconds(holdDuration);
+            input.FireWeapon = false;
+            Assert.That(shots, Is.EqualTo(beforeDefinitionShot + 1),
+                "A single-shot definition still fires once when installed in the rifle slot.");
+            Assert.That(label.text, Does.Not.Contain("{연발}").And.Not.Contain("{단발}"));
+
+            Assert.That(loadout.GetEquipment(PlayerCharacterLoadout.PistolSlot).TryEquip(rifle), Is.True);
+            Assert.That(loadout.TryEquip(PlayerCharacterLoadout.PistolSlot), Is.True);
+            yield return null;
+            Assert.That(label.text, Does.Contain("{연발}"), "A selectable weapon shows its mode in any slot.");
+            input.PressFireModeToggle();
+            yield return null;
+            yield return null;
+            Assert.That(label.text, Does.Contain("{단발}"));
         }
 
         [UnityTest]
@@ -39,10 +93,15 @@ namespace Battlefield.Tests.PlayMode
             Assert.That(view.Pistol.transform.IsChildOf(context.Actor.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.RightHand)),Is.True);
             Assert.That(Vector3.Dot(view.Pistol.Muzzle.forward,context.Actor.forward),Is.GreaterThan(.8f));
             int fired=0;context.Shooter.Fired+=()=>fired++;int before=magazine.Rounds;
-            input.FireWeapon=true;yield return null;input.FireWeapon=false;
+            input.PressFire();
+            yield return null;
+            input.FireWeapon = false;
             Assert.That(fired,Is.EqualTo(1));Assert.That(magazine.Rounds,Is.EqualTo(before-1));
             CharacterViewTestContext.SetField(magazine,"_reloadDuration",.12f);input.ReloadPressed=true;yield return null;input.ReloadPressed=false;
-            Assert.That(magazine.IsReloading,Is.True);input.FireWeapon=true;yield return new WaitForSeconds(.05f);input.FireWeapon=false;
+            Assert.That(magazine.IsReloading,Is.True);
+            input.PressFire();
+            yield return new WaitForSeconds(.05f);
+            input.FireWeapon = false;
             Assert.That(fired,Is.EqualTo(1));yield return new WaitForSeconds(.1f);
             Assert.That(magazine.Rounds,Is.EqualTo(magazine.Capacity));Assert.That(magazine.Reserve,Is.EqualTo(89));
             context.TogglePerspective();yield return null;yield return null;Assert.That(view.FirstPersonArms.enabled,Is.True);
@@ -68,7 +127,7 @@ namespace Battlefield.Tests.PlayMode
                 Assert.That(magazine.TryConsumeRound(), Is.True);
             Assert.That(magazine.Rounds, Is.EqualTo(1));
 
-            input.FireWeapon = true;
+            input.PressFire();
             yield return null;
             Assert.That(magazine.Rounds, Is.Zero);
             Assert.That(magazine.IsReloading, Is.False);
@@ -79,8 +138,7 @@ namespace Battlefield.Tests.PlayMode
             yield return null;
             Assert.That(magazine.IsReloading, Is.False, "Releasing fire must not start a reload.");
 
-            input.FirePressed = true;
-            input.FireWeapon = true;
+            input.PressFire();
             yield return null;
             Assert.That(magazine.IsReloading, Is.True, "A new click on empty must start a reload.");
         }
@@ -124,7 +182,10 @@ namespace Battlefield.Tests.PlayMode
         {
             yield return CharacterViewTestContext.Load();var context=new CharacterViewTestContext();var input=Enable(context);
             var animator=context.Actor.GetComponentInChildren<Animator>();int layer=animator.GetLayerIndex("UpperCombat");
-            input.FireWeapon=true;yield return null;input.FireWeapon=false;yield return null;
+            input.PressFire();
+            yield return null;
+            input.FireWeapon = false;
+            yield return null;
             Assert.That(animator.GetCurrentAnimatorStateInfo(layer).IsName("UpperCombat.PistolHold"),Is.True);
             Assert.That(context.Actor.GetComponentInChildren<PlayerCharacterCombatView>().RecoilAmount,Is.GreaterThan(0f));
             input.ReloadPressed=true;yield return null;input.ReloadPressed=false;yield return null;
@@ -443,7 +504,7 @@ namespace Battlefield.Tests.PlayMode
         [UnityTest]
         public IEnumerator BoardingCancelsReloadAndMeleeAndRestoresWeaponOnExit()
         {
-            yield return BoardingTestContext.Load();var context=new BoardingTestContext();var combat=context.Actor.GetComponent<PlayerCharacterController>();
+            yield return BoardingTestContext.Load();var context=new BoardingTestContext();var combat=context.Actor.GetComponent<PlayerCharacterCombatController>();
             combat.GetComponent<PlayerCharacterLoadout>().TryEquip(PlayerCharacterLoadout.PistolSlot);
             var magazine=combat.Magazine;var presentation=context.Actor.GetComponentInChildren<PlayerCharacterCombatView>();
             Assert.That(magazine.TryConsumeRound(),Is.True);Assert.That(magazine.TryReload(),Is.True);
@@ -451,7 +512,7 @@ namespace Battlefield.Tests.PlayMode
             Assert.That(magazine.IsReloading,Is.False);Assert.That(presentation.Pistol.gameObject.activeSelf,Is.False);
             Assert.That(context.Seat.TryExit(),Is.True);yield return null;yield return null;
             Assert.That(presentation.Pistol.gameObject.activeSelf,Is.True);Assert.That(magazine.Rounds,Is.EqualTo(14));
-            var input=new InputState{MeleePressed=true};CharacterViewTestContext.SetField(combat,"_input",input);CharacterViewTestContext.SetField(combat,"_combatInput",input);
+            var input=new CharacterViewTestContext.CombatInput{MeleePressed=true};CharacterViewTestContext.SetField(combat,"_input",input);CharacterViewTestContext.SetField(combat,"_combatInput",input);
             yield return null;input.MeleePressed=false;Assert.That(combat.IsAttacking,Is.True);
             context.PrepareEntry();Assert.That(context.Seat.TryEnter(context.Occupant),Is.True);yield return new WaitForSeconds(.3f);
             Assert.That(combat.IsAttacking,Is.False);Assert.That(presentation.FirstPersonArms.enabled,Is.False);

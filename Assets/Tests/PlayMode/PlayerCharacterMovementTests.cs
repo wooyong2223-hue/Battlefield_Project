@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Battlefield.Features.Dummy;
+using Battlefield.Features.Training;
 using Battlefield.Features.PlayerCharacter;
 using Battlefield.Features.Weapon;
 using Battlefield.Framework.Core;
@@ -96,9 +96,9 @@ namespace Battlefield.Tests.PlayMode
             DummyShooter[] shooters = Object.FindObjectsByType<DummyShooter>(FindObjectsInactive.Include);
             foreach (DummyShooter shooter in shooters) shooter.enabled = false;
             foreach (DummyMissileShooter shooter in Object.FindObjectsByType<DummyMissileShooter>()) shooter.enabled = false;
-            PlayerCharacterController player = shooters.First(
+            PlayerCharacterCombatController player = shooters.First(
                 shooter => shooter.GetComponent<Team>().CurrentTeam == TeamType.Player)
-                .GetComponent<PlayerCharacterController>();
+                .GetComponent<PlayerCharacterCombatController>();
             player.enabled = false;
             CharacterController body = player.GetComponent<CharacterController>();
             Assert.That(body.height, Is.EqualTo(4f));
@@ -144,7 +144,7 @@ namespace Battlefield.Tests.PlayMode
             foreach (DummyMissileShooter item in Object.FindObjectsByType<DummyMissileShooter>()) item.enabled = false;
             DummyShooter shooter = shooters.First(
                 item => item.GetComponent<Team>().CurrentTeam == TeamType.Player);
-            shooter.GetComponent<PlayerCharacterController>().enabled = false;
+            shooter.GetComponent<PlayerCharacterCombatController>().enabled = false;
             shooter.GetComponent<PlayerCharacterMovement>().enabled = false;
             shooter.transform.SetParent(null, true);
             CharacterController body = shooter.GetComponent<CharacterController>();

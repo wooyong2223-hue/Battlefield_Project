@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Reflection;
-using Battlefield.Features.Dummy;
+using Battlefield.Features.Training;
 using Battlefield.Features.PlayerCharacter;
 using Battlefield.Features.VFX;
 using Battlefield.Framework.Core;
@@ -30,7 +30,7 @@ namespace Battlefield.Tests.PlayMode
         {
             yield return Load();
             var shooter=Object.FindObjectsByType<DummyShooter>(FindObjectsInactive.Include).First(s=>s.GetComponent<Team>().CurrentTeam==TeamType.Player);
-            shooter.GetComponent<PlayerCharacterController>().enabled=false;
+            shooter.GetComponent<PlayerCharacterCombatController>().enabled=false;
             shooter.GetComponent<PlayerCharacterMovement>().enabled=false;
             var body=shooter.GetComponent<CharacterController>();
             var root=GameObject.Find("InfantryTrainingGround").transform;
@@ -55,7 +55,7 @@ namespace Battlefield.Tests.PlayMode
         {
             yield return Load();
             var shooter=Object.FindObjectsByType<DummyShooter>(FindObjectsInactive.Include).First(s=>s.GetComponent<Team>().CurrentTeam==TeamType.Player);
-            shooter.GetComponent<PlayerCharacterController>().enabled=false;
+            shooter.GetComponent<PlayerCharacterCombatController>().enabled=false;
             shooter.GetComponent<PlayerCharacterMovement>().enabled=false;
             var body=shooter.GetComponent<CharacterController>();
             var root=GameObject.Find("InfantryTrainingGround").transform;
@@ -100,7 +100,7 @@ namespace Battlefield.Tests.PlayMode
         {
             yield return Load();
             var motor=Object.FindObjectsByType<PlayerCharacterMovement>().Single();
-            motor.GetComponent<PlayerCharacterController>().enabled=false;
+            motor.GetComponent<PlayerCharacterCombatController>().enabled=false;
             typeof(PlayerCharacterMovement).GetField("_input",BindingFlags.Instance|BindingFlags.NonPublic).SetValue(motor,null);
             var body=motor.GetComponent<CharacterController>();
             var root=GameObject.Find("InfantryTrainingGround").transform;

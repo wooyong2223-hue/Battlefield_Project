@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Reflection;
-using Battlefield.Features.Dummy;
+using Battlefield.Features.Training;
 using Battlefield.Features.PlayerCharacter;
 using Battlefield.Features.Projectile;
 using Battlefield.Framework.Core;
@@ -29,7 +29,7 @@ namespace Battlefield.Tests.PlayMode
         {
             yield return Load();
             var shooter=Object.FindObjectsByType<DummyShooter>(FindObjectsInactive.Include).First(s=>s.GetComponent<Team>().CurrentTeam==TeamType.Player);
-            shooter.GetComponent<PlayerCharacterController>().enabled=false;shooter.GetComponent<PlayerCharacterMovement>().enabled=false;
+            shooter.GetComponent<PlayerCharacterCombatController>().enabled=false;shooter.GetComponent<PlayerCharacterMovement>().enabled=false;
             var body=shooter.GetComponent<CharacterController>();body.enabled=false;
             shooter.transform.SetPositionAndRotation(new Vector3(10000,10000,10000),Quaternion.identity);body.enabled=true;
             var target=GameObject.Find("Dummy_Enemy");target.transform.SetParent(null,true);target.transform.position=shooter.transform.position+Vector3.forward*15;

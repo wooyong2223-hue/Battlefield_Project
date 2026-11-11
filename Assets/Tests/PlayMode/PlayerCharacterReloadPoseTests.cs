@@ -12,6 +12,54 @@ namespace Battlefield.Tests.PlayMode
     public class PlayerCharacterReloadPoseTests
     {
         sealed class IdleInput:IWeaponInput{public bool FireWeapon=>false;public int WeaponSlotSelection=>0;}
+        [UnityTest]
+        public IEnumerator WeaponReloadClipReplacesOnlyTheStandingReloadAndOwnsTheHandMotion()
+        {
+            yield return CharacterViewTestContext.Load();
+            var c = new CharacterViewTestContext();
+            var loadout = c.Actor.GetComponent<PlayerCharacterLoadout>();
+            Assert.That(loadout.TryEquip(PlayerCharacterLoadout.RifleSlot), Is.True);
+            var input = c.EnableCombatInput();
+            var animator = c.Actor.GetComponentInChildren<Animator>();
+            var reloadView = animator.GetComponent<PlayerCharacterRifleReloadView>();
+            var combatView = animator.GetComponent<PlayerCharacterCombatView>();
+            var equipment = loadout.GetEquipment(PlayerCharacterLoadout.RifleSlot);
+            var shared = loadout.Definition;
+            var binding = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+            var reloadSlot = (AnimationClip)combatView.GetType().GetField("_reloadAnimation", binding).GetValue(combatView);
+            var originalController = (AnimatorOverrideController)animator.runtimeAnimatorController;
+            var otherClips = new System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<AnimationClip, AnimationClip>>();
+            originalController.GetOverrides(otherClips);
+            var authoredClip = Object.Instantiate(reloadSlot);
+            var custom = Object.Instantiate(shared);
+            try
+            {
+                CharacterViewTestContext.SetField(custom, "_reloadClip", authoredClip);
+                Assert.That(equipment.TryEquip(custom), Is.True);
+                var controller = (AnimatorOverrideController)animator.runtimeAnimatorController;
+                Assert.That(controller[reloadSlot], Is.SameAs(authoredClip));
+                foreach (var pair in otherClips)
+                    if (pair.Key != reloadSlot)
+                        Assert.That(controller[pair.Key] ?? pair.Key, Is.EqualTo(pair.Value ?? pair.Key), pair.Key.name);
+                Assert.That(c.Shooter.Magazine.TryConsumeRound(), Is.True);
+                input.ReloadPressed = true;
+                yield return null;
+                input.ReloadPressed = false;
+                Assert.That(c.Shooter.Magazine.IsReloading, Is.True);
+                Assert.That(reloadView.IsActive, Is.False, "The authored clip owns the hand motion.");
+
+                Assert.That(equipment.TryEquip(shared), Is.True);
+                Assert.That(c.Shooter.Magazine.TryConsumeRound(), Is.True);
+                Assert.That(c.Shooter.Magazine.TryReload(), Is.True);
+                Assert.That(reloadView.IsActive, Is.True, "The shared reload still uses prefab contacts.");
+            }
+            finally
+            {
+                Object.Destroy(custom);
+                Object.Destroy(authoredClip);
+            }
+        }
+
         [UnityTest] public IEnumerator ReloadOverlayClearsAfterCompletionCancellationAndDisable()
         {
             yield return CharacterViewTestContext.Load();var c=new CharacterViewTestContext();c.Shooter.enabled=true;CharacterViewTestContext.SetField(c.Shooter,"_input",new IdleInput());

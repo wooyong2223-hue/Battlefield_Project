@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using System.Collections;
+using Battlefield.Features.Training;
 using System.Linq;
 using Battlefield.Features.PlayerCharacter;
 using NUnit.Framework;

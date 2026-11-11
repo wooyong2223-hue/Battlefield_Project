@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Reflection;
-using Battlefield.Features.Dummy;
+using Battlefield.Features.Training;
 using Battlefield.Features.Fighter;
 using Battlefield.Features.PlayerCharacter;
 using Battlefield.Features.Vehicles;

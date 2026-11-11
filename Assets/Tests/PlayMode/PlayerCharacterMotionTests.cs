@@ -227,7 +227,7 @@ namespace Battlefield.Tests.PlayMode
         public IEnumerator FirstPersonGaitAimHitsEnemyAndNeutralButNotAlliesFromTheAlliedDummyOwner()
         {
             yield return CharacterViewTestContext.Load(); var context = new CharacterViewTestContext();
-            Assert.That(context.Shooter.GetComponent<Battlefield.Features.Dummy.DummyShooter>(), Is.Not.Null);
+            Assert.That(context.Shooter.GetComponent<Battlefield.Features.Training.DummyShooter>(), Is.Not.Null);
             Assert.That(context.Shooter.GetComponent<Battlefield.Framework.Core.Team>().CurrentTeam,
                 Is.EqualTo(Battlefield.Framework.Core.TeamType.Player));
             var floor = new GameObject("First person dummy firing range"); _objects.Add(floor);
@@ -235,9 +235,9 @@ namespace Battlefield.Tests.PlayMode
             floor.AddComponent<BoxCollider>().size = new Vector3(600f, .5f, 100f);
             var movement = context.Actor.GetComponent<PlayerCharacterMovement>();
             var body = context.Actor.GetComponent<CharacterController>();
-            var fire = new PassiveWeaponInput(); CharacterViewTestContext.SetField(context.Shooter, "_input", fire);
+            var fire = context.EnableCombatInput();
             CharacterViewTestContext.SetField(movement, "_input", new WalkingInput());
-            context.Shooter.enabled = true; movement.enabled = true; context.TogglePerspective();
+            movement.enabled = true; context.TogglePerspective();
             string[] targets = {"Dummy_Enemy", "Dummy_Neutral", "Ally_10m"};
             for (int i = 0; i < targets.Length; i++)
             {
@@ -252,7 +252,7 @@ namespace Battlefield.Tests.PlayMode
                 target.transform.SetParent(null, true);
                 target.transform.position = context.Follow.EyePosition + Vector3.forward * 20f;
                 Physics.SyncTransforms(); float before = target.CurrentHealth;
-                fire.FireWeapon = true; yield return null; fire.FireWeapon = false;
+                fire.PressFire(); yield return null; fire.FireWeapon = false;
                 yield return new WaitForSeconds(.25f);
                 Assert.That(target.CurrentHealth, Is.EqualTo(before - (i == 2 ? 0f : 10f)), targets[i]);
                 Assert.That(context.View.IsFirstPersonView, Is.True);

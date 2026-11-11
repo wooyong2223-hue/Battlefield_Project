@@ -74,7 +74,7 @@ namespace Battlefield.Tests.PlayMode
                     for (int i = 0; i < 20; i++) { motor.Tick(Vector2.zero, false, false, .02f); yield return null; }
                 }
                 Vector3 fistBefore = animator.GetBoneTransform(HumanBodyBones.RightHand).position;
-                typeof(PlayerCharacterController).GetMethod("TryMelee", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).Invoke(c.Shooter, null);
+                typeof(PlayerCharacterCombatController).GetMethod("TryMelee", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).Invoke(c.Shooter, null);
                 Assert.That(c.Shooter.IsAttacking, Is.True);
                 for (int i = 0; i < 10; i++) { motor.Tick(Vector2.zero, false, false, .02f); yield return null; }
                 Assert.That(Vector3.Distance(fistBefore, animator.GetBoneTransform(HumanBodyBones.RightHand).position), Is.GreaterThan(.1f), "Prone playback must not hide the authored upper-body melee action.");

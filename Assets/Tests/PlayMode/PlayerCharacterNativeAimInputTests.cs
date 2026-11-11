@@ -1,7 +1,7 @@
 #if UNITY_EDITOR
 using System.Collections;
 using System.Reflection;
-using Battlefield.Features.Dummy;
+using Battlefield.Features.Training;
 using Battlefield.Features.PlayerCharacter;
 using NUnit.Framework;
 using UnityEditor.SceneManagement;
@@ -40,8 +40,8 @@ namespace Battlefield.Tests.PlayMode
     foreach(var s in Object.FindObjectsByType<DummyShooter>())s.enabled=false;
     foreach(var s in Object.FindObjectsByType<DummyMissileShooter>())s.enabled=false;
     var input=Object.FindAnyObjectByType<PlayerCharacterInput>();
-    var view=input.GetComponent<PlayerCharacterView>();var motor=input.GetComponent<PlayerCharacterMovement>();
-    var combat=input.GetComponent<PlayerCharacterController>();var aim=input.GetComponentInChildren<PlayerCharacterWeaponAimView>();
+    var view=input.GetComponent<PlayerCharacterLookController>();var motor=input.GetComponent<PlayerCharacterMovement>();
+    var combat=input.GetComponent<PlayerCharacterCombatController>();var aim=input.GetComponentInChildren<PlayerCharacterWeaponAimView>();
     var animator=input.GetComponentInChildren<Animator>();
     var chest=animator.GetBoneTransform(HumanBodyBones.UpperChest);var head=animator.GetBoneTransform(HumanBodyBones.Head);
     var mouse=InputSystem.AddDevice<Mouse>();var keyboard=InputSystem.AddDevice<Keyboard>();

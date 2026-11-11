@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Battlefield.Features.Dummy;
+using Battlefield.Features.Training;
 using Battlefield.Features.PlayerCharacter;
 using Battlefield.Features.Projectile;
 using Battlefield.Features.Weapon;
@@ -60,7 +60,7 @@ namespace Battlefield.Tests.PlayMode
         {
             yield return Load();
             var shooter=Object.FindObjectsByType<DummyShooter>(FindObjectsInactive.Include).First(s=>s.GetComponent<Team>().CurrentTeam==TeamType.Player);
-            shooter.GetComponent<PlayerCharacterController>().enabled=false;shooter.GetComponent<PlayerCharacterMovement>().enabled=false;
+            shooter.GetComponent<PlayerCharacterCombatController>().enabled=false;shooter.GetComponent<PlayerCharacterMovement>().enabled=false;
             var body=shooter.GetComponent<CharacterController>();var pool=Object.FindAnyObjectByType<BulletPool>();
             var gun=shooter.gameObject.AddComponent<MachineGun>();Set(gun,"_overheat",new Overheat());Set(gun,"_fireRate",10f);Set(gun,"_damage",10f);Set(gun,"_bulletPool",pool);
             var point=new GameObject("Temporary test muzzle").transform;point.SetParent(shooter.transform,false);point.localPosition=Vector3.forward*2;Set(gun,"_firePoint",point);

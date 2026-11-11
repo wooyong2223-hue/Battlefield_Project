@@ -267,7 +267,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5cb8f6af9007834e90078622809ac3b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DummyDebug
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Training.DummyDebug
 --- !u!114 &129682433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +285,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 129682432}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDamaged
         m_Mode: 1
         m_Arguments:
@@ -303,7 +303,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 129682432}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDeath
         m_Mode: 1
         m_Arguments:
@@ -529,7 +529,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7194ca40524563c4ea70973c21ee07c3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.PlayerCharacter.RifleSelectionStation
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Training.RifleSelectionStation
   _definition: {fileID: 11400000, guid: 643768a2657c2884cbbef55196648d94, type: 2}
   _interactionPoint: {fileID: 290466859}
   _range: 3
@@ -2782,7 +2782,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5cb8f6af9007834e90078622809ac3b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DummyDebug
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Training.DummyDebug
 --- !u!114 &757094937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3640,7 +3640,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84e252956b5d4daab40401ee52bb0af7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Dummy.DummyShooter
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Training.DummyShooter
   _target: {fileID: 2114256057}
   _bulletPool: {fileID: 1486456747}
   _fireInterval: 1
@@ -3658,7 +3658,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84e252956b5d4daab40401ee52bb0af7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Dummy.DummyShooter
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Training.DummyShooter
   _target: {fileID: 129682438}
   _bulletPool: {fileID: 1486456747}
   _fireInterval: 1
@@ -5399,7 +5399,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af8cbc3847f7add41a38f0a5dede191e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.PlayerCharacter.PlayerCharacterView
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.PlayerCharacter.PlayerCharacterLookController
   _lookSensitivity: 3
   _pitchLimit: 80
   _freeLookYawLimit: 180
@@ -5509,7 +5509,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 732ccb67674944af81ca44f78b3e3153, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.PlayerCharacter.PlayerCharacterController
+  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.PlayerCharacter.PlayerCharacterCombatController
   _bulletPool: {fileID: 1486456747}
   _fireRate: 10
   _damage: 10
@@ -5638,7 +5638,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c3b92a7f1484024a061325dd218a007, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Features.Dummy.DummyAirTargetLockDebug
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Training.DummyAirTargetLockDebug
 --- !u!114 &950000017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5788,7 +5788,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ffc0dbba3de4a14aa81dfcf26df5dc6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.PlayerCharacter.PlayerCharacterWeaponMount
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.PlayerCharacter.PlayerCharacterWeaponBracing
   _camera: {fileID: 330585549}
   _view: {fileID: 950000004}
   _movement: {fileID: 950000008}
@@ -7768,7 +7768,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 995000008}
-        m_TargetAssemblyTypeName: Battlefield.Features.Dummy.DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDamaged
         m_Mode: 1
         m_Arguments:
@@ -7786,7 +7786,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 995000008}
-        m_TargetAssemblyTypeName: Battlefield.Features.Dummy.DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDeath
         m_Mode: 1
         m_Arguments:
@@ -7808,7 +7808,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5cb8f6af9007834e90078622809ac3b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Battlefield.Features.Dummy.DummyDebug
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Training.DummyDebug
 --- !u!114 &995000009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9852,7 +9852,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9c5c39f5744411ea50d85d0d9b8b560, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Dummy.DummyMissileShooter
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Training.DummyMissileShooter
   _target: {fileID: 900000107}
   _missilePool: {fileID: 980000003}
   _firePoint: {fileID: 0}
@@ -13282,7 +13282,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5cb8f6af9007834e90078622809ac3b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DummyDebug
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Training.DummyDebug
 --- !u!114 &2114256052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13300,7 +13300,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2114256051}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDamaged
         m_Mode: 1
         m_Arguments:
@@ -13318,7 +13318,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2114256051}
-        m_TargetAssemblyTypeName: DummyDebug, Assembly-CSharp
+        m_TargetAssemblyTypeName: Battlefield.Features.Training.DummyDebug, Battlefield.Features
         m_MethodName: LogDeath
         m_Mode: 1
         m_Arguments:
@@ -13495,7 +13495,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7194ca40524563c4ea70973c21ee07c3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.PlayerCharacter.RifleSelectionStation
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Training.RifleSelectionStation
   _definition: {fileID: 11400000, guid: 007c3ecffbc086f4c960dc3d5a7b8e6d, type: 2}
   _interactionPoint: {fileID: 1256819849}
   _range: 3

@@ -4,6 +4,7 @@
     "references": [
         "Battlefield.Features",
         "Battlefield.Framework",
+        "Unity.TextMeshPro",
         "Unity.InputSystem",
         "Unity.InputSystem.TestFramework"
     ],

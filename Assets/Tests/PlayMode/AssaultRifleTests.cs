@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using System.Reflection;
-using Battlefield.Features.Dummy;
+using Battlefield.Features.Training;
 using Battlefield.Features.PlayerCharacter;
 using Battlefield.Features.Weapon;
 using Battlefield.Framework.Core;
@@ -94,7 +94,7 @@ namespace Battlefield.Tests.PlayMode
             var definition=AssetDatabase.LoadAssetAtPath<InfantryWeaponDefinition>("Assets/Features/Weapon/Definitions/AssaultRifle.asset");
             Assert.That(definition,Is.Not.Null);Assert.That(definition.FireRate,Is.EqualTo(10));
             var shooter=Object.FindObjectsByType<DummyShooter>(FindObjectsInactive.Include).First(s=>s.GetComponent<Team>().CurrentTeam==TeamType.Player);
-            shooter.GetComponent<PlayerCharacterController>().enabled=false;
+            shooter.GetComponent<PlayerCharacterCombatController>().enabled=false;
             shooter.GetComponent<PlayerCharacterMovement>().enabled=false;
             var body=shooter.GetComponent<CharacterController>();
             var root=GameObject.Find("InfantryTrainingGround").transform;

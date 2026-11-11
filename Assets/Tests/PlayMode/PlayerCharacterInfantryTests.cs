@@ -193,7 +193,7 @@ namespace Battlefield.Tests.PlayMode
         {
             yield return CharacterViewTestContext.Load(); var context = new CharacterViewTestContext();
             var fire = new FireInput(); Set(context.Shooter, "_input", fire); context.Shooter.enabled = true;
-            var mount = context.Actor.GetComponent<PlayerCharacterWeaponMount>() ?? context.Actor.gameObject.AddComponent<PlayerCharacterWeaponMount>();
+            var mount = context.Actor.GetComponent<PlayerCharacterWeaponBracing>() ?? context.Actor.gameObject.AddComponent<PlayerCharacterWeaponBracing>();
             Set(mount, "_camera", context.Follow); Set(mount, "_view", context.View);
             Set(mount, "_movement", context.Actor.GetComponent<PlayerCharacterMovement>()); Set(mount, "_combat", context.Shooter);
             Vector3 eye = context.Follow.EyePosition;
@@ -279,7 +279,7 @@ namespace Battlefield.Tests.PlayMode
             var life = context.Actor.GetComponent<InfantryLifeState>(); Assert.That(life, Is.Not.Null);
             Assert.That(context.Seat.TryEnter(context.Occupant), Is.True);
             foreach (var component in new Behaviour[] { context.Actor.GetComponent<PlayerCharacterTraversal>(), context.Actor.GetComponent<PlayerCharacterLean>(),
-                context.Actor.GetComponent<PlayerCharacterWeaponMount>(), context.Actor.GetComponent<PlayerCharacterRecoil>(), context.Actor.GetComponent<PlayerCharacterRevive>() })
+                context.Actor.GetComponent<PlayerCharacterWeaponBracing>(), context.Actor.GetComponent<PlayerCharacterRecoil>(), context.Actor.GetComponent<PlayerCharacterRevive>() })
                 Assert.That(component.enabled, Is.False);
             Assert.That(life.enabled, Is.True);
             var health = context.Actor.GetComponent<Health>(); health.TakeDamage(health.MaxHealth); yield return null;
@@ -347,10 +347,10 @@ namespace Battlefield.Tests.PlayMode
         public IEnumerator AlliedDummyBulletsFinishDownedEnemiesAndNeutralsButNotAllies()
         {
             yield return CharacterViewTestContext.Load(); var context = new CharacterViewTestContext();
-            Assert.That(context.Shooter.GetComponent<Battlefield.Features.Dummy.DummyShooter>(), Is.Not.Null);
+            Assert.That(context.Shooter.GetComponent<Battlefield.Features.Training.DummyShooter>(), Is.Not.Null);
             Assert.That(context.Shooter.GetComponent<Team>().CurrentTeam, Is.EqualTo(TeamType.Player));
             context.Actor.GetComponent<PlayerCharacterRecoil>().enabled = false;
-            var input = new FireInput(); Set(context.Shooter, "_input", input); context.Shooter.enabled = true;
+            var input = context.EnableCombatInput();
             context.TogglePerspective(); yield return new WaitForSeconds(.3f);
             foreach (string name in new[] { "Dummy_Enemy", "Dummy_Neutral", "Ally_10m" })
             {
@@ -361,7 +361,7 @@ namespace Battlefield.Tests.PlayMode
                 Physics.SyncTransforms(); health.TakeDamage(health.MaxHealth); Assert.That(life.IsDowned, Is.True);
                 for (int shot = 0; shot < 4; shot++)
                 {
-                    input.FireWeapon = true; yield return null; input.FireWeapon = false; yield return new WaitForSeconds(.15f);
+                    input.PressFire(); yield return null; input.FireWeapon = false; yield return new WaitForSeconds(.15f);
                 }
                 Assert.That(life.State, Is.EqualTo(allied ? InfantryLife.Downed : InfantryLife.Eliminated), name);
                 health.transform.position += Vector3.right * 100f; Physics.SyncTransforms();
@@ -372,11 +372,11 @@ namespace Battlefield.Tests.PlayMode
         public IEnumerator AlliedDummyActualShotsApplyRecoverableRecoilAndRetainTeamCollisionRules()
         {
             yield return CharacterViewTestContext.Load(); var context = new CharacterViewTestContext();
-            Assert.That(context.Shooter.GetComponent<Battlefield.Features.Dummy.DummyShooter>(), Is.Not.Null);
+            Assert.That(context.Shooter.GetComponent<Battlefield.Features.Training.DummyShooter>(), Is.Not.Null);
             Assert.That(context.Shooter.GetComponent<Team>().CurrentTeam, Is.EqualTo(TeamType.Player));
             var recoil = context.Actor.GetComponent<PlayerCharacterRecoil>() ?? context.Actor.gameObject.AddComponent<PlayerCharacterRecoil>();
             recoil.enabled = false; Set(recoil, "_combat", context.Shooter); Set(recoil, "_view", context.View); recoil.enabled = true;
-            Set(context.View, "_recoil", recoil); var input = new FireInput(); Set(context.Shooter, "_input", input); context.Shooter.enabled = true;
+            Set(context.View, "_recoil", recoil); var input = context.EnableCombatInput();
             context.TogglePerspective(); yield return new WaitForSeconds(.3f);
             foreach (string name in new[] { "Dummy_Enemy", "Dummy_Neutral", "Ally_10m" })
             {
@@ -384,7 +384,7 @@ namespace Battlefield.Tests.PlayMode
                 bool allied = name == "Ally_10m"; if (allied) Set(target.GetComponent<Team>(), "_team", TeamType.Player);
                 recoil.Tick(10f); target.transform.SetParent(null, true); target.transform.position = context.Actor.position + Vector3.forward * 20f;
                 Physics.SyncTransforms(); float before = target.CurrentHealth; Quaternion aim = context.View.AimRotation;
-                input.FireWeapon = true; yield return null; input.FireWeapon = false;
+                input.PressFire(); yield return null; input.FireWeapon = false;
                 Assert.That(recoil.Offset.x, Is.GreaterThan(0f)); Assert.That(Quaternion.Angle(aim, context.View.AimRotation), Is.GreaterThan(.1f));
                 yield return new WaitForSeconds(.25f);
                 Assert.That(target.CurrentHealth, Is.EqualTo(before - (allied ? 0f : 10f)), name);

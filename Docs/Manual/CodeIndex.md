@@ -64,11 +64,11 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 - 설정 필드 — _launch, _volume
 - 연결 — 직접 직렬화 연결 없음. 기능 목록과 생성/초기화 코드 확인
 
-## Assets/Features/Dummy
+## Assets/Features/Training
 
 ### DummyAirTargetLockDebug (23줄)
 
-[DummyAirTargetLockDebug.cs](<../../Assets/Features/Dummy/Scripts/DummyAirTargetLockDebug.cs>)
+[DummyAirTargetLockDebug.cs](<../../Assets/Features/Training/Scripts/DummyAirTargetLockDebug.cs>)
 
 - 메서드 — Awake, Update
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -76,7 +76,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### DummyDebug (26줄)
 
-[DummyDebug.cs](<../../Assets/Features/Dummy/Scripts/DummyDebug.cs>)
+[DummyDebug.cs](<../../Assets/Features/Training/Scripts/DummyDebug.cs>)
 
 - 메서드 — Awake, LogDamaged, LogDeath
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -84,7 +84,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### DummyMissileShooter (147줄)
 
-[DummyMissileShooter.cs](<../../Assets/Features/Dummy/Scripts/DummyMissileShooter.cs>)
+[DummyMissileShooter.cs](<../../Assets/Features/Training/Scripts/DummyMissileShooter.cs>)
 
 - 메서드 — Awake, OnEnable, OnDisable, Update, AdvanceState, EnterState, ReportLockProgress, Fire
 - 설정 필드 — _target, _missilePool, _firePoint, _fireInterval, _startDelay, _lockDuration, _lockedDuration, _damage
@@ -92,7 +92,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### DummyShooter (66줄)
 
-[DummyShooter.cs](<../../Assets/Features/Dummy/Scripts/DummyShooter.cs>)
+[DummyShooter.cs](<../../Assets/Features/Training/Scripts/DummyShooter.cs>)
 
 - 메서드 — Awake, OnEnable, Update, Fire
 - 설정 필드 — _target, _bulletPool, _fireInterval, _damage, _startDelay, _muzzleOffset
@@ -212,9 +212,9 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 - 설정 필드 — _accelerationMultiplier, _maxSpeedMultiplier, _duration, _recoveryPerSecond, _recoveryDelay
 - 연결 — Assets/Features/Fighter/Prefabs/Fighter.prefab → Fighter
 
-### FighterEngine (40줄)
+### FighterEngineActivation (40줄)
 
-[FighterEngine.cs](<../../Assets/Features/Fighter/Scripts/Movement/FighterEngine.cs>)
+[FighterEngineActivation.cs](<../../Assets/Features/Fighter/Scripts/Movement/FighterEngineActivation.cs>)
 
 - 메서드 — Start, Update, RefreshState, OnDisable
 - 설정 필드 — _seat, _movement
@@ -264,7 +264,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### GrenadeHandlingAnimationAuthoring (177줄)
 
-[GrenadeHandlingAnimationAuthoring.cs](<../../Assets/Features/PlayerCharacter/Editor/GrenadeHandlingAnimationAuthoring.cs>)
+[GrenadeHandlingAnimationAuthoring.cs](<../../Assets/Features/PlayerCharacter/Editor/Authoring/GrenadeHandlingAnimationAuthoring.cs>)
 
 - 메서드 — Ensure, AddState, AssignMissing, CreateClip, MuscleProperty, Ready
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -272,7 +272,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### GrenadeThrowCompositionSetup (110줄)
 
-[GrenadeThrowCompositionSetup.cs](<../../Assets/Features/PlayerCharacter/Editor/GrenadeThrowCompositionSetup.cs>)
+[GrenadeThrowCompositionSetup.cs](<../../Assets/Features/PlayerCharacter/Editor/Authoring/GrenadeThrowCompositionSetup.cs>)
 
 - 메서드 — Apply, Import
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -280,39 +280,39 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### InfantryTestTools (64줄)
 
-[InfantryTestTools.cs](<../../Assets/Features/PlayerCharacter/Editor/InfantryTestTools.cs>)
+[InfantryTestTools.cs](<../../Assets/Features/PlayerCharacter/Editor/Diagnostics/InfantryTestTools.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
 - 연결 — 직접 직렬화 연결 없음. 기능 목록과 생성/초기화 코드 확인
 
-### LocalArmedLocomotionSetup (33줄)
+### ArmedLocomotionSceneSetup (33줄)
 
-[LocalArmedLocomotionSetup.cs](<../../Assets/Features/PlayerCharacter/Editor/LocalArmedLocomotionSetup.cs>)
+[ArmedLocomotionSceneSetup.cs](<../../Assets/Features/PlayerCharacter/Editor/Composition/ArmedLocomotionSceneSetup.cs>)
 
 - 메서드 — Apply, OnProcessScene
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
 - 연결 — 직접 직렬화 연결 없음. 기능 목록과 생성/초기화 코드 확인
 
-### LocalProneAnimationSetup (120줄)
+### ProneAnimationSceneSetup (120줄)
 
-[LocalProneAnimationSetup.cs](<../../Assets/Features/PlayerCharacter/Editor/LocalProneAnimationSetup.cs>)
+[ProneAnimationSceneSetup.cs](<../../Assets/Features/PlayerCharacter/Editor/Composition/ProneAnimationSceneSetup.cs>)
 
 - 메서드 — Import, Apply, OnProcessScene
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
 - 연결 — 직접 직렬화 연결 없음. 기능 목록과 생성/초기화 코드 확인
 
-### LocalSlideAnimationSetup (56줄)
+### SlideAnimationSceneSetup (56줄)
 
-[LocalSlideAnimationSetup.cs](<../../Assets/Features/PlayerCharacter/Editor/LocalSlideAnimationSetup.cs>)
+[SlideAnimationSceneSetup.cs](<../../Assets/Features/PlayerCharacter/Editor/Composition/SlideAnimationSceneSetup.cs>)
 
 - 메서드 — Apply, OnProcessScene
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
 - 연결 — 직접 직렬화 연결 없음. 기능 목록과 생성/초기화 코드 확인
 
-### LocalTacticalActionSetup (63줄)
+### TacticalActionSceneSetup (63줄)
 
-[LocalTacticalActionSetup.cs](<../../Assets/Features/PlayerCharacter/Editor/LocalTacticalActionSetup.cs>)
+[TacticalActionSceneSetup.cs](<../../Assets/Features/PlayerCharacter/Editor/Composition/TacticalActionSceneSetup.cs>)
 
 - 메서드 — Apply, OnProcessScene
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -320,7 +320,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### MixamoArmedLocomotionImporter (92줄)
 
-[MixamoArmedLocomotionImporter.cs](<../../Assets/Features/PlayerCharacter/Editor/MixamoArmedLocomotionImporter.cs>)
+[MixamoArmedLocomotionImporter.cs](<../../Assets/Features/PlayerCharacter/Editor/Importers/MixamoArmedLocomotionImporter.cs>)
 
 - 메서드 — Import
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -328,7 +328,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### MixamoSlideImporter (99줄)
 
-[MixamoSlideImporter.cs](<../../Assets/Features/PlayerCharacter/Editor/MixamoSlideImporter.cs>)
+[MixamoSlideImporter.cs](<../../Assets/Features/PlayerCharacter/Editor/Importers/MixamoSlideImporter.cs>)
 
 - 메서드 — ImportRunningSlide, RestoreOriginalRunningSlide, UseRunningSlideLowerBody, UseForwardSlideEntry, Import
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -336,7 +336,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterAimDiagnostics (100줄)
 
-[PlayerCharacterAimDiagnostics.cs](<../../Assets/Features/PlayerCharacter/Editor/PlayerCharacterAimDiagnostics.cs>)
+[PlayerCharacterAimDiagnostics.cs](<../../Assets/Features/PlayerCharacter/Editor/Diagnostics/PlayerCharacterAimDiagnostics.cs>)
 
 - 메서드 — OnPlayMode, Begin, Stop, WriteStatus, Observe
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -344,7 +344,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### TacticalActionImporter (114줄)
 
-[TacticalActionImporter.cs](<../../Assets/Features/PlayerCharacter/Editor/TacticalActionImporter.cs>)
+[TacticalActionImporter.cs](<../../Assets/Features/PlayerCharacter/Editor/Importers/TacticalActionImporter.cs>)
 
 - 메서드 — Import
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -352,7 +352,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### ArmedLocomotionAnimationSet (23줄)
 
-[ArmedLocomotionAnimationSet.cs](<../../Assets/Features/PlayerCharacter/Scripts/ArmedLocomotionAnimationSet.cs>)
+[ArmedLocomotionAnimationSet.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Locomotion/ArmedLocomotionAnimationSet.cs>)
 
 - 메서드 — Find
 - 설정 필드 — _equipment, _movement, _entries
@@ -360,7 +360,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### EquippedAnimationControllers (42줄)
 
-[EquippedAnimationControllers.cs](<../../Assets/Features/PlayerCharacter/Scripts/EquippedAnimationControllers.cs>)
+[EquippedAnimationControllers.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Combat/EquippedAnimationControllers.cs>)
 
 - 메서드 — Resolve, Dispose
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -368,7 +368,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### FirstPersonArmPose (61줄)
 
-[FirstPersonArmPose.cs](<../../Assets/Features/PlayerCharacter/Scripts/FirstPersonArmPose.cs>)
+[FirstPersonArmPose.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/FirstPerson/FirstPersonArmPose.cs>)
 
 - 메서드 — Apply
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -376,7 +376,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### FirstPersonArmsView (204줄)
 
-[FirstPersonArmsView.cs](<../../Assets/Features/PlayerCharacter/Scripts/FirstPersonArmsView.cs>)
+[FirstPersonArmsView.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/FirstPerson/FirstPersonArmsView.cs>)
 
 - 메서드 — SetTacticalPresentation, SetPronePresentation, Awake, Initialize, LateUpdate, CopyPose, FitPronePistolAim, OnDisable, OnDestroy
 - 설정 필드 — _source, _renderer, _animator, _characterRoot, _eye, _poseAnchor, _poseEuler, _view, _combat, _offset, _adsOffset, _motionSource, _unarmedOffset, _meleeMesh, _reloadPose, _adsShoulder, _adsElbowHint, _prone, _tactical, _pronePistolAimDistance
@@ -384,7 +384,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### HumanoidArmSolver (31줄)
 
-[HumanoidArmSolver.cs](<../../Assets/Features/PlayerCharacter/Scripts/HumanoidArmSolver.cs>)
+[HumanoidArmSolver.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Combat/HumanoidArmSolver.cs>)
 
 - 메서드 — Solve
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -392,7 +392,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### InfantryLifeState (139줄)
 
-[InfantryLifeState.cs](<../../Assets/Features/PlayerCharacter/Scripts/InfantryLifeState.cs>)
+[InfantryLifeState.cs](<../../Assets/Features/PlayerCharacter/Scripts/Life/InfantryLifeState.cs>)
 
 - 메서드 — Awake, OnEnable, Start, Update, Tick, OnDeath, TryHandleDamage, GiveUp, TryClaimRevive, ReleaseRevive, TryRevive, TryRespawn, TryDrag, OnDisable
 - 설정 필드 — _stance, _movement, _combat, _occupant, _bleedOutDuration, _downedHealth, _reviveHealthFraction
@@ -400,7 +400,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### InfantryTrainingDummy (16줄)
 
-[InfantryTrainingDummy.cs](<../../Assets/Features/PlayerCharacter/Scripts/InfantryTrainingDummy.cs>)
+[InfantryTrainingDummy.cs](<../../Assets/Features/Training/Scripts/InfantryTrainingDummy.cs>)
 
 - 메서드 — Initialize, Update, OnAnimatorIK
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -408,7 +408,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### IPlayerCharacterAimSource (9줄)
 
-[IPlayerCharacterAimSource.cs](<../../Assets/Features/PlayerCharacter/Scripts/IPlayerCharacterAimSource.cs>)
+[IPlayerCharacterAimSource.cs](<../../Assets/Features/PlayerCharacter/Scripts/Input/Contracts/IPlayerCharacterAimSource.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -416,7 +416,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### IPlayerCharacterCombatInput (10줄)
 
-[IPlayerCharacterCombatInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/IPlayerCharacterCombatInput.cs>)
+[IPlayerCharacterCombatInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/Input/Contracts/IPlayerCharacterCombatInput.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -424,7 +424,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### IPlayerCharacterInput (11줄)
 
-[IPlayerCharacterInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/IPlayerCharacterInput.cs>)
+[IPlayerCharacterInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/Input/Contracts/IPlayerCharacterInput.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -432,7 +432,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### IPlayerCharacterInteractionInput (8줄)
 
-[IPlayerCharacterInteractionInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/IPlayerCharacterInteractionInput.cs>)
+[IPlayerCharacterInteractionInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/Input/Contracts/IPlayerCharacterInteractionInput.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -440,7 +440,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### IPlayerCharacterLifeInput (9줄)
 
-[IPlayerCharacterLifeInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/IPlayerCharacterLifeInput.cs>)
+[IPlayerCharacterLifeInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/Input/Contracts/IPlayerCharacterLifeInput.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -448,7 +448,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### IPlayerCharacterStanceInput (7줄)
 
-[IPlayerCharacterStanceInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/IPlayerCharacterStanceInput.cs>)
+[IPlayerCharacterStanceInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/Input/Contracts/IPlayerCharacterStanceInput.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -456,7 +456,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### IPlayerCharacterTacticalInput (8줄)
 
-[IPlayerCharacterTacticalInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/IPlayerCharacterTacticalInput.cs>)
+[IPlayerCharacterTacticalInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/Input/Contracts/IPlayerCharacterTacticalInput.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -464,7 +464,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### IPlayerCharacterThrowInput (15줄)
 
-[IPlayerCharacterThrowInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/IPlayerCharacterThrowInput.cs>)
+[IPlayerCharacterThrowInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/Input/Contracts/IPlayerCharacterThrowInput.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -472,7 +472,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### IPlayerCharacterTraversalInput (8줄)
 
-[IPlayerCharacterTraversalInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/IPlayerCharacterTraversalInput.cs>)
+[IPlayerCharacterTraversalInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/Input/Contracts/IPlayerCharacterTraversalInput.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -480,7 +480,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### IPlayerCharacterViewInput (15줄)
 
-[IPlayerCharacterViewInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/IPlayerCharacterViewInput.cs>)
+[IPlayerCharacterViewInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/Input/Contracts/IPlayerCharacterViewInput.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -488,7 +488,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### MantleDefinition (19줄)
 
-[MantleDefinition.cs](<../../Assets/Features/PlayerCharacter/Scripts/MantleDefinition.cs>)
+[MantleDefinition.cs](<../../Assets/Features/PlayerCharacter/Scripts/Locomotion/MantleDefinition.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — _animation, _minimumHeightFraction, _maximumHeightFraction, _reach, _reachDuration
@@ -496,7 +496,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterActionPolicy (42줄)
 
-[PlayerCharacterActionPolicy.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterActionPolicy.cs>)
+[PlayerCharacterActionPolicy.cs](<../../Assets/Features/PlayerCharacter/Scripts/Actions/PlayerCharacterActionPolicy.cs>)
 
 - 메서드 — SetTacticalActions, Awake
 - 설정 필드 — _health, _view, _combat, _traversal, _revive, _mantle, _grenade
@@ -504,7 +504,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterAnimationView (110줄)
 
-[PlayerCharacterAnimationView.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterAnimationView.cs>)
+[PlayerCharacterAnimationView.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Locomotion/PlayerCharacterAnimationView.cs>)
 
 - 메서드 — SetMantle, SetSlideAnimations, Awake, Update, UpdateTraversal, OnDisable
 - 설정 필드 — _movement, _animator, _stance, _life, _revive, _traversal, _slideAnimations, _mantle, _speedDamping
@@ -512,7 +512,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterCamera (197줄)
 
-[PlayerCharacterCamera.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterCamera.cs>)
+[PlayerCharacterCamera.cs](<../../Assets/Features/PlayerCharacter/Scripts/Camera/PlayerCharacterCamera.cs>)
 
 - 메서드 — Awake, OnEnable, Start, LateUpdate, GetAimRay, GetThirdPersonPivot, GetThirdPersonOffset, GetEyeOffset, GetSafeDistance, OnDisable
 - 설정 필드 — _target, _view, _stance, _lean, _offset, _lookOffset, _firstPersonOffset, _aimOffset, _followSpeed, _normalFieldOfView, _aimFieldOfView, _adsFieldOfView, _collisionRadius, _collisionPadding, _collisionMask, _movement, _actions, _traversal, _motionProfile
@@ -520,15 +520,15 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterCombatView (253줄)
 
-[PlayerCharacterCombatView.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterCombatView.cs>)
+[PlayerCharacterCombatView.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Combat/PlayerCharacterCombatView.cs>)
 
 - 메서드 — SetPronePresentation, SetTacticalPresentation, SetLocomotionAnimations, WeaponPoseRotation, Awake, OnEnable, RefreshEquipment, AttachWeapon, TryGetSupportHandPose, LateUpdate, Play, OnFired, OnReload, OnMelee, OnEquipmentChanged, ResetPose, OnDisable, OnDestroy
 - 설정 필드 — _combat, _view, _animator, _actions, _pistolPrefab, _firstPersonArms, _firstPersonRig, _gripPosition, _gripEuler, _reloadAnimation, _prone, _tactical, _locomotionAnimations
 - 연결 — Assets/Scenes/SampleScene.unity → [Prefab instance]
 
-### PlayerCharacterController (221줄)
+### PlayerCharacterCombatController (221줄)
 
-[PlayerCharacterController.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterController.cs>)
+[PlayerCharacterCombatController.cs](<../../Assets/Features/PlayerCharacter/Scripts/Combat/PlayerCharacterCombatController.cs>)
 
 - 메서드 — BindMuzzle, ResetForRespawn, Awake, OnEnable, OnLoadoutChanged, Update, Equip, TryMelee, CancelActions, OnDisable, TryFire, FindNearestSurface
 - 설정 필드 — _bulletPool, _fireRate, _damage, _muzzleOffset, _aimSourceBehaviour, _aimDistance, _aimMask, _magazine, _loadout, _fistAttack, _pistolAttack, _actions
@@ -536,7 +536,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterGrenadeThrow (223줄)
 
-[PlayerCharacterGrenadeThrow.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterGrenadeThrow.cs>)
+[PlayerCharacterGrenadeThrow.cs](<../../Assets/Features/PlayerCharacter/Scripts/Combat/PlayerCharacterGrenadeThrow.cs>)
 
 - 메서드 — Awake, Initialize, OnEquipmentChanged, OnLifeChanged, Update, TryEquip, TryBeginAim, TryThrow, TryToggleThrowMode, Tick, Release, TryGetAimTrajectory, GetLaunch, Clear, IsOwnedCollider, AttachHeldVisual, Cancel, OnDisable, OnDestroy
 - 설정 필드 — _definition, _capacity, _combat, _stance, _movement, _actions, _aimSourceBehaviour, _effectSourceBehaviour, _life
@@ -544,7 +544,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterInput (174줄)
 
-[PlayerCharacterInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterInput.cs>)
+[PlayerCharacterInput.cs](<../../Assets/Features/PlayerCharacter/Scripts/Input/PlayerCharacterInput.cs>)
 
 - 메서드 — ConsumePrimaryUntilRelease, ConsumeAimUntilRelease, Awake, SetGameplayEnabled, OnEnable, Update, SetCaptured, OnApplicationFocus, OnDisable, OnDestroy
 - 설정 필드 — _inputActions
@@ -552,7 +552,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterJumpPoseState (38줄)
 
-[PlayerCharacterJumpPoseState.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterJumpPoseState.cs>)
+[PlayerCharacterJumpPoseState.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/FirstPerson/PlayerCharacterJumpPoseState.cs>)
 
 - 메서드 — Tick, Reset
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -560,7 +560,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterLean (42줄)
 
-[PlayerCharacterLean.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterLean.cs>)
+[PlayerCharacterLean.cs](<../../Assets/Features/PlayerCharacter/Scripts/Camera/PlayerCharacterLean.cs>)
 
 - 메서드 — Awake, Update, Tick, OnDisable
 - 설정 필드 — _camera, _actions, _distance, _angle, _speed, _radius, _obstacleMask
@@ -568,7 +568,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterLoadout (63줄)
 
-[PlayerCharacterLoadout.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterLoadout.cs>)
+[PlayerCharacterLoadout.cs](<../../Assets/Features/PlayerCharacter/Scripts/Equipment/PlayerCharacterLoadout.cs>)
 
 - 메서드 — GetEquipment, Awake, OnEnable, OnEquipmentChanged, TryEquip, ResetForRespawn, OnDisable
 - 설정 필드 — _slot, _equipment, _weapons
@@ -576,7 +576,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterMantle (81줄)
 
-[PlayerCharacterMantle.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterMantle.cs>)
+[PlayerCharacterMantle.cs](<../../Assets/Features/PlayerCharacter/Scripts/Locomotion/PlayerCharacterMantle.cs>)
 
 - 메서드 — Awake, Initialize, Step, TryBegin, HasSpace, Ray, Cancel, OnDisable
 - 설정 필드 — _definition, _stance, _traversal, _actions
@@ -584,7 +584,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterMotionProfile (62줄)
 
-[PlayerCharacterMotionProfile.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterMotionProfile.cs>)
+[PlayerCharacterMotionProfile.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/FirstPerson/PlayerCharacterMotionProfile.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — _walkStride, _sprintStride, _walkCameraBob, _sprintCameraBob, _cameraRoll, _adsMotionMultiplier, _weaponBob, _lookSway, _maximumSway, _sprintOffset, _sprintEuler, _response, _aimResponse, _landingImpulse, _maximumLandingImpulse, _landingRecovery, _jumpVerticalLag, _maximumJumpLag, _jumpRecovery, _landingCameraMultiplier, _jumpPitchPerMeter, _landingPitchPerMeter, _thirdPersonJumpMultiplier
@@ -592,7 +592,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterMotionState (110줄)
 
-[PlayerCharacterMotionState.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterMotionState.cs>)
+[PlayerCharacterMotionState.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/FirstPerson/PlayerCharacterMotionState.cs>)
 
 - 메서드 — Reset, Tick
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -600,7 +600,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterMovement (120줄)
 
-[PlayerCharacterMovement.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterMovement.cs>)
+[PlayerCharacterMovement.cs](<../../Assets/Features/PlayerCharacter/Scripts/Locomotion/PlayerCharacterMovement.cs>)
 
 - 메서드 — SetMantle, Awake, Update, Tick, Stop, OnDisable, QueueExternalDisplacement
 - 설정 필드 — _moveSpeed, _sprintSpeed, _jumpHeight, _stance, _actions, _traversal, _acceleration, _deceleration, _airAcceleration, _mantle
@@ -608,7 +608,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterPostureView (99줄)
 
-[PlayerCharacterPostureView.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterPostureView.cs>)
+[PlayerCharacterPostureView.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Locomotion/PlayerCharacterPostureView.cs>)
 
 - 메서드 — SetPronePresentation, Awake, Apply, LateUpdate, OnDisable
 - 설정 필드 — _stance, _root, _body, _life, _lean, _revive, _traversal, _skin, _slideContactData, _bodyGroundClearance, _eliminatedGroundClearance, _reviveGroundClearance, _blendSpeed, _authoredProne
@@ -616,7 +616,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterProneAnimationView (188줄)
 
-[PlayerCharacterProneAnimationView.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterProneAnimationView.cs>)
+[PlayerCharacterProneAnimationView.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Locomotion/PlayerCharacterProneAnimationView.cs>)
 
 - 메서드 — Initialize, OnEnable, Subscribe, Unsubscribe, EquipmentChanged, BindMagazine, ReloadStarted, MeleeStarted, Fired, Begin, LateUpdate, Release, OnDisable, OnDestroy
 - 설정 필드 — _animator, _movement, _stance, _combat, _life, _animations
@@ -624,7 +624,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterRecoil (44줄)
 
-[PlayerCharacterRecoil.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterRecoil.cs>)
+[PlayerCharacterRecoil.cs](<../../Assets/Features/PlayerCharacter/Scripts/Combat/PlayerCharacterRecoil.cs>)
 
 - 메서드 — OnEnable, Update, Tick, OnFired, OnDisable
 - 설정 필드 — _combat, _view, _stance, _mount, _pitchPerShot, _yawPerShot, _maximumPitch, _recoverySpeed
@@ -632,7 +632,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterRevive (100줄)
 
-[PlayerCharacterRevive.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterRevive.cs>)
+[PlayerCharacterRevive.cs](<../../Assets/Features/PlayerCharacter/Scripts/Life/PlayerCharacterRevive.cs>)
 
 - 메서드 — Awake, Update, CanRevive, FindCandidate, TryBegin, Tick, Cancel, OnDisable
 - 설정 필드 — _health, _team, _stance, _traversal, _range, _duration, _dragSpeed
@@ -640,7 +640,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterRifleReloadView (160줄)
 
-[PlayerCharacterRifleReloadView.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterRifleReloadView.cs>)
+[PlayerCharacterRifleReloadView.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Combat/PlayerCharacterRifleReloadView.cs>)
 
 - 메서드 — SetPronePresentation, Awake, OnEnable, OnEquipment, Bind, Begin, Completed, LateUpdate, Restore, OnDisable
 - 설정 필드 — _combat, _presentation, _view, _camera, _animator, _aim, _hipViewOffset, _adsViewOffset, _prone
@@ -648,7 +648,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterSlideAnimationView (125줄)
 
-[PlayerCharacterSlideAnimationView.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterSlideAnimationView.cs>)
+[PlayerCharacterSlideAnimationView.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Locomotion/PlayerCharacterSlideAnimationView.cs>)
 
 - 메서드 — Initialize, OnEnable, Bind, OnEquipment, Update, UpdateLowerBody, ResetLowerBody, Apply, Restore, Unbind, ClearControllers, Release, OnDisable, OnDestroy
 - 설정 필드 — _animator, _combat, _animations, _traversal
@@ -656,7 +656,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterStance (170줄)
 
-[PlayerCharacterStance.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterStance.cs>)
+[PlayerCharacterStance.cs](<../../Assets/Features/PlayerCharacter/Scripts/Locomotion/PlayerCharacterStance.cs>)
 
 - 메서드 — Awake, Update, TrySetCrouched, TrySetStance, HasClearance, ProneCapsule, ProneSpaceIsClear, AllowsHeading, ConstrainPlanarMovement, OnDisable
 - 설정 필드 — _crouchHeight, _crouchMoveSpeed, _standingObstacleMask, _proneHeight, _proneMoveSpeed, _proneEyeForward, _actions, _proneEnterDuration, _proneExitDuration
@@ -664,7 +664,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterTacticalAnimationView (134줄)
 
-[PlayerCharacterTacticalAnimationView.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterTacticalAnimationView.cs>)
+[PlayerCharacterTacticalAnimationView.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Locomotion/PlayerCharacterTacticalAnimationView.cs>)
 
 - 메서드 — Awake, CachePose, Initialize, Update, ApplyController, LateUpdate, UpdateHeldVisual, OnDisable, OnDestroy
 - 설정 필드 — _animator, _profile, _mantle, _throw, _stance, _view, _actions, _contactData, _skin
@@ -672,15 +672,15 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterTraversal (140줄)
 
-[PlayerCharacterTraversal.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterTraversal.cs>)
+[PlayerCharacterTraversal.cs](<../../Assets/Features/PlayerCharacter/Scripts/Locomotion/PlayerCharacterTraversal.cs>)
 
 - 메서드 — Awake, Step, TryBeginVault, AdvanceVault, Ray, HasSpace, FinishSlide, Cancel, OnDisable
 - 설정 필드 — _movement, _stance, _actions, _slideDuration, _slideEndSpeed, _vaultReach, _maximumVaultHeight, _maximumVaultDepth, _vaultDuration, _obstacleMask
 - 연결 — Assets/Scenes/SampleScene.unity → PlayerCharacter
 
-### PlayerCharacterView (181줄)
+### PlayerCharacterLookController (181줄)
 
-[PlayerCharacterView.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterView.cs>)
+[PlayerCharacterLookController.cs](<../../Assets/Features/PlayerCharacter/Scripts/Camera/PlayerCharacterLookController.cs>)
 
 - 메서드 — ClampAimPitch, ClampFreePitch, Awake, OnEnable, Update, UpdateProneBlend, Tick, ResetTransientState, OnDisable
 - 설정 필드 — _lookSensitivity, _pitchLimit, _freeLookYawLimit, _firstPersonFreeLookYawLimit, _freeLookReturnSpeed, _adsTapWindow, _stance, _actions, _recoil, _proneCamera
@@ -688,7 +688,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterVisibility (56줄)
 
-[PlayerCharacterVisibility.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterVisibility.cs>)
+[PlayerCharacterVisibility.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/FirstPerson/PlayerCharacterVisibility.cs>)
 
 - 메서드 — Awake, LateUpdate, OnDisable
 - 설정 필드 — _view, _camera, _renderers, _hideDistance
@@ -696,7 +696,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterWeaponAimView (449줄)
 
-[PlayerCharacterWeaponAimView.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterWeaponAimView.cs>)
+[PlayerCharacterWeaponAimView.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Combat/PlayerCharacterWeaponAimView.cs>)
 
 - 메서드 — SetTacticalPresentation, SetPronePresentation, Awake, OnAnimatorIK, GetReloadGrip, CalculateGrip, GetSupportPose, ApplyGrip, StabilizeArmedTorso, StabilizeLocomotionTorso, LocomotionTorsoCorrection, CompressGaitAngle, ApplyTorsoRotation, RotateBoneWorld, WithinReach, ApplyUpperBodyAim, LateUpdate, FitProneItemContact, SetWeight, OnDisable
 - 설정 필드 — _combat, _presentation, _view, _camera, _animator, _posture, _mount, _actions, _rightHandOffset, _leftHandOffset, _leftHandEuler, _bodyAimWeight, _headAimWeight, _lookAtClamp, _poseFollowSpeed, _minimumDownwardReach, _prone, _tactical
@@ -704,15 +704,15 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterWeaponEquipment (72줄)
 
-[PlayerCharacterWeaponEquipment.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterWeaponEquipment.cs>)
+[PlayerCharacterWeaponEquipment.cs](<../../Assets/Features/PlayerCharacter/Scripts/Equipment/PlayerCharacterWeaponEquipment.cs>)
 
 - 메서드 — Awake, Initialize, TryEquip, ApplyDefinition, Update, ResetAmmo, OnDisable
 - 설정 필드 — _definition, _existingMagazine
 - 연결 — Assets/Scenes/SampleScene.unity → PlayerCharacter/Equipment/Pistol / Assets/Scenes/SampleScene.unity → PlayerCharacter/Equipment/Rifle
 
-### PlayerCharacterWeaponMount (58줄)
+### PlayerCharacterWeaponBracing (58줄)
 
-[PlayerCharacterWeaponMount.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterWeaponMount.cs>)
+[PlayerCharacterWeaponBracing.cs](<../../Assets/Features/PlayerCharacter/Scripts/Combat/PlayerCharacterWeaponBracing.cs>)
 
 - 메서드 — Awake, Update, Tick, Release, OnDisable
 - 설정 필드 — _camera, _view, _movement, _combat, _actions, _reach, _recoilMultiplier, _coverMask
@@ -720,7 +720,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCharacterWeaponPoseState (37줄)
 
-[PlayerCharacterWeaponPoseState.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerCharacterWeaponPoseState.cs>)
+[PlayerCharacterWeaponPoseState.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Combat/PlayerCharacterWeaponPoseState.cs>)
 
 - 메서드 — Reset, RequireReady, Tick, Rotation
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -728,7 +728,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerRifleStationInteraction (70줄)
 
-[PlayerRifleStationInteraction.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerRifleStationInteraction.cs>)
+[PlayerRifleStationInteraction.cs](<../../Assets/Features/PlayerCharacter/Scripts/Interaction/PlayerRifleStationInteraction.cs>)
 
 - 메서드 — Awake, Update, FindNearest, HasSight, TryUseNearest, OnDisable
 - 설정 필드 — _inputBehaviour, _combat, _loadout, _actions, _vehicles, _revive, _stations
@@ -736,7 +736,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerVehicleInteraction (55줄)
 
-[PlayerVehicleInteraction.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerVehicleInteraction.cs>)
+[PlayerVehicleInteraction.cs](<../../Assets/Features/PlayerCharacter/Scripts/Interaction/PlayerVehicleInteraction.cs>)
 
 - 메서드 — Awake, Update, FindNearestSeat
 - 설정 필드 — _input, _occupant, _seats, _revive
@@ -744,7 +744,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerVehicleOccupant (119줄)
 
-[PlayerVehicleOccupant.cs](<../../Assets/Features/PlayerCharacter/Scripts/PlayerVehicleOccupant.cs>)
+[PlayerVehicleOccupant.cs](<../../Assets/Features/PlayerCharacter/Scripts/Interaction/PlayerVehicleOccupant.cs>)
 
 - 메서드 — Awake, Start, TryAttachToSeat, DetachFromSeat, RestoreStanding, OnDisable
 - 설정 필드 — _input, _seatedPose, _onFootComponents, _vehicleCamera, _vehicleHud
@@ -752,7 +752,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### ProneAnimationSet (27줄)
 
-[ProneAnimationSet.cs](<../../Assets/Features/PlayerCharacter/Scripts/ProneAnimationSet.cs>)
+[ProneAnimationSet.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Locomotion/ProneAnimationSet.cs>)
 
 - 메서드 — GetClip
 - 설정 필드 — _idle, _forward, _backward, _left, _right, _enter, _exit, _fire, _reload, _death, _armedEnter, _armedExit, _meleeMask, _meleeWeapon, _meleeJab, _meleeCross, _retargetStandingMelee, _crawlPlaybackSpeed
@@ -760,7 +760,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### ProneCameraProfile (25줄)
 
-[ProneCameraProfile.cs](<../../Assets/Features/PlayerCharacter/Scripts/ProneCameraProfile.cs>)
+[ProneCameraProfile.cs](<../../Assets/Features/PlayerCharacter/Scripts/Camera/ProneCameraProfile.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — _pivotFromFeet, _thirdPersonOffset, _aimOffset, _aimPitchUp, _aimPitchDown, _freePitchUp, _freePitchDown, _aimYawLimit
@@ -768,7 +768,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### RifleSelectionStation (16줄)
 
-[RifleSelectionStation.cs](<../../Assets/Features/PlayerCharacter/Scripts/RifleSelectionStation.cs>)
+[RifleSelectionStation.cs](<../../Assets/Features/Training/Scripts/RifleSelectionStation.cs>)
 
 - 메서드 — IsInRange
 - 설정 필드 — _definition, _interactionPoint, _range
@@ -776,7 +776,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### SeatedAnimationPlayback (61줄)
 
-[SeatedAnimationPlayback.cs](<../../Assets/Features/PlayerCharacter/Scripts/SeatedAnimationPlayback.cs>)
+[SeatedAnimationPlayback.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Seating/SeatedAnimationPlayback.cs>)
 
 - 메서드 — Sample, Dispose
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -784,7 +784,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### SeatedCharacterPose (239줄)
 
-[SeatedCharacterPose.cs](<../../Assets/Features/PlayerCharacter/Scripts/SeatedCharacterPose.cs>)
+[SeatedCharacterPose.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Seating/SeatedCharacterPose.cs>)
 
 - 메서드 — Awake, BeginPose, EndPose, LateUpdate, OnDisable, CacheRig, HasRequiredBones, CaptureBonePose, RestoreBonePose, ApplyPose, TryGetPelvisFrame, PoseLeg, PoseArm, AlignBone, Bone
 - 설정 필드 — _animator, _seatedAnimation, _torsoRecline, _thighDirection, _lowerLegDirection, _upperArmDirection, _forearmDirection
@@ -792,7 +792,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### SkinnedPoseContactData (105줄)
 
-[SkinnedPoseContactData.cs](<../../Assets/Features/PlayerCharacter/Scripts/SkinnedPoseContactData.cs>)
+[SkinnedPoseContactData.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Locomotion/SkinnedPoseContactData.cs>)
 
 - 메서드 — CreateSampler, TryGetLowestHeight, WorldY, BakeFrom
 - 설정 필드 — _sourceMesh, _boneCount, _points
@@ -800,7 +800,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### SlideAnimationSet (42줄)
 
-[SlideAnimationSet.cs](<../../Assets/Features/PlayerCharacter/Scripts/SlideAnimationSet.cs>)
+[SlideAnimationSet.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Locomotion/SlideAnimationSet.cs>)
 
 - 메서드 — TryApply
 - 설정 필드 — _originalStart, _originalLoop, _originalExit, _start, _loop, _exit, _lowerBodyOnly
@@ -808,7 +808,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### TacticalAnimationSet (56줄)
 
-[TacticalAnimationSet.cs](<../../Assets/Features/PlayerCharacter/Scripts/TacticalAnimationSet.cs>)
+[TacticalAnimationSet.cs](<../../Assets/Features/PlayerCharacter/Scripts/Presentation/Locomotion/TacticalAnimationSet.cs>)
 
 - 메서드 — IsApplied, Restore, Apply
 - 설정 필드 — _mantlePlaceholder, _throwPlaceholder, _equipPlaceholder, _idlePlaceholder, _leftThrowPlaceholder, _mantle, _grenade
@@ -958,7 +958,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### GrenadeTrajectoryView (153줄)
 
-[GrenadeTrajectoryView.cs](<../../Assets/Features/UI/GrenadeTrajectoryView.cs>)
+[GrenadeTrajectoryView.cs](<../../Assets/Features/UI/Player/GrenadeTrajectoryView.cs>)
 
 - 메서드 — Initialize, Awake, Configure, LateUpdate, StyleGuide, PixelWidth, OnDisable
 - 설정 필드 — _grenade, _material, _viewCamera
@@ -966,7 +966,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### AirTargetLockView (108줄)
 
-[AirTargetLockView.cs](<../../Assets/Features/UI/HUD/Scripts/AirTargetLockView.cs>)
+[AirTargetLockView.cs](<../../Assets/Features/UI/Fighter/AirTargetLockView.cs>)
 
 - 메서드 — OnEnable, LateUpdate, OnDisable, HideTargetMarker
 - 설정 필드 — _targetLock, _weaponController, _jetCamera, _worldCamera, _lockAreaGraphic, _targetMarker, _targetMarkerGraphic, _acquiringColor, _lockedColor, _acquiringSize, _lockedSize
@@ -974,7 +974,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### FighterCombatHudView (65줄)
 
-[FighterCombatHudView.cs](<../../Assets/Features/UI/HUD/Scripts/FighterCombatHudView.cs>)
+[FighterCombatHudView.cs](<../../Assets/Features/UI/Fighter/FighterCombatHudView.cs>)
 
 - 메서드 — OnEnable, OnDisable, HandleSelectionChanged, UpdateSelectedWeapon, RefreshVisibility, SetActive
 - 설정 필드 — _weaponController, _gunAimUI, _missileAimUI, _overheatUI
@@ -982,7 +982,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### FighterGunAimReticleMover (33줄)
 
-[FighterGunAimReticleMover.cs](<../../Assets/Features/UI/HUD/Scripts/FighterGunAimReticleMover.cs>)
+[FighterGunAimReticleMover.cs](<../../Assets/Features/UI/Fighter/FighterGunAimReticleMover.cs>)
 
 - 메서드 — MoveTo
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -990,7 +990,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### FighterGunAimView (167줄)
 
-[FighterGunAimView.cs](<../../Assets/Features/UI/HUD/Scripts/FighterGunAimView.cs>)
+[FighterGunAimView.cs](<../../Assets/Features/UI/Fighter/FighterGunAimView.cs>)
 
 - 메서드 — Awake, Start, OnEnable, FixedUpdate, LateUpdate, SetReticleColor, UpdateGunAimReticle, ApplyReticleColor, SetGunAimReticleVisible, SetBoresightVisible, OnValidate
 - 설정 필드 — _machineGun, _ownerRigidbody, _worldCamera, _jetCamera, _boresightImage, _gunAimReticleImage, _reticleColor, _predictionDistance, _reticleMoveSpeed
@@ -998,7 +998,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### FighterHudView (76줄)
 
-[FighterHudView.cs](<../../Assets/Features/UI/HUD/Scripts/FighterHudView.cs>)
+[FighterHudView.cs](<../../Assets/Features/UI/Fighter/FighterHudView.cs>)
 
 - 메서드 — LateUpdate, UpdateSpeed, UpdateHealth
 - 설정 필드 — _movement, _health, _speedText, _healthSegments
@@ -1006,7 +1006,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### HeatDotRingBuilder (61줄)
 
-[HeatDotRingBuilder.cs](<../../Assets/Features/UI/HUD/Scripts/HeatDotRingBuilder.cs>)
+[HeatDotRingBuilder.cs](<../../Assets/Features/UI/Shared/HeatDotRingBuilder.cs>)
 
 - 메서드 — GenerateDots, ClearChildren
 - 설정 필드 — _dotSprite, _dotCount, _dotSize, _radius, _startFromTop, _defaultDotColor
@@ -1014,7 +1014,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### HeatDotsView (92줄)
 
-[HeatDotsView.cs](<../../Assets/Features/UI/HUD/Scripts/HeatDotsView.cs>)
+[HeatDotsView.cs](<../../Assets/Features/UI/Shared/HeatDotsView.cs>)
 
 - 메서드 — CollectDotsFromChildren, LateUpdate, ColorForHeat, ColorForCooling
 - 설정 필드 — _dots, _weapon, _offColor, _normalColor, _warnColor, _hotColor, _activeAlpha, _inactiveAlpha
@@ -1022,7 +1022,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### LockOnAreaGraphic (71줄)
 
-[LockOnAreaGraphic.cs](<../../Assets/Features/UI/HUD/Scripts/LockOnAreaGraphic.cs>)
+[LockOnAreaGraphic.cs](<../../Assets/Features/UI/Fighter/LockOnAreaGraphic.cs>)
 
 - 메서드 — OnPopulateMesh, AddQuad, OnValidate
 - 설정 필드 — _thickness, _cornerLength
@@ -1030,7 +1030,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### MissileDirectionIndicatorGraphic (283줄)
 
-[MissileDirectionIndicatorGraphic.cs](<../../Assets/Features/UI/HUD/Scripts/MissileDirectionIndicatorGraphic.cs>)
+[MissileDirectionIndicatorGraphic.cs](<../../Assets/Features/UI/Fighter/MissileDirectionIndicatorGraphic.cs>)
 
 - 메서드 — Awake, Update, SetThreat, OnPopulateMesh, DrawLockState, DrawIncoming, DrawSideArcs, DrawArc, GetArcPoint, DrawTriangle, GetDrawColor, AddLine, AddTriangle
 - 설정 필드 — _triangleWidth, _triangleHeight, _triangleSpacing, _arcRadius, _arcLength, _arcSegments, _lineThickness, _outlineThickness, _incomingTriangleScale, _lockingColor, _dangerColor, _blinkDuration, _minimumBlinkAlpha
@@ -1038,7 +1038,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### MissileDirectionIndicatorView (134줄)
 
-[MissileDirectionIndicatorView.cs](<../../Assets/Features/UI/HUD/Scripts/MissileDirectionIndicatorView.cs>)
+[MissileDirectionIndicatorView.cs](<../../Assets/Features/UI/Fighter/MissileDirectionIndicatorView.cs>)
 
 - 메서드 — OnEnable, OnDisable, LateUpdate, UpdateIndicator, GetScreenDirection, HideAllIndicators, SetIndicatorVisible
 - 설정 필드 — _threatDetector, _worldCamera, _indicatorRadius, _indicatorSize
@@ -1046,7 +1046,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### MissileWarningView (370줄)
 
-[MissileWarningView.cs](<../../Assets/Features/UI/HUD/Scripts/MissileWarningView.cs>)
+[MissileWarningView.cs](<../../Assets/Features/UI/Fighter/MissileWarningView.cs>)
 
 - 메서드 — Awake, OnEnable, OnDisable, Update, HandleWarningStateChanged, HandleLockProgressChanged, GetWarningText, SetWarningVisible, SetBackgroundForState, SetTrianglesForState, SetLockProgressTriangles, SetIncomingTriangles, CaptureTriangleSizes, RestoreTriangleSize, SetTriangleColor, SetBorderColor
 - 설정 필드 — _threatDetector, _warningGroup, _warningText, _warningBackground, _warningBorder, _leftWarningTriangles, _rightWarningTriangles, _triangleOutlineSprite, _triangleFillSprite, _lockingText, _lockedText, _incomingText, _lockingColor, _dangerColor, _normalBackgroundColor, _lockedBackgroundColor, _incomingBackgroundColor, _transparentBackgroundColor, _incomingTriangleRedColor, _incomingTriangleDarkColor, _backgroundTransitionDuration, _incomingTriangleScale
@@ -1054,7 +1054,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### RefillProgressView (85줄)
 
-[RefillProgressView.cs](<../../Assets/Features/UI/HUD/Scripts/RefillProgressView.cs>)
+[RefillProgressView.cs](<../../Assets/Features/UI/Shared/RefillProgressView.cs>)
 
 - 메서드 — Awake, Bind, LateUpdate, OnDisable, SetProgressVisible
 - 설정 필드 — _progressType, _progressLine, _progressGraphic, _filledArea, _filledAreaGraphic
@@ -1062,7 +1062,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### WeaponSelectionView (136줄)
 
-[WeaponSelectionView.cs](<../../Assets/Features/UI/HUD/Scripts/WeaponSelectionView.cs>)
+[WeaponSelectionView.cs](<../../Assets/Features/UI/Shared/WeaponSelectionView.cs>)
 
 - 메서드 — OnEnable, OnDisable, LateUpdate, UpdateSelection, PresentWeapon, SetActive
 - 설정 필드 — _root, _weaponIcon, _ammoText, _infiniteAmmoIcon, _numberBackground, _numberText, _refillProgress, _controller, _selectedSlot, _unselectedSlot, _gunIcon, _missileIcon
@@ -1070,7 +1070,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### PlayerCombatHud (44줄)
 
-[PlayerCombatHud.cs](<../../Assets/Features/UI/PlayerCombatHud.cs>)
+[PlayerCombatHud.cs](<../../Assets/Features/UI/Player/PlayerCombatHud.cs>)
 
 - 메서드 — SetTacticalActions, Awake, LateUpdate
 - 설정 필드 — _combat, _label, _stance, _traversal, _mount, _health, _life, _revive, _rifleStations, _grenade, _mantle
@@ -1086,7 +1086,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### VehicleInteractionView (27줄)
 
-[VehicleInteractionView.cs](<../../Assets/Features/UI/VehicleInteractionView.cs>)
+[VehicleInteractionView.cs](<../../Assets/Features/UI/Player/VehicleInteractionView.cs>)
 
 - 메서드 — Awake, LateUpdate
 - 설정 필드 — _interaction, _label
@@ -1196,7 +1196,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### AirToAirMissileLauncher (211줄)
 
-[AirToAirMissileLauncher.cs](<../../Assets/Features/Weapon/Scrips/AirToAirMissileLauncher.cs>)
+[AirToAirMissileLauncher.cs](<../../Assets/Features/Weapon/Scripts/Firing/AirToAirMissileLauncher.cs>)
 
 - 메서드 — Awake, OnEnable, OnDisable, Fire, EvaluateAmmoState, TryStartReload, ReloadAfterDelay, TryStartReserveRefill, RefillReserveAfterDelay, TryGetRefillProgress, TrackProgress, HandleSelectionChanged, UpdateTargetSearching
 - 설정 필드 — _missilePool, _targetLock, _firePoint, _maximumAmmo, _reserveAmmo, _reloadDuration, _reserveRefillDuration
@@ -1204,7 +1204,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### GrenadeDefinition (41줄)
 
-[GrenadeDefinition.cs](<../../Assets/Features/Weapon/Scrips/GrenadeDefinition.cs>)
+[GrenadeDefinition.cs](<../../Assets/Features/Weapon/Scripts/Definitions/GrenadeDefinition.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — _projectile, _useAnimations, _throwAnimation, _leftThrowAnimation, _equipAnimation, _idleAnimation, _fuse, _damage, _radius, _launchSpeed, _upwardSpeed, _underhandLaunchSpeed, _underhandUpwardSpeed, _releaseFraction, _firstPersonOffset, _handlingFirstPersonOffset
@@ -1212,7 +1212,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### InfantryWeaponDefinition (43줄)
 
-[InfantryWeaponDefinition.cs](<../../Assets/Features/Weapon/Scrips/InfantryWeaponDefinition.cs>)
+[InfantryWeaponDefinition.cs](<../../Assets/Features/Weapon/Scripts/Definitions/InfantryWeaponDefinition.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — _displayName, _fireRate, _damage, _capacity, _reserve, _reloadDuration, _modelPrefab, _animations, _customGrip, _gripPosition, _gripEuler, _firstPersonEuler, _firstPersonOffset, _firstPersonAdsOffset, _firstPersonScale, _recoilDegrees, _recoilDistance
@@ -1220,7 +1220,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### IRefillProgressSource (16줄)
 
-[IRefillProgressSource.cs](<../../Assets/Features/Weapon/Scrips/IRefillProgressSource.cs>)
+[IRefillProgressSource.cs](<../../Assets/Features/Weapon/Scripts/Ammunition/IRefillProgressSource.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -1228,7 +1228,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### IWeaponInput (8줄)
 
-[IWeaponInput.cs](<../../Assets/Features/Weapon/Scrips/IWeaponInput.cs>)
+[IWeaponInput.cs](<../../Assets/Features/Weapon/Scripts/Firing/IWeaponInput.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -1236,7 +1236,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### IWeaponMagazine (19줄)
 
-[IWeaponMagazine.cs](<../../Assets/Features/Weapon/Scrips/IWeaponMagazine.cs>)
+[IWeaponMagazine.cs](<../../Assets/Features/Weapon/Scripts/Ammunition/IWeaponMagazine.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -1244,7 +1244,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### MachineGun (57줄)
 
-[MachineGun.cs](<../../Assets/Features/Weapon/Scrips/MachineGun.cs>)
+[MachineGun.cs](<../../Assets/Features/Weapon/Scripts/Firing/MachineGun.cs>)
 
 - 메서드 — Fire
 - 설정 필드 — _bulletPool, _firePoint, _projectileMesh, _tracerLengthMultiplier, _muzzleFlash
@@ -1252,7 +1252,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### MachineGunAimPredictor (186줄)
 
-[MachineGunAimPredictor.cs](<../../Assets/Features/Weapon/Scrips/MachineGunAimPredictor.cs>)
+[MachineGunAimPredictor.cs](<../../Assets/Features/Weapon/Scripts/Firing/MachineGunAimPredictor.cs>)
 
 - 메서드 — RecordTrajectorySample, ResetTrajectoryHistory, TryGetPredictedPoint, InitializeTrajectoryHistory, GetSampleAt, GetChronologicalSample
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -1260,7 +1260,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### MachineGunAudio (111줄)
 
-[MachineGunAudio.cs](<../../Assets/Features/Weapon/Scrips/MachineGunAudio.cs>)
+[MachineGunAudio.cs](<../../Assets/Features/Weapon/Scripts/Audio/MachineGunAudio.cs>)
 
 - 메서드 — Awake, OnEnable, LateUpdate, OnDisable, HandleFired, StopPlayback
 - 설정 필드 — _gun, _health, _source, _profile
@@ -1268,7 +1268,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### MeleeAttack (110줄)
 
-[MeleeAttack.cs](<../../Assets/Features/Weapon/Scrips/MeleeAttack.cs>)
+[MeleeAttack.cs](<../../Assets/Features/Weapon/Scripts/Melee/MeleeAttack.cs>)
 
 - 메서드 — TryAttack, Update, Resolve, IsOwner, Cancel, OnDisable
 - 설정 필드 — _damage, _range, _radius, _windup, _recovery, _hitMask
@@ -1276,7 +1276,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### MissileLaunchAudio (91줄)
 
-[MissileLaunchAudio.cs](<../../Assets/Features/Weapon/Scrips/MissileLaunchAudio.cs>)
+[MissileLaunchAudio.cs](<../../Assets/Features/Weapon/Scripts/Audio/MissileLaunchAudio.cs>)
 
 - 메서드 — Awake, OnEnable, LateUpdate, OnDisable, HandleFired
 - 설정 필드 — _launcher, _health, _source, _profile
@@ -1284,7 +1284,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### OverHeat (50줄)
 
-[OverHeat.cs](<../../Assets/Features/Weapon/Scrips/OverHeat.cs>)
+[OverHeat.cs](<../../Assets/Features/Weapon/Scripts/Firing/Overheat.cs>)
 
 - 메서드 — CanFire, AddHeat, CoolDown
 - 설정 필드 — _maxHeat, _heatPerShot, _coolDownPerSecond, _recoverHeat
@@ -1292,7 +1292,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### WeaponBase (57줄)
 
-[WeaponBase.cs](<../../Assets/Features/Weapon/Scrips/WeaponBase.cs>)
+[WeaponBase.cs](<../../Assets/Features/Weapon/Scripts/Firing/WeaponBase.cs>)
 
 - 메서드 — Update, TryFire, Fire
 - 설정 필드 — _displayName, _fireRate, _damage, _overheat
@@ -1300,7 +1300,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### WeaponController (48줄)
 
-[WeaponController.cs](<../../Assets/Features/Weapon/Scrips/WeaponController.cs>)
+[WeaponController.cs](<../../Assets/Features/Weapon/Scripts/Firing/WeaponController.cs>)
 
 - 메서드 — GetWeapon, Awake, Start, Update, SelectSlot
 - 설정 필드 — _weapons
@@ -1308,7 +1308,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### WeaponMagazine (38줄)
 
-[WeaponMagazine.cs](<../../Assets/Features/Weapon/Scrips/WeaponMagazine.cs>)
+[WeaponMagazine.cs](<../../Assets/Features/Weapon/Scripts/Ammunition/WeaponMagazine.cs>)
 
 - 메서드 — Awake, Update, ResetAmmo, TryConsumeRound, TryReload, CancelReload, OnDisable
 - 설정 필드 — _capacity, _startingReserve, _reloadDuration
@@ -1316,7 +1316,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### WeaponMagazineState (56줄)
 
-[WeaponMagazineState.cs](<../../Assets/Features/Weapon/Scrips/WeaponMagazineState.cs>)
+[WeaponMagazineState.cs](<../../Assets/Features/Weapon/Scripts/Ammunition/WeaponMagazineState.cs>)
 
 - 메서드 — Configure, ResetAmmo, Tick, TryConsumeRound, TryReload, CancelReload
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
@@ -1324,7 +1324,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### WeaponModel (20줄)
 
-[WeaponModel.cs](<../../Assets/Features/Weapon/Scrips/WeaponModel.cs>)
+[WeaponModel.cs](<../../Assets/Features/Weapon/Scripts/Models/WeaponModel.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — _muzzle, _supportHandGrip, _magazine, _reloadGrip, _reloadTravel, _reloadTilt
@@ -1454,7 +1454,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 ### CursorLock (13줄)
 
-[CursorLock.cs](<../../Assets/Framework/Unility/CursorLock.cs>)
+[CursorLock.cs](<../../Assets/Framework/Utility/CursorLock.cs>)
 
 - 메서드 — 메서드 없는 계약/데이터 또는 별도 구문 확인
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인

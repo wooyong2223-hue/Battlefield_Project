@@ -32,8 +32,11 @@ namespace Battlefield.Tests.PlayMode
             Press();Press(Key.G);Assert.That(_input.MeleePressed,Is.True);Assert.That(_input.EquipGrenadePressed,Is.False);
             Press();Press(Key.Digit4);Assert.That(_input.EquipGrenadePressed,Is.True);Assert.That(_input.MeleePressed,Is.False);
             InputSystem.QueueStateEvent(_mouse,new MouseState().WithButton(MouseButton.Left));InputSystem.Update();
-            Assert.That(_input.ThrowGrenadePressed,Is.True);_input.ConsumePrimaryUntilRelease();
-            Assert.That(_input.FireWeapon||_input.ThrowGrenadePressed,Is.False);
+            Assert.That(_input.ThrowGrenadePressed,Is.True);Assert.That(_input.FirePressed,Is.True);
+            InputSystem.Update();
+            Assert.That(_input.FireWeapon,Is.True);Assert.That(_input.FirePressed,Is.False,"Held input is not a new press.");
+            _input.ConsumePrimaryUntilRelease();
+            Assert.That(_input.FireWeapon||_input.FirePressed||_input.ThrowGrenadePressed,Is.False);
             Assert.That(_input.ThrowGrenadeHeld,Is.True,"Consumed weapon fire must not hide grenade hold.");
             InputSystem.QueueStateEvent(_mouse,new MouseState());InputSystem.Update();
             Assert.That(_input.ThrowGrenadeReleased,Is.True,"Consumed weapon fire must not hide grenade release.");yield return null;

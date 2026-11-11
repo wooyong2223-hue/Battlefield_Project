@@ -6306,7 +6306,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e925bb43522c4fd6b7d6777212e60474, type: 3}
   m_Name:
-  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Fighter.FighterEngine
+  m_EditorClassIdentifier: Battlefield.Features::Battlefield.Features.Fighter.FighterEngineActivation
   _seat: {fileID: 2963293008867098661}
   _movement: {fileID: 6082039962316065886}
 --- !u!114 &2963293008867098661

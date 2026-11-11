@@ -17,7 +17,7 @@ namespace Battlefield.Tests.PlayMode
         [Test]
         public void MouseTurnsTheCharacterAndPerspectiveTogglePreservesHeading()
         {
-            PlayerCharacterView view = CreateView();
+            PlayerCharacterLookController view = CreateView();
             InputState input = new() { Look = new Vector2(20f, 10f) };
             view.Tick(input, 0.02f);
             Assert.That(Mathf.DeltaAngle(0f, view.transform.eulerAngles.y), Is.EqualTo(60f).Within(0.01f));
@@ -34,7 +34,7 @@ namespace Battlefield.Tests.PlayMode
         [Test]
         public void FreeLookKeepsMovementAndAimHeadingAndReturnsToTheCharacter()
         {
-            PlayerCharacterView view = CreateView();
+            PlayerCharacterLookController view = CreateView();
             InputState input = new() { FreeLookHeld = true, Look = new Vector2(100f, 100f) };
             Quaternion aim = view.AimRotation;
             view.Tick(input, 0.02f);
@@ -51,7 +51,7 @@ namespace Battlefield.Tests.PlayMode
         [Test]
         public void FreeLookCanLookBehindInThirdPersonAndLimitsFirstPersonHeadTurn()
         {
-            PlayerCharacterView view = CreateView();
+            PlayerCharacterLookController view = CreateView();
             InputState input = new() { FreeLookHeld = true, Look = new Vector2(100f, 0f) };
             view.Tick(input, 0.02f);
             Assert.That(Vector3.Angle(view.LookRotation * Vector3.forward, Vector3.back), Is.LessThan(0.01f));
@@ -63,7 +63,7 @@ namespace Battlefield.Tests.PlayMode
         [Test]
         public void HoldAimsWhileTapTogglesAdsAndKeepsThePreferredPerspective()
         {
-            PlayerCharacterView view = CreateView();
+            PlayerCharacterLookController view = CreateView();
             InputState input = new() { AimHeld = true, AimPressed = true };
             view.Tick(input, 0.02f);
             input.AimPressed = false;
@@ -90,7 +90,7 @@ namespace Battlefield.Tests.PlayMode
         [Test]
         public void LosingControlClearsAimAndFreeLookWithoutChangingThePreferredPerspective()
         {
-            PlayerCharacterView view = CreateView();
+            PlayerCharacterLookController view = CreateView();
             InputState input = new() { TogglePerspectivePressed = true, FreeLookHeld = true };
             view.Tick(input, 0.02f);
             input.TogglePerspectivePressed = false;
@@ -100,13 +100,13 @@ namespace Battlefield.Tests.PlayMode
             Assert.That(view.IsFreeLooking || view.IsAiming || view.IsAds, Is.False);
         }
 
-        private PlayerCharacterView CreateView()
+        private PlayerCharacterLookController CreateView()
         {
             _actor = new GameObject("View Test Character");
-            return _actor.AddComponent<PlayerCharacterView>();
+            return _actor.AddComponent<PlayerCharacterLookController>();
         }
 
-        private static void TapAim(PlayerCharacterView view, InputState input)
+        private static void TapAim(PlayerCharacterLookController view, InputState input)
         {
             input.AimReleased = false;
             input.AimHeld = input.AimPressed = true;
