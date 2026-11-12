@@ -144,7 +144,7 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 
 [FighterCollisionConstraint.cs](<../../Assets/Features/Fighter/Scripts/Collision/FighterCollisionConstraint.cs>)
 
-- 메서드 — RegisterContact, RemoveContact, ClearContacts, ConstrainVelocity, OnDisable
+- 메서드 — RegisterContact, RemoveContact, ClearContacts, ConstrainAcceleration, OnDisable
 - 설정 필드 — 인라인 SerializeField 없음; 파일의 다른 선언 확인
 - 연결 — Assets/Features/Fighter/Prefabs/Fighter.prefab → Fighter
 
@@ -220,28 +220,36 @@ Features·Framework 아래 179개 C# 파일. 외부 패키지/에셋 코드는 �
 - 설정 필드 — _seat, _movement
 - 연결 — Assets/Features/Fighter/Prefabs/Fighter.prefab → Fighter
 
-### JetMovement (229줄)
+### JetMovement
 
 [JetMovement.cs](<../../Assets/Features/Fighter/Scripts/Movement/JetMovement.cs>)
 
-- 메서드 — SetEngineRunning, ApplyTurnEnergyLoss, QueueEnergyLoss, StopImmediately, Awake, OnDisable, Update, FixedUpdate
-- 설정 필드 — _acceleration, _deceleration, _maxSpeed, _minSpeed, _stopSpeedThreshold, _fallRecoveryAcceleration, _velocityAlignmentSpeed
+- 목표 속도는 추력 명령으로 사용하고, 실제 속도는 물리 틱의 추력·공력·제동 가속도로 바뀐다. _stopSpeedThreshold는 지상에서만 목표 속도 해제에 사용한다.
+- 설정 필드 — _acceleration, _deceleration, _maxSpeed, _minSpeed, _stopSpeedThreshold, _landingGear, _aerodynamics
 - 연결 — Assets/Scenes/SampleScene.unity → [Prefab instance] / Assets/Features/Fighter/Prefabs/Fighter.prefab → Fighter
 
-### JetPhysics (42줄)
+### FighterAerodynamics
+
+[FighterAerodynamics.cs](<../../Assets/Features/Fighter/Scripts/Movement/FighterAerodynamics.cs>)
+
+- 실제 속도와 기체 자세에서 양력·항력·옆 미끄럼 감쇠를 계산한다.
+- 연결 — Fighter.prefab → JetMovement._aerodynamics
+
+### JetPhysics
 
 [JetPhysics.cs](<../../Assets/Features/Fighter/Scripts/Movement/JetPhysics.cs>)
 
-- 메서드 — Awake, FixedUpdate
+- Awake에서 질량·선형 감쇠를 설정하고 중력을 활성화한다.
 - 설정 필드 — _mass, _linearDamping
 - 연결 — Assets/Features/Fighter/Prefabs/Fighter.prefab → Fighter
 
-### JetRotation (143줄)
+### JetRotation
 
 [JetRotation.cs](<../../Assets/Features/Fighter/Scripts/Movement/JetRotation.cs>)
 
 - 메서드 — Awake, FixedUpdate, ApplyAngularVelocity, OnDisable, CalculateControlMultiplier, ApplyTurnEnergyLoss, ApplyThrustVectoringEnergyLoss
-- 설정 필드 — _rotationSpeed, _pitchSpeed, _rollSpeed, _yawSpeed, _minimumControlSpeed, _fullControlSpeed, _turnEnergyLossPerSecond, _pitchEnergyLossMultiplier, _rollEnergyLossMultiplier, _yawEnergyLossMultiplier
+- 이륙 중 기수를 드는 속도를 제한하고, 마지막 접지 높이 위에서 제한을 서서히 해제한다.
+- 이륙 설정 필드 — _minimumControlSpeed, _takeoffPitchRate, _takeoffControlClearance
 - 연결 — Assets/Features/Fighter/Prefabs/Fighter.prefab → Fighter
 
 ### ThrustVectoring (109줄)

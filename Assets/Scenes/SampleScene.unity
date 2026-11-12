@@ -13642,6 +13642,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 910600002, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.13999988
+      objectReference: {fileID: 0}
+    - target: {fileID: 910600005, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.13999988
+      objectReference: {fileID: 0}
+    - target: {fileID: 910600008, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.14
+      objectReference: {fileID: 0}
     - target: {fileID: 970000001, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
       propertyPath: _screenArea._reticle
       value: 
@@ -13688,7 +13700,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2872367962350400426, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -98.483
+      value: -97.17
       objectReference: {fileID: 0}
     - target: {fileID: 2872367962350400426, guid: 4e80ac9239793f74298b94d64844e616, type: 3}
       propertyPath: m_LocalPosition.z

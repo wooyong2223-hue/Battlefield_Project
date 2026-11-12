@@ -13,8 +13,14 @@ namespace Battlefield.Features.Fighter
         [SerializeField] private float _maxSpeed = 300f;
         [SerializeField] private float _minSpeed = 0f;
         [SerializeField] private float _stopSpeedThreshold = 50f;
-        [SerializeField] private float _fallRecoveryAcceleration = 20f;
-        [SerializeField, Min(0f)] private float _velocityAlignmentSpeed = 90f;
+        [SerializeField] private FighterLandingGear _landingGear;
+        [SerializeField] private FighterAerodynamics _aerodynamics = new();
+
+        private const float SpeedFeedback = 2f;
+        private const float AccelerationFadeStartSpeed = 65f;
+        private const float AccelerationFadeEndSpeed = 100f;
+        private const float HighSpeedAccelerationMultiplier = 0.8f;
+        private readonly FighterFlightAssist _flightAssist = new FighterFlightAssist();
 
         private Rigidbody _rigidbody;
         private IJetInput _input;
@@ -23,8 +29,6 @@ namespace Battlefield.Features.Fighter
         private ThrustVectoring _thrustVectoring;
         private float _targetSpeed;
         private float _queuedEnergyLoss;
-        private bool _wasUsingGravity;
-        private bool _isRecoveringFromFall;
 
         public float CurrentSpeed { get; private set; }
         public float EffectiveForwardSpeed { get; private set; }
@@ -41,6 +45,7 @@ namespace Battlefield.Features.Fighter
             _targetSpeed = 0f;
             _queuedEnergyLoss = 0f;
             _afterburner?.Stop();
+            _landingGear?.SetRollingAssist(false);
         }
 
         public void ApplyTurnEnergyLoss(float speedLoss)
@@ -62,6 +67,7 @@ namespace Battlefield.Features.Fighter
         {
             _targetSpeed = 0f;
             _afterburner.Stop();
+            _landingGear?.SetRollingAssist(false);
             CurrentSpeed = 0f;
             EffectiveForwardSpeed = 0f;
             _queuedEnergyLoss = 0f;
@@ -79,13 +85,15 @@ namespace Battlefield.Features.Fighter
                 Vector3.Dot(_rigidbody.linearVelocity, transform.forward),
                 _minSpeed,
                 _maxSpeed);
-            CurrentSpeed = _targetSpeed;
+            UpdateSpeedReadouts(_rigidbody.linearVelocity, transform.forward);
             if (_input == null) Debug.Log($"{nameof(IJetInput)} is missing", this);
         }
 
         private void OnDisable()
         {
             _afterburner?.Stop();
+            _flightAssist.Reset();
+            _landingGear?.SetRollingAssist(false);
         }
 
         private void Update()
@@ -100,8 +108,7 @@ namespace Battlefield.Features.Fighter
 
             _afterburner.Tick(_input.Afterburner, Time.deltaTime);
 
-            float acceleration =
-                _acceleration * _afterburner.AccelerationMultiplier;
+            float acceleration = CalculateAvailableAcceleration();
 
             float thrustInput = _afterburner.IsActive
                 ? 1f
@@ -121,109 +128,94 @@ namespace Battlefield.Features.Fighter
                 _targetSpeed,
                 _minSpeed,
                 maximumSpeed);
-
-            bool shouldStop =
-                !_afterburner.IsActive &&
-                _input.Throttle <= 0f &&
-                _targetSpeed <= Mathf.Max(0f, _stopSpeedThreshold);
-            if (shouldStop)
-            {
-                _targetSpeed = 0f;
-            }
         }
 
         private void FixedUpdate()
         {
-            Vector3 currentVelocity = _rigidbody.linearVelocity;
-            float forwardSpeed = _targetSpeed;
+            Vector3 velocity = _rigidbody.linearVelocity;
+            Quaternion attitude = _rigidbody.rotation;
+            Vector3 forward = attitude * Vector3.forward;
+            UpdateSpeedReadouts(velocity, forward);
 
-            bool isUnpoweredFall =
-                _rigidbody.useGravity &&
-                forwardSpeed <= _minSpeed + Mathf.Epsilon;
-            if (!IsEngineRunning || isUnpoweredFall)
+            Vector3 groundNormal = Vector3.up;
+            bool isGrounded = _landingGear != null && _landingGear.TryGetGroundNormal(out groundNormal);
+            float throttle = IsEngineRunning && _input != null ? _input.Throttle : 0f;
+            bool boosting = IsEngineRunning && _afterburner.IsActive;
+
+            if (isGrounded && !boosting && throttle <= 0f &&
+                _targetSpeed <= Mathf.Max(0f, _stopSpeedThreshold))
             {
-                _queuedEnergyLoss = 0f;
-                _wasUsingGravity = true;
-                _isRecoveringFromFall = false;
-
-                Vector3 fallingVelocity =
-                    _collisionConstraint.ConstrainVelocity(currentVelocity);
-                _rigidbody.linearVelocity = fallingVelocity;
-                CurrentSpeed = fallingVelocity.magnitude;
-                EffectiveForwardSpeed = Mathf.Max(
-                    0f,
-                    Vector3.Dot(fallingVelocity, transform.forward));
-                return;
+                _targetSpeed = 0f;
             }
 
-            Vector3 currentDirection = currentVelocity.sqrMagnitude > Mathf.Epsilon
-                ? currentVelocity.normalized
-                : transform.forward;
-            float velocityAlignmentMultiplier = _thrustVectoring != null
+            float sideSlipMultiplier = _thrustVectoring != null
                 ? _thrustVectoring.VelocityAlignmentMultiplier
                 : 1f;
-            float maximumDirectionChange =
-                _velocityAlignmentSpeed *
-                velocityAlignmentMultiplier *
-                Mathf.Deg2Rad *
-                Time.fixedDeltaTime;
-            Vector3 velocityDirection = Vector3.RotateTowards(
-                currentDirection,
-                transform.forward,
-                maximumDirectionChange,
-                0f).normalized;
+            bool useCoastDrag = !isGrounded && throttle <= 0f && !boosting;
+            bool usePitchAssist = IsEngineRunning && !isGrounded && !_collisionConstraint.HasContact;
+            float pitchInput = _input != null ? _input.Pitch : 0f;
+            float directFlightWeight = usePitchAssist
+                ? FighterFlightAssist.CalculateAuthority(EffectiveForwardSpeed, _aerodynamics.LevelFlightSpeed)
+                : 0f;
+            directFlightWeight *= Mathf.Clamp01(sideSlipMultiplier);
+            Vector3 acceleration = _aerodynamics.CalculateAcceleration(
+                velocity, attitude, Physics.gravity.magnitude, sideSlipMultiplier, useCoastDrag, usePitchAssist,
+                pitchInput, directFlightWeight);
 
-            float currentMagnitude = Mathf.Max(
-                _minSpeed,
-                currentVelocity.magnitude - _queuedEnergyLoss);
+            float thrust = IsEngineRunning ? CalculateThrust(throttle, boosting, isGrounded) : 0f;
+            _landingGear?.SetRollingAssist(isGrounded && thrust > 0f);
+            if (IsEngineRunning)
+            {
+                acceleration += forward * thrust;
+                acceleration += CalculateBraking(velocity, groundNormal, isGrounded, throttle);
+            }
+
+            acceleration += _flightAssist.CalculateAcceleration(velocity, forward, _rigidbody.worldCenterOfMass.y, pitchInput,
+                acceleration + Physics.gravity, directFlightWeight, Time.fixedDeltaTime);
             _queuedEnergyLoss = 0f;
-            float forwardAcceleration =
-                _acceleration * _afterburner.AccelerationMultiplier;
-            float speedChangeRate = forwardSpeed >= currentMagnitude
-                ? forwardAcceleration
-                : _deceleration;
-            bool preserveStallMomentum =
-                _rigidbody.useGravity &&
-                forwardSpeed < currentMagnitude;
-            float velocityMagnitude = preserveStallMomentum
-                ? currentMagnitude
-                : Mathf.MoveTowards(
-                    currentMagnitude,
-                    forwardSpeed,
-                    speedChangeRate * Time.fixedDeltaTime);
-            Vector3 velocity = velocityDirection * velocityMagnitude;
-
-            if (_rigidbody.useGravity)
-            {
-                velocity.y = _rigidbody.linearVelocity.y;
-                _wasUsingGravity = true;
-                _isRecoveringFromFall = false;
-            }
-            else if (_wasUsingGravity || _isRecoveringFromFall)
-            {
-                _wasUsingGravity = false;
-                _isRecoveringFromFall = true;
-
-                float targetVerticalSpeed = velocity.y;
-                velocity.y = Mathf.MoveTowards(
-                    _rigidbody.linearVelocity.y,
-                    targetVerticalSpeed,
-                    _fallRecoveryAcceleration * Time.fixedDeltaTime);
-
-                if (Mathf.Abs(velocity.y - targetVerticalSpeed) < 0.01f)
-                {
-                    _isRecoveringFromFall = false;
-                }
-            }
-
-            Vector3 constrainedVelocity =
-                _collisionConstraint.ConstrainVelocity(velocity);
-            _rigidbody.linearVelocity = constrainedVelocity;
-            CurrentSpeed = constrainedVelocity.magnitude;
-            EffectiveForwardSpeed = Mathf.Max(
-                0f,
-                Vector3.Dot(constrainedVelocity, transform.forward));
+            _rigidbody.AddForce(_collisionConstraint.ConstrainAcceleration(acceleration), ForceMode.Acceleration);
         }
 
+        private float CalculateAvailableAcceleration()
+        {
+            float progress = Mathf.InverseLerp(AccelerationFadeStartSpeed, AccelerationFadeEndSpeed,
+                EffectiveForwardSpeed);
+            float multiplier = Mathf.SmoothStep(1f, HighSpeedAccelerationMultiplier, progress);
+            return _acceleration * multiplier * _afterburner.AccelerationMultiplier;
+        }
+
+        private float CalculateThrust(float throttle, bool boosting, bool isGrounded)
+        {
+            if (isGrounded ? throttle < 0f : throttle <= 0f && !boosting) return 0f;
+
+            float speedLimit = _maxSpeed * _afterburner.MaxSpeedMultiplier;
+            float accelerationLimit = Mathf.Max(0f, CalculateAvailableAcceleration());
+            float demand = boosting ? 1f : Mathf.Clamp01(throttle);
+            float speedError = Mathf.Min(_targetSpeed, speedLimit) - EffectiveForwardSpeed;
+            float thrust = Mathf.Clamp(accelerationLimit * demand + speedError * SpeedFeedback, 0f, accelerationLimit);
+            return Mathf.Min(thrust, Mathf.Max(0f, speedLimit - EffectiveForwardSpeed) / Time.fixedDeltaTime);
+        }
+
+        private Vector3 CalculateBraking(Vector3 velocity, Vector3 groundNormal, bool isGrounded, float throttle)
+        {
+            float brakeInput = Mathf.Clamp01(-throttle);
+            Vector3 brakeVelocity = isGrounded ? Vector3.ProjectOnPlane(velocity, groundNormal) : velocity;
+            float brakeSpeed = brakeVelocity.magnitude;
+            if (brakeSpeed < 0.01f) return Vector3.zero;
+
+            float brake = Mathf.Max(0f, _deceleration) * brakeInput;
+            if (!isGrounded)
+                brake *= Mathf.Clamp01(EffectiveForwardSpeed / _aerodynamics.LevelFlightSpeed);
+
+            float requestedLoss = brake + _queuedEnergyLoss / Time.fixedDeltaTime;
+            float loss = Mathf.Min(brakeSpeed / Time.fixedDeltaTime, requestedLoss);
+            return -brakeVelocity * (loss / brakeSpeed);
+        }
+
+        private void UpdateSpeedReadouts(Vector3 velocity, Vector3 forward)
+        {
+            CurrentSpeed = velocity.magnitude;
+            EffectiveForwardSpeed = Mathf.Max(0f, Vector3.Dot(velocity, forward));
+        }
     }
 }

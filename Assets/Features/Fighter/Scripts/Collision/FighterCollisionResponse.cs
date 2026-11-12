@@ -35,27 +35,29 @@ namespace Battlefield.Features.Fighter
 
         private void OnCollisionEnter(Collision collision)
         {
-            CollisionSurfaceType surfaceType =
-                ClassifyCollisionSurface(collision);
+            if (_health.IsDead) return;
+
+            CollisionSurfaceType surfaceType = ClassifyCollisionSurface(collision);
             _collisionDamage.Apply(collision, surfaceType);
-
-            if (_health.CurrentHealth > 0f)
-            {
-                _collisionConstraint.RegisterContact(
-                    collision.collider,
-                    CalculateContactNormal(collision));
-            }
-
-            LimitAngularVelocity();
+            if (!_health.IsDead)
+                RegisterContact(collision);
+            else if (surfaceType == CollisionSurfaceType.Obstacle)
+                LimitAngularVelocity();
         }
 
         private void OnCollisionStay(Collision collision)
         {
+            if (!_health.IsDead)
+                RegisterContact(collision);
+        }
+
+        private void RegisterContact(Collision collision)
+        {
             _collisionConstraint.RegisterContact(
                 collision.collider,
                 CalculateContactNormal(collision));
-            LimitAngularVelocity();
         }
+
 
         private void OnCollisionExit(Collision collision)
         {

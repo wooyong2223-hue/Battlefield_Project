@@ -5,43 +5,62 @@ namespace Battlefield.Features.Fighter
 {
     public class FighterCollisionConstraint : MonoBehaviour
     {
-        private readonly Dictionary<Collider, Vector3> _contactNormals = new();
+        private readonly Dictionary<Collider, Vector3> _contacts = new();
+
+        public bool HasContact
+        {
+            get
+            {
+                foreach (Collider collider in _contacts.Keys)
+                {
+                    if (IsActive(collider))
+                        return true;
+                }
+
+                return false;
+            }
+        }
 
         public void RegisterContact(Collider target, Vector3 contactNormal)
         {
-            if (target == null || contactNormal.sqrMagnitude <= Mathf.Epsilon)
-            {
-                return;
-            }
+            if (target == null) return;
 
-            _contactNormals[target] = contactNormal.normalized;
+            _contacts[target] = contactNormal.normalized;
         }
 
         public void RemoveContact(Collider target)
         {
             if (target != null)
             {
-                _contactNormals.Remove(target);
+                _contacts.Remove(target);
             }
         }
 
         public void ClearContacts()
         {
-            _contactNormals.Clear();
+            _contacts.Clear();
         }
 
-        public Vector3 ConstrainVelocity(Vector3 velocity)
+        public Vector3 ConstrainAcceleration(Vector3 acceleration)
         {
-            foreach (Vector3 contactNormal in _contactNormals.Values)
+            foreach (var contact in _contacts)
             {
-                float inwardSpeed = Vector3.Dot(velocity, contactNormal);
-                if (inwardSpeed < 0f)
+                if (!IsActive(contact.Key)) continue;
+
+                Vector3 contactNormal = contact.Value;
+                float inwardAcceleration = Vector3.Dot(acceleration, contactNormal);
+                if (inwardAcceleration < 0f)
                 {
-                    velocity -= contactNormal * inwardSpeed;
+                    acceleration -= contactNormal * inwardAcceleration;
                 }
             }
 
-            return velocity;
+            return acceleration;
+        }
+
+        private static bool IsActive(Collider collider)
+        {
+            return collider != null && collider.enabled && collider.gameObject.activeInHierarchy;
         }
 
         private void OnDisable()
